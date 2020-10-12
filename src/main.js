@@ -26,6 +26,13 @@ Vue.use(ElementUI);
 // 把vue实例当成一个公共的容器,挂载到vue实例的原型上
 Vue.prototype.$bus = new Vue();
 
+// 全局挂载echarts
+import echarts from 'echarts';
+import 'echarts/map/js/china';
+import china from 'echarts/map/json/china.json';
+echarts.registerMap('china', china);
+Vue.prototype.$echarts = echarts;
+
 Vue.config.productionTip = false;
 
 new Vue({

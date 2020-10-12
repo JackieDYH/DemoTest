@@ -2,7 +2,10 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/about">About</router-link> |
+      <router-link to="/vxetable">vxe-table</router-link> |
+      <router-link to="/eltable">el-table</router-link> |
+      <router-link to="/map">map</router-link>
     </div>
     <router-view />
   </div>

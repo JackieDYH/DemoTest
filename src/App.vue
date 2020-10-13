@@ -6,7 +6,8 @@
       <router-link to="/vxetable">vxe-table</router-link> |
       <router-link to="/eltable">el-table</router-link> |
       <router-link to="/map">map</router-link> |
-      <router-link to="/map2">map2</router-link>
+      <router-link to="/map2">map2</router-link> |
+      <router-link to="/map3">map3</router-link>
     </div>
     <router-view />
   </div>

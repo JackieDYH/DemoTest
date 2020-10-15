@@ -3,6 +3,7 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
+      <router-link to="/about2">About2</router-link> |
       <router-link to="/vxetable">vxe-table</router-link> |
       <router-link to="/eltable">el-table</router-link> |
       <router-link to="/map">map</router-link> |

@@ -51,6 +51,12 @@ const routes = [
     name: "map3",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/map3.vue")
+  },
+  {
+    path: "/lunbo",
+    name: "lunbo",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/lunbo.vue")
   }
 ];
 

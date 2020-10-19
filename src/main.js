@@ -33,6 +33,10 @@ import china from 'echarts/map/json/china.json';
 echarts.registerMap('china', china);
 Vue.prototype.$echarts = echarts;
 
+// 轮播图
+import Slider from 'wxp-swiper'
+Vue.use(Slider)
+
 Vue.config.productionTip = false;
 
 new Vue({

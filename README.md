@@ -3,7 +3,7 @@
 * 测试小demo
 - 视频
 - 地图
-
+- 轮播图组件 https://www.npmjs.com/package/wxp-swiper
 
 
 --------------------------------------

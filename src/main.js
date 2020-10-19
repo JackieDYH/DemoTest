@@ -37,6 +37,16 @@ Vue.prototype.$echarts = echarts;
 import Slider from 'wxp-swiper'
 Vue.use(Slider)
 
+// animate.css
+import animate from 'animate.css';
+Vue.use(animate)
+
+// ant-design
+import Antd from 'ant-design-vue';
+import 'ant-design-vue/dist/antd.css';
+Vue.use(Antd);
+
+
 Vue.config.productionTip = false;
 
 new Vue({

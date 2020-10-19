@@ -3,8 +3,9 @@
 * 测试小demo
 - 视频
 - 地图
-- 轮播图组件 https://www.npmjs.com/package/wxp-swiper
-
+- [轮播图组件](https://www.npmjs.com/package/wxp-swiper)
+- [ant-design-vue 组件库](https://www.antdv.com/docs/vue/getting-started-cn/)
+- [animate.css 动画库](https://animate.style/#usage)
 
 --------------------------------------
 

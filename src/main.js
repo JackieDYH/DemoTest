@@ -9,6 +9,13 @@ import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 
 
+// 引入百度地图
+import BaiduMap from 'vue-baidu-map'
+Vue.use(BaiduMap, {
+  // ak 是在百度地图开发者平台申请的密钥 详见 http://lbsyun.baidu.com/apiconsole/key */
+  ak: '4GC7SQkTtq09N8QAKhIrTsjHAxi00K8i'
+})
+
 // 全量引入vxe-table表格组件
 // import 'xe-utils'
 // import VXETable from 'vxe-table'
@@ -37,6 +44,11 @@ Vue.prototype.$echarts = echarts;
 import Slider from 'wxp-swiper'
 Vue.use(Slider)
 
+// 引入swiper组件
+import VueAwesomeSwiper from 'vue-awesome-swiper';
+import "swiper/dist/css/swiper.css";
+Vue.use(VueAwesomeSwiper);
+
 // animate.css
 import animate from 'animate.css';
 Vue.use(animate)
@@ -45,6 +57,8 @@ Vue.use(animate)
 import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
 Vue.use(Antd);
+
+
 
 
 Vue.config.productionTip = false;

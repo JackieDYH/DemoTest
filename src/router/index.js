@@ -8,53 +8,69 @@ const routes = [
   {
     path: "/",
     name: "Home",
+    meta:{title:"首页"},
     component: Home
   },
   {
     path: "/about",
     name: "About",
+    meta:{title:"视频"},
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue")
   },
   {
     path: "/about2",
     name: "About2",
+    meta:{title:"视频"},
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About2.vue")
   },
   {
     path: "/vxetable",
     name: "vxetable",
+    meta:{title:"表格"},
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/Vxetable.vue")
   },
   {
     path: "/eltable",
     name: "eltable",
+    meta:{title:"表格"},
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/Eltable.vue")
   },
   {
     path: "/map",
     name: "map",
+    meta:{title:"地图1"},
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/map.vue")
   },
   {
     path: "/map2",
     name: "map2",
+    meta:{title:"地图2"},
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/map2.vue")
   },
   {
     path: "/map3",
     name: "map3",
+    meta:{title:"地图3"},
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/map3.vue")
   },
   {
+    path: "/map4",
+    name: "map4",
+    meta:{title:"地图4"},
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/map4.vue")
+  },
+  {
     path: "/lunbo",
     name: "lunbo",
+    meta:{title:"轮播"},
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/lunbo.vue")
   }
@@ -63,5 +79,12 @@ const routes = [
 const router = new VueRouter({
   routes
 });
+
+router.beforeEach((to,from,next)=>{//beforeEach是router的钩子函数，在进入路由前执行
+  if(to.meta.title){//判断是否有标题
+      document.title = to.meta.title
+  }
+  next()  //执行进入路由，如果不写就不会进入目标页
+})
 
 export default router;

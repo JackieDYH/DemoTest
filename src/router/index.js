@@ -73,7 +73,14 @@ const routes = [
     meta:{title:"轮播"},
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/lunbo.vue")
-  }
+  },
+  {
+    path: "/img",
+    name: "img",
+    meta:{title:"图片"},
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/img.vue")
+  },
 ];
 
 const router = new VueRouter({

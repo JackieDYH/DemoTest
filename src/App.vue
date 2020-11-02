@@ -11,6 +11,7 @@
       <router-link to="/map3">map3</router-link> |
       <router-link to="/map4">map4</router-link> |
       <router-link to="/lunbo">lunbo</router-link> |
+      <router-link to="/img">img</router-link> |
 
     </div>
     <router-view />

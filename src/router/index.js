@@ -81,6 +81,13 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/img.vue")
   },
+  {
+    path: "/pic",
+    name: "pic",
+    meta:{title:"环形图"},
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/pic.vue")
+  },
 ];
 
 const router = new VueRouter({

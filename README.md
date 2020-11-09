@@ -19,7 +19,7 @@ https://github.surmon.me/vue-awesome-swiper/
 npm install vue-baidu-map --save
 ```
 - npm install --save vue-pdf
-- pdf-dist pdf组件 静态文件
+- [pdf.js](https://jackiehao.blog.csdn.net/article/details/109453645) pdf组件 静态文件
 
 
 --------------------------------------

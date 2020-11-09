@@ -13,7 +13,8 @@
       <router-link to="/lunbo">lunbo</router-link> |
       <router-link to="/img">img</router-link> |
       <router-link to="/pic">pic</router-link> |
-
+      <router-link to="/pdf1">pdf1</router-link> |
+      <router-link to="/pdf2">pdf2</router-link> |
     </div>
     <router-view />
   </div>

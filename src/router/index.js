@@ -88,6 +88,20 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/pic.vue")
   },
+  {
+    path: "/pdf1",
+    name: "pdf1",
+    meta:{title:"pdf展示"},
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/pdf1.vue")
+  },
+  {
+    path: "/pdf2",
+    name: "pdf2",
+    meta:{title:"pdf展示"},
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/pdf2.vue")
+  },
 ];
 
 const router = new VueRouter({

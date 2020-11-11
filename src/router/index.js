@@ -102,6 +102,13 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/pdf2.vue")
   },
+  {
+    path: "/pmd",
+    name: "pmd",
+    meta:{title:"跑马灯"},
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/pmd.vue")
+  },
 ];
 
 const router = new VueRouter({

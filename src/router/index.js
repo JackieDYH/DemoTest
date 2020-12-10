@@ -109,6 +109,13 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/pmd.vue")
   },
+  {
+    path: "/image",
+    name: "image",
+    meta:{title:"图片加载"},
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/image.vue")
+  },
 ];
 
 const router = new VueRouter({

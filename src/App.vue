@@ -16,6 +16,7 @@
       <router-link to="/pdf1">pdf1</router-link> |
       <router-link to="/pdf2">pdf2</router-link> |
       <router-link to="/pmd">跑马灯效果</router-link> |
+      <router-link to="/image">图片加载</router-link> |
     </div>
     <router-view />
   </div>

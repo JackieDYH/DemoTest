@@ -21,6 +21,11 @@ npm install vue-baidu-map --save
 - npm install --save vue-pdf
 - [pdf.js](https://jackiehao.blog.csdn.net/article/details/109453645) pdf组件 静态文件
 
+图片渐进加载
+- npm install progressive-image --save
+图片懒加载
+- npm install vue-lazyload --save-dev
+
 
 --------------------------------------
 

@@ -26,6 +26,8 @@ npm install vue-baidu-map --save
 ### 图片懒加载
 - npm install vue-lazyload --save-dev
 
+### antv/g2
+-  npm i @antv/g2 --save
 
 --------------------------------------
 

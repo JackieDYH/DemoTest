@@ -116,6 +116,13 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/image.vue")
   },
+  {
+    path: "/antv",
+    name: "antv",
+    meta:{title:"antv-g2"},
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/antv.vue")
+  },
 ];
 
 const router = new VueRouter({

@@ -73,6 +73,9 @@ Vue.use(progressive, {
     scale: true
 })
 
+const G2 = require('@antv/g2');
+// import G2 from '@antv/g2'; 
+Vue.prototype.$G2 = G2;
 
 Vue.config.productionTip = false;
 

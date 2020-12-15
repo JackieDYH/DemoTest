@@ -123,6 +123,13 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/antv.vue")
   },
+  {
+    path: "/imgyl",
+    name: "imgyl",
+    meta:{title:"图片放大预览"},
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/imgyl.vue")
+  },
 ];
 
 const router = new VueRouter({

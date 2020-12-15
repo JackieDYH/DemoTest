@@ -18,6 +18,7 @@
       <router-link to="/pmd">跑马灯效果</router-link> |
       <router-link to="/image">图片加载</router-link> |
       <router-link to="/antv">antv图表</router-link> |
+      <router-link to="/imgyl">图片预览</router-link> |
     </div>
     <router-view />
   </div>

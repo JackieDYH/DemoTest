@@ -17,6 +17,7 @@
     "element-ui": "^2.13.2",
     "flv.js": "^1.5.0",
     "progressive-image": "^1.2.0",
+    "v-viewer": "^1.5.1",
     "video.js": "^7.9.7",
     "vue": "^2.6.11",
     "vue-baidu-map": "^0.21.22",

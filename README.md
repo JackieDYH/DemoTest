@@ -29,6 +29,9 @@ npm install vue-baidu-map --save
 ### antv/g2
 -  npm i @antv/g2 --save
 
+### 图片放大预览
+- npm install v-viewer --save
+
 --------------------------------------
 
 ## Project setup

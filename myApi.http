@@ -1,0 +1,82 @@
+### 接口调试
+
+###
+post http://localhost:8080/api/useredit
+Content-Type: application/x-www-form-urlencoded
+
+### 收缴率接口
+post http://oa-sh-test.xinfu.info/newerp/app/wyprofloor/getComRanks
+Content-Type: application/x-www-form-urlencoded
+
+###
+post http://4bdn96.natappfree.cc/newerp/app/wyprofloor/getProRanks
+Content-Type: application/x-www-form-urlencoded
+
+cid="a7e0660415a14f06b3b80d1c17e18e0f,b425a94aa94f43ea8200e9228fc3f5a0,59bd772219b449e5a8cd9b4d2c04bb32,68d0c94ebdc94ea98096430a0f6940f5,d5ebd4a62cd24137b2954b4984e8c86c,093430cbe88c4daeb833ed955f596405,7c66dc235da24868ad2f5e3eb5fa1160"
+
+###
+post http://8b8sxg.natappfree.cc/newerp/app/wyprofloor
+Content-Type: application/x-www-form-urlencoded
+
+pid="389b5cca00074b4f86a83078dcad4712"
+
+
+# Content-Type: application/x-www-form-urlencoded
+# Content-Type: application/json
+###
+post http://172.16.20.25:8091/emp/api/equipment/screen/getEquipCount
+Content-Type:application/x-www-form-urlencoded
+
+project="000002"
+
+###
+post https://b.xinfu.info/i/engineering/engineering/equipEventInfo/getLiftAlarmVedioUrl
+Content-Type: application/x-www-form-urlencoded
+
+
+###
+post http://47.102.145.66:9997/screen/getEquipCurrentList
+Content-Type: application/x-www-form-urlencoded
+
+###
+post http://oa.xinfu.info/newerp/app/car/getBigScreenData
+Content-Type: application/x-www-form-urlencoded
+
+###
+post http://172.16.20.25:9997/screen/getCommonRecordListResponse
+# Content-Type: application/x-www-form-urlencoded
+
+equipTypeCode=03
+
+
+###
+post https://test.xinfu.info/xinfu1/app/user/wxLgoin
+Content-Type: application/x-www-form-urlencoded
+
+openId=o3Cug4sEBKDIMaq0bxvhqvElz921
+
+###
+post https://test.xinfu.info/xinfu1/app/user/smsLogin
+Content-Type: application/x-www-form-urlencoded
+
+mobile=17344030576&openId=o3Cug4sEBKDIMaq0bxvhqvElz92E
+
+####
+get https://test.xinfu.info/xinfu1/app/user/register
+Content-Type: application/x-www-form-urlencoded
+
+username=17344030576
+
+### 获取验证码
+post https://test.xinfu.info/xinfu1/app/user/registerValidationCode
+Content-Type: application/x-www-form-urlencoded
+
+mobile=17344030576
+
+#### 调试的api开源接口
+get https://api.apiopen.top/getJoke?page=1&count=2&type=video
+
+### 
+get https://api.apiopen.top/musicRankings
+
+

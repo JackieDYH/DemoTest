@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Title</title>
+		<link rel="stylesheet" type="text/css" href="css/select-tree.css" />
+		<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<style>
+			body {
+				margin: 50px 50px 50px 50px;
+			}
+		</style>
+	</head>
+	<body>
+
+		<label>单选（目录不可选）</label>
+		<div id="radio1" class="treePickerWrapper"></div>
+		<button id="radio1-bt">获取选项内容</button>
+		<hr>
+		<label>单选（目录可选）</label>
+		<div id="radio2" class="treePickerWrapper"></div>
+		<hr>
+		<label>多选（目录不可选）</label>
+		<div id="check" class="treePickerWrapper"></div>
+		<button id="check-bt">设置选项内容</button>
+		<hr>
+		<label>多选（目录可选）</label>
+		<div id="check1" class="treePickerWrapper"></div>
+		<hr>
+		<label>初始化</label>
+		<div id="init" class="treePickerWrapper"></div>
+		<hr>
+
+		<script src="js/jquery.min.js"></script>
+		<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="js/select-tree.js"></script>
+		<script>
+			$("#init").myTree().addTreeEvent();
+
+			let data = [{
+					key: "gx",
+					name: "广西",
+					type: "folder",
+					children: [{
+							key: "nn",
+							name: "南宁",
+							type: "file",
+						},
+						{
+							key: "fcg",
+							name: "防城港",
+							type: "folder",
+							children: [{
+								key: "dx",
+								name: "东兴",
+								type: "file",
+							}]
+						}
+					]
+				},
+				{
+					key: "gd",
+					name: "广东",
+					type: "folder"
+				}
+			];
+			$("#radio1").myTree(data, false);
+			$("#radio2").myTree(data, false, null, "请选择", 200, true);
+			$("#check").myTree(data, true, changeFunc);
+			$("#check1").myTree(data, true, null, "请选择", 200, true);
+
+			$("#radio1-bt").click(function() {
+				alert(JSON.stringify($("#radio1").getTree()));
+				alert(JSON.stringify($("#radio1").getTreeKeys()));
+			});
+
+			$("#check-bt").click(function() {
+				$("#radio2").setTree("fcg");
+				$("#check").setTree(["nn", "fcg"]);
+			});
+
+			function changeFunc() {
+				// alert("选项为: " + JSON.stringify($("#check").getTreeKeys()));
+			}
+		</script>
+	</body>
+</html>

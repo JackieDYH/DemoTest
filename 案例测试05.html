@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.no-select {
+				-webkit-touch-callout: none;
+				/*系统默认菜单被禁用 iOS Safari*/
+				-webkit-user-select: none;
+				/*webkit浏览器 Chrome/Safari/Opera*/
+				-khtml-user-select: none;
+				/*早期浏览器 Konqueror*/
+				-moz-user-select: none;
+				/*火狐 Firefox*/
+				-ms-user-select: none;
+				/*IE10 Internet Explorer/Edge*/
+				user-select: none;
+				/* Non-prefixed version, currently not supported by any browser */
+			}
+
+			/* 文字滚动 */
+			.merquee {
+				height: 25px;
+				line-height: 25px;
+				box-sizing: border-box;
+				word-break: break-all;
+				white-space: nowrap;
+				overflow: hidden;
+			}
+
+			.merquee-txt {
+				display: inline-block;
+				padding-left: 100%;
+				/* 从右至左开始滚动 */
+				animation: marqueeTransform 16s linear infinite;
+			}
+
+			@keyframes marqueeTransform {
+				0% {
+					transform: translate(0, 0);
+					/* transform: translateX(0); */
+				}
+
+				100% {
+					transform: translate(-50%, 0);
+					/* transform: translateX(-33.3%); */
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="merquee">
+			<span class="merquee-txt">跑马灯 css实现跑马灯 css实现跑马灯 css实现跑马灯 css实现跑马灯 css实现跑马灯 css实现跑马灯 css实现</span>
+		</div>
+		<marquee id="affiche" align="left" behavior="scroll" bgcolor="#FF0000" direction="up" height="40" width="200" hspace="50"
+		 vspace="20" loop="-1" scrollamount="10" scrolldelay="100" onMouseOut="this.start()" onMouseOver="this.stop()">
+			这是一个完整的例子这是一个完整的例子这是一个完整的例子这是一个完整的例子这是一个完整的例子这是一个完整的例子这是一个完整的例子这是一个完整的例子这是一个完整的例子这是一个完整的例子这是一个完整的例子这是一个完整的例子
+		</marquee>
+
+		<p>厉害哈哈哈哈哈哈</p>
+		<p class="no-select">厉害哈哈哈哈哈哈</p>
+		<p class="no-select">厉害哈哈哈哈哈哈</p>
+		<p class="no-select">厉害哈哈哈哈哈哈</p>
+		<img width="200" src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3229260158,2770890932&fm=26&gp=0.jpg"
+		 οnmοuseοver="this.src='https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2073015757,2361179816&fm=26&gp=0.jpg'"
+		 οnmοuseοut="this.src='https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3229260158,2770890932&fm=26&gp=0.jpg'">
+		<img src="https://himg.bdimg.com/sys/portraitn/item/ee81e69caae5bf85e9a1bde59bba443e" class="no-select" οndragstart="return false">
+	</body>
+</html>

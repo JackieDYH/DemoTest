@@ -1,0 +1,50 @@
+<script type="text/javascript">
+	var speed = 100; //滚动速度
+	var maq;
+	var m1; //第一份滚动的内容
+	var m2; //第二份滚动的内容
+	var timer; //定时器
+	function run() {
+		if (m1.offsetWidth <= maq.scrollLeft) {
+			maq.scrollLeft -= m1.offsetWidth;
+		} else {
+			maq.scrollLeft += 6;
+		}
+	}
+	window.onload = function() {
+		maq = document.getElementById("maq");
+		m1 = document.getElementById("m1");
+		m2 = document.getElementById("m2");
+		m2.innerHTML = m1.innerHTML;
+		if (timer == null) {
+			timer = window.setInterval(run, speed);
+		}
+		maq.onmouseover = function() {
+			window.clearInterval(timer);
+		}
+		maq.onmouseout = function() {
+			timer = window.setInterval(run, speed);
+		}
+	}
+</script>
+</head>
+<body>
+	<div id="maq" style="height:200px; width:380px; overflow:hidden">
+		<table>
+			<tr>
+				<td id="m1">
+					<table>
+						<tr>
+							<td><img src="https://www.wojiacloud.com/static/image/community.png" width="174" height="268" /></td>
+							<td><img src="https://www.wojiacloud.com/static/image/community.png" width="174" height="268" /></td>
+							<td><img src="https://www.wojiacloud.com/static/image/community.png" width="174" height="268" /></td>
+							<td><img src="https://www.wojiacloud.com/static/image/community.png" width="174" height="268" /></td>
+							<td><img src="https://www.wojiacloud.com/static/image/community.png" width="174" height="268" /></td>
+						</tr>
+					</table>
+				</td>
+				<td id="m2"></td>
+			</tr>
+		</table>
+	</div>
+</body>

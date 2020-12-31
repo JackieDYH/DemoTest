@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				padding: 0;
+				margin: 0;
+			}
+
+			.loading {
+				height: 40px;
+				margin: 100px auto;
+				display: flex;
+				justify-content: center;
+			}
+
+			.loading span {
+				width: 8px;
+				height: 100%;
+				border-radius: 4px;
+				background-color: lightgreen;
+				animation: load 1s ease infinite;
+				margin: 0 2px;
+			}
+
+			@keyframes load {
+
+				0%,
+				100% {
+					transform: scaleY(1.5);
+					background-color: lightgreen;
+				}
+
+				50% {
+					transform: scaleY(1);
+					background-color: lightblue;
+				}
+			}
+
+			.loading span:nth-child(2) {
+				animation-delay: 0.2s;
+			}
+
+			.loading span:nth-child(3) {
+				animation-delay: 0.4s;
+			}
+
+			.loading span:nth-child(4) {
+				animation-delay: 0.6s;
+			}
+
+			.loading span:nth-child(5) {
+				animation-delay: 0.8s;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 加载效果 -->
+		<div class="loading">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+		<!-- 视频 -->
+		<div id="player"></div>
+
+		<div id="box" style="color: red;">
+			div内容
+		</div>
+
+		<!-- 视频 
+		借助一个html标签object,来嵌入一个swf媒体播放文件，并利用该文件来播放你预设的文件
+		https://file.njshushuo.com/flvplayer.swf
+		-->
+		<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0"
+		 width="640" height="480" id="VideoPlayer" align="middle">
+			<param name="allowScriptAccess" value="*" />
+			<param name="allowFullScreen" value="true" />
+			<param name="movie" value="./flvplayer.swf?video=https://file.njshushuo.com/8d2164883f65d1f78180b3fcc159d282&autoplay=true" />
+			<param name="quality" value="high" />
+			<param name="bgcolor" value="#ffffff" />
+			<embed src="./flvplayer.swf" flashvars="vcastr_file=https://file.njshushuo.com/8d2164883f65d1f78180b3fcc159d282"
+			 quality="high" bgcolor="#000000" width="500" height="380" name="VideoPlayer" align="middle" allowScriptAccess="*"
+			 allowfullscreen="true" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+		</object>
+
+		<script type="text/javascript">
+			// 获取扩展名
+			let filename = 'js.html';
+			let index = filename.lastIndexOf('.');
+			let suffix = filename.substring(index + 1); //从.加一 到最后
+			// let suffix = filename.substr(index+1);
+			let spl = filename.split('.');
+			console.log(suffix, spl[spl.length - 1]);
+
+			// 数组随机排序1
+			let arrpx = [1, 2, 3, 4, 6, 5, 7, 9, 8];
+
+			function randpx(arr) {
+				for (let i = 0; i < arr.length; i++) {
+					let rand = parseInt(Math.random() * arr.length);
+					let temp = arr[rand];
+					arr[rand] = arr[i];
+					arr[i] = temp;
+				}
+				return arr;
+			}
+			console.log(randpx(arrpx));
+
+			// sort排序2
+			let arrpx2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+			arrpx2.sort(function() {
+				return Math.random() - 0.5;
+			})
+			console.log(arrpx2);
+
+			let div = document.getElementById('box');
+			console.log(div.style['color'])
+
+			var getStyle = function(ele, attr) {
+				//1.将主要功能代码写入函数中
+				if (ele.currentStyle == undefined) {
+					//证明当前浏览器是标准浏览器
+					var bg = getComputedStyle(ele)[attr];
+					return bg;
+				} else {
+					//否则就是在ie浏览器，就需要使用currentStyle
+					var bg = ele.currentStyle[attr];
+					return bg;
+				}
+			}
+			console.log(getStyle(div, 'color'))
+
+
+			var arr1 = [1, 2, 3, 4, 5, 6, 7, 8];
+			//替换掉2，3 替换为 9，10
+			arr1.splice(1, 2, 9, 10, 11, 12);
+			console.log(arr1);
+
+
+			let str = 'asdfghhgffffieekdnwolfhqnczeeesssg';
+			let obj = {}; //存放每个字符的个数
+			let num = str.length;
+			for (let i = 0; i < num; i++) {
+				if (obj[str.charAt(i)]) {
+					obj[str.charAt(i)] = parseInt(obj[str.charAt(i)]) + 1; //个数增加
+				} else {
+					obj[str.charAt(i)] = 1; //设置初始值 添加
+				}
+			}
+
+			let maxNum = 0; //次数
+			let maxDocument = null; //字符
+			for (let j in obj) {
+				if (obj[j] > maxNum) {
+					maxNum = obj[j];
+					maxDocument = j;
+				}
+			}
+			console.log('obj：', obj);
+			console.log('次数：', maxNum, '字符：', maxDocument);
+
+			// var a = 100; 
+			// function test(){ 
+			//     alert(a+'d'); //100
+			//     a = 10; 
+			//     alert(a+'y');//10
+			// } 
+			// test();
+			// alert(a+'h');//10
+
+			// 冒泡排序
+			// let arr = [5,4,6,2,7,1];
+			// for(let i=0;i<arr.length-1;i++){
+			// 	for(let j=0;j<arr.length-i-1;j++){
+			// 		if(arr[j]>arr[j+1]){
+			// 			let temp = arr[j+1];
+			// 			arr[j+1] = arr[j];
+			// 			arr[j] = temp;
+			// 		}
+			// 	}
+			// }
+			// console.log('arr',arr);
+
+			// 数组去重
+			let arr = [1, 1, 2, 3, 2, 3, 5, 6, 7, 8, 8, 7];
+			let narr = [];
+
+			function removeItem(arr) {
+				for (let i = 0; i < arr.length; i++) {
+					// 判断narr中是否已存在该值
+					if (narr.indexOf(arr[i]) == -1) {
+						narr.push(arr[i]);
+					}
+				}
+				return narr;
+			}
+			console.log(removeItem(arr)); //[1, 2, 3, 5, 6, 7, 8]
+
+			// for(var i=0; i<arr.length-1; i++){//i == 1
+			// 	for(var j=i+1; j<arr.length; j++){//j == 2
+			// 		//如果遇到相同的  第i项 和 第j项 相同  就删除第j项
+			// 		if(arr[i]==arr[j]){
+			// 			arr.splice(j,1);//如果要是有几个连续重复的数组项，就不能成功去重了
+			// 			j--;//解决补位问题
+			// 		}
+			// 	}
+			// }
+			// console.log(arr);
+
+
+			var output = (function(x) {
+				delete x; //只针对对象属性，不会释放内存 间接中断对象的引用
+				return x;
+			})(0);
+			console.log(output); //0
+
+			var x = 1;
+			console.log(x, y); //1 undefined
+			// console.log(x,y,z);//z is not defined
+			var y = 2;
+			let z = 3; //不会提升
+			// console.log(x,y,z);//1 2 3
+
+			var val = 12;
+
+			function fun1() {
+				console.log(val); //undefined
+				var val = 20;
+				console.log(val); //20
+			}
+			fun1();
+
+			// for(let i=0;i<6;i++){
+			// 	console.log(i,'ok');
+			// 	for(let i=0;i<8;i++){
+			// 		console.log(i,'ook')
+			// 	}
+			// }
+
+
+			// 快速排序
+			function quickSort(arr) {
+
+				// 结束条件
+				if (arr.length <= 1) return arr;
+
+				// 找到中间数 索引
+				let num = Math.floor(arr.length / 2);
+
+				// 找到中间数 做为基准数
+				let numVal = arr.splice(num, 1);
+
+				let left = [];
+				let right = [];
+
+				for (let i = 0; i < arr.length; i++) {
+					if (arr[i] < numVal) {
+						left.push(arr[i]);
+					} else {
+						right.push(arr[i]);
+					}
+				}
+
+				// 递归
+				return quickSort(left).concat(numVal, quickSort(right));
+			}
+			console.log(quickSort([1, 22, 4, 3, 88, 6, 5, 34, 6, 7, 9]));
+
+			//计算字符串长度
+			// 一个英文字符占用一个字节，一个中文字符占用两个字节
+			function GetBytes(str) {
+				var len = str.length;
+				var bytes = len;
+				for (var i = 0; i < len; i++) {
+					if (str.charCodeAt(i) > 255) bytes++;
+				}
+				return bytes;
+			}
+			console.log(GetBytes("你好,as")); //7
+
+			//伪数组转换成数组
+			let arr11 = {
+				0: "hello",
+				1: 12,
+				2: true,
+				length: 3
+			}
+
+			let a = Array.prototype.slice.call(arr11);
+			let aa = [].slice.call(arr11);
+			console.log(arr11, a, aa)
+
+			let arr22 = {
+				0: "hello",
+				1: 12,
+				2: 2013,
+				3: "大学",
+				length: 4
+			}
+
+			let b = Array.from(arr22);
+			console.log(arr22, b)
+
+			// 意外全局变量
+			function foo() {
+				let a = b = 0; //b成了全局 window.b
+				a++;
+				console.log(typeof a, typeof b, a, b);
+				return a;
+			}
+			foo();
+			console.log(typeof b, b);
+
+
+			//A、 B 、 C 是 3 个字符串。把 A 中包含的所有 B 都替换为 C ，如果替换以后还有 B 就继续替换，直到 A 不包含 B 为止
+			let a1 = 'aaabbbcccbbbffbbb';
+			let b1 = 'bbb';
+			let c1 = 'ddd';
+
+			function find(a, b, c) {
+				while (true) { //直到a中没有b
+					let num = a.indexOf(b); //确定a中b的开始下标
+					console.log(num)
+					if (num != -1) { //查找到
+						let Aarr = a.split(''); //转换成数组
+						a = '';
+						let count = 0;
+						Aarr.map((item, index) => {
+							// console.log(item,index);
+							if (index >= num && index < num + b.length) {
+								if (count == 0) {
+									a += c;
+								}
+								count++;
+							} else {
+								a += Aarr[index];
+							}
+						})
+					} else {
+						return a;
+					}
+				}
+			}
+			let f = find(a1, b1, c1);
+			console.log(f);
+
+			// 顺序颠倒  .word a is this
+			let strsx = "this is a word.";
+
+			function reve(str) {
+				let arr = str.substr(0, str.length - 1).split(' '); //分割数组
+				let result = str[str.length - 1] + arr.reverse().join(' ');
+				console.log(result); //.word a is this
+				return result;
+			}
+			reve(strsx);
+
+
+			//找出最长的公共子串
+			var subS = "";
+			var subLen = 0;
+			var s1 = "dlajadoueowfljlj0000123456ldjfl1111111111111alfj";
+			var s2 = "lfjaldjuaoewnn0000123456jdfjsiol1111111111111alf";
+			for (let i = 0; i < s1.length; i++) {
+				for (let j = 1; j <= s1.length - i; j++) {
+					if (s2.indexOf(s1.substr(i, j)) < 0) {
+						if (j - 1 > subLen) {
+							subLen = j - 1;
+							substr = s1.substr(i, j - 1);
+						}
+						break;
+					}
+				}
+			}
+			console.log(substr, subLen);
+
+			// 格式化 裁剪时间
+			let time = '2020-09-07T09:19:47.000+0000';
+
+			function cuttingTime(time) {
+				let t1 = time.split('T');
+				let t2 = t1[1].split('.');
+				return t1[0] + ' ' + t2[0];
+			}
+
+			console.log(cuttingTime(time), '222');
+
+			// js累加计算
+			let arrlj = [1, 2, 3, 4];
+			let s = arrlj.reduce((sum, item) => {
+				return sum += item;
+			}, 0);
+			console.log(s)
+
+			// 时间格式转换
+			function formatDate(t) {
+				var time = new Date(t);
+				var year = time.getFullYear();
+				var month = time.getMonth() + 1;
+				var date = time.getDate();
+				var hour = time.getHours();
+				var minute = time.getMinutes();
+				var second = time.getSeconds();
+				month = month < 10 ? "0" + month : month;
+				date = date < 10 ? "0" + date : date;
+				hour = hour < 10 ? "0" + hour : hour;
+				minute = minute < 10 ? "0" + minute : minute;
+				second = second < 10 ? "0" + second : second;
+				return year + "-" + month + "-" + date + " " + hour + ":" + minute;
+			}
+
+			function formatDate1(date) {
+				date = new Date(date);
+				return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}`;
+			}
+
+			console.log(formatDate(1605685316699));
+			console.log(formatDate1(1605685316699));
+		</script>
+	</body>
+</html>

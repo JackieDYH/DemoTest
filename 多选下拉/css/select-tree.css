@@ -1,0 +1,46 @@
+body{font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; line-height: 1.42857143; color: #666; margin:0;}
+
+.hidden { display: none !important; }
+.treePickerWrapper *{box-sizing: border-box}
+.treePickerWrapper{position:relative;width: 100%;font-size: 14px;background-color: #ffffff}
+.tree-picker-search{max-height:100px;overflow-y:auto;width:100%;line-height:32px;color:#666;border-radius:3px;border:1px solid #ddd;padding:0 10px;cursor:pointer;}
+.tree-picker-search-checked{white-space: normal;margin-left:5px;position:relative;text-overflow: ellipsis;padding-right: 5px;}
+.tree-picker-search-checked-item{float:left;margin-right: 5px}
+.tree-picker-search-checked-btn {
+    margin-right: 10px;
+    display: inline-block;
+    padding: 1px 5px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    text-align: center;
+    border-radius: 4px;
+    background-color: #dedede;
+}
+
+.tree-picker-search-checked:after{
+    border: 5px solid transparent; content: ' ';
+    height: 0; position: absolute;
+    width: 0; top:12.2px; border-top: 8px solid #666; right:0; }
+.tree-picker-options-wrp{white-space: nowrap;display:none;width:100%;border-radius: 2px;box-shadow: 0 1px 5px rgba(0,0,0,.2);background-color: #fff;position:absolute;left:0;z-index:999;}
+.tree-picker-options-serch input{width:100%;height:34px;line-height:32px;border:1px solid #ddd;border-radius:3px;padding-left:8px;}
+.tree-picker-options-serch input:focus{border-color: #66afe9;outline: 0; -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6); box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6)}
+.tree-picker-options-list{width:100%;padding:8px 0;overflow: auto; height: 190px}
+.tree-picker-options-list-item{width:100%;line-height:36px;/*cursor: pointer;*/padding:0 12px;}
+.tree-picker-options-list-item span{margin-left:10px;}
+/*.tree-picker-options-list-line {cursor: pointer}*/
+/*.tree-picker-options-list-line:hover{background: #d97576;color: #FFFFFF}*/
+.tree {display:inline-block;width:18px;height:18px;border-radius:3px;transform: translateY(4px);margin-right:6px;}
+.tree-checked {  background:#D9001B; position: relative; }
+.tree-checked:before, .tree-checked::after {
+    content:""; height:10px; width:2px;
+    border-radius: 10px; display:block;
+    background:white; position: absolute;
+    top:4px;  left:10px;
+    transform:rotate(45deg);-ms-transform:rotate(45deg);
+}
+.tree-checked::before {
+    height:6px; transform: rotate(-45deg); -ms-transform:rotate(-45deg);
+    position: absolute;  top:7px; left:5px;
+}
+.tree-nocheck{border:1px solid #ddd;}
+.remove-checked-btn{margin-left: 2px;}

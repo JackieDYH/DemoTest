@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+	</head>
+	<body>
+		<!-- 图片指定区域实现点击事件 -->
+		<a href="#">
+			<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1603699159293&di=080243e3678327898c9f437b3f3e8d34&imgtype=0&src=http%3A%2F%2Fa0.att.hudong.com%2F70%2F91%2F01300000261284122542917592865.jpg" alt="Planets"  width="145" height="126"  ismap="ismap" usemap="#planetmap">
+			 <!-- usemap="#planetmap" 去掉可以看到定位点 -->
+		</a>
+		<map name="planetmap">
+		    <area shape="rect" coords="0,0,20,20" href="javascript:;" alt="hah" onclick="areaClick()"><!-- 矩形 -->
+			<area shape="poly" coords="45,86,63,82,71,109,95,112,39,113" href="javascript:;" alt="hah" onclick="areaClick()"><!-- 多变型形 -->
+			<area shape="circle" coords="10,40,10" href ="javascript:;" alt="Mercury" onclick="areaClick()" /><!-- 圆形 -->
+		</map>
+		<script>
+		    function areaClick(){
+		        alert('哇哦!!!')
+		    }
+		</script>
+		
+		
+		
+		<iframe scrolling="no" src="https://tianqiapi.com/api.php?style=yc&skin=gif" frameborder="0" width="100%" height="30" allowtransparency="true"></iframe>
+		<iframe scrolling="no" src="https://tianqiapi.com/api.php?style=ty&skin=pitaya" frameborder="0" width="300" height="75" allowtransparency="true"></iframe>
+		<iframe scrolling="no" src="https://tianqiapi.com/api.php?style=ya&skin=pitaya" frameborder="0" width="320" height="200" allowtransparency="true"></iframe>
+		<div id="weather-v2-plugin-standard"></div>
+		<script>
+		WIDGET = {
+		  CONFIG: {
+		    "layout": 1,
+		    "width": "300",
+		    "height": "30",
+		    "background": 1,
+		    "dataColor": "FFFFFF",
+		    "borderRadius": 5,
+		    "modules": "10",
+		    "key": "voTku4tiZc"
+		  }
+		}
+		</script>
+		<script src="https://apip.weatherdt.com/standard/static/js/weather-standard-common.js?v=2.0"></script>
+		<div id="weather-v2-plugin-simple"></div>
+		<script>
+		WIDGET = {
+		  CONFIG: {
+		    "modules": "0124",
+		    "background": 1,
+		    "tmpColor": "FFFFFF",
+		    "tmpSize": 16,
+		    "cityColor": "FFFFFF",
+		    "citySize": 16,
+		    "aqiSize": 16,
+		    "weatherIconSize": 24,
+		    "alertIconSize": 18,
+		    "padding": "10px 10px 10px 10px",
+		    "shadow": "1",
+		    "language": "auto",
+		    "borderRadius": 5,
+		    "fixed": "false",
+		    "vertical": "middle",
+		    "horizontal": "center",
+		    "key": "2uL0u2huue"
+		  }
+		}
+		</script>
+		<script src="https://apip.weatherdt.com/simple/static/js/weather-simple-common.js?v=2.0"></script>
+		<div id="box">
+			hhhh
+		</div>
+		<script type="text/javascript">
+			let div = document.getElementById('box');
+
+			var html = []
+			for (let i = 0; i < 5; i++) {
+				let h2 = document.createElement('h2')
+				h2.innerHTML = i
+				 document.getElementById('box').appendChild(h2)
+			}
+
+			console.log(div)
+			let str = '';
+			for (let i = 0; i < 5; i++) {
+				str += '<h2>hh' + i + '</h2>'
+			}
+			console.log(str)
+			div.appendChild(str)
+
+			let obj = {
+				name: 'dyh',
+				age: 18,
+				sex: '男'
+			}
+			for (key in obj) {
+				console.log(key, obj[key]);
+			}
+
+			let obj1 = [12, 34, 56, 78];
+			for (key of obj1) {
+				console.log(key);
+			}
+		</script>
+	</body>
+</html>

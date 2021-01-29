@@ -421,6 +421,162 @@
 
 			console.log(formatDate(1605685316699));
 			console.log(formatDate1(1605685316699));
+			// 累加计算
+			let redData = [1000000000000000, 200000000000, 300000000000, 400000000000];
+			console.log(redData.reduce((last, before, index, array) => {
+				return last + before
+			}, 0))
+
+			//基于localStorage本地存储
+			var store = {
+				set: function(name, value, day) { // 设置
+					let d = new Date()
+					let time = 0
+					day = (typeof(day) === 'undefined' || !day) ? 1 : day // 时间,默认存储1天
+					time = d.setHours(d.getHours() + (24 * day)) // 毫秒
+					localStorage.setItem(name, JSON.stringify({
+						data: value,
+						time: time
+					}))
+				},
+				get: function(name) { // 获取
+					let data = localStorage.getItem(name)
+					if (!data) {
+						return null
+					}
+					let obj = JSON.parse(data)
+					if (new Date().getTime() > obj.time) { // 过期
+						localStorage.removeItem(name)
+						return null
+					} else {
+						return obj.data
+					}
+				},
+				clear: function(name) { // 清空
+					if (name) { // 删除键为name的缓存
+						localStorage.removeItem(name)
+					} else { // 清空全部
+						localStorage.clear()
+					}
+				},
+			};
+			store.set('dyh','内容1',2);
+			console.log(store.get('dyh'));
+			store.clear();
+			
+			//cookie相关操作
+			var cookie={
+			  set:function(name, value, day) {
+			    let oDate = new Date()
+			    oDate.setDate(oDate.getDate() + (day || 30))
+			    document.cookie = name + '=' + value + ';expires=' + oDate + "; path=/;"
+			  },
+			  get:function(name) {
+			    let str = document.cookie
+			    let arr = str.split('; ')
+			    for (let i = 0; i < arr.length; i++) {
+			      let newArr = arr[i].split('=')
+			      if (newArr[0] === name) {
+			        return newArr[1]
+			      }
+			    }
+			  },
+			  del:function(name) {
+			    this.set(name, '', -1)
+			  },
+			 };
+			 cookie.set('dyh','内容2',2);
+			 console.log(cookie.get('dyh'));
+			 cookie.del('dyh')
+			 
+			 //去除字符串空格
+			 var trim=function(str, type) { // 去除空格， type:  1-所有空格  2-前后空格  3-前空格 4-后空格
+			   type = type || 1
+			   switch (type) {
+			     case 1:
+			       return str.replace(/\s+/g, '')
+			     case 2:
+			       return str.replace(/(^\s*)|(\s*$)/g, '')
+			     case 3:
+			       return str.replace(/(^\s*)/g, '')
+			     case 4:
+			       return str.replace(/(\s*$)/g, '')
+			     default:
+			       return str
+			   }
+			 };
+			 console.log(trim(' 你 我有空 格 ',1));
+			 
+			 
+			 //字符串大小写转换
+			 var changeCase=function(str, type) { // 字符串大小写转换 type:  1:首字母大写  2：首页母小写  3：大小写转换  4：全部大写  5：全部小写
+			   type = type || 4
+			   switch (type) {
+			     case 1:
+			       return str.replace(/\b\w+\b/g, function(word) {
+			         return word.substring(0, 1).toUpperCase() + word.substring(1).toLowerCase()
+			       })
+			     case 2:
+			       return str.replace(/\b\w+\b/g, function(word) {
+			         return word.substring(0, 1).toLowerCase() + word.substring(1).toUpperCase()
+			       })
+			     case 3:
+			       return str.split('').map(function(word) {
+			         if (/[a-z]/.test(word)) {
+			           return word.toUpperCase()
+			         } else {
+			           return word.toLowerCase()
+			         }
+			       }).join('')
+			     case 4:
+			       return str.toUpperCase()
+			     case 5:
+			       return str.toLowerCase()
+			     default:
+			       return str
+			   }
+			 };
+			console.log(changeCase('aVbrFFF',5));
+			 
+			 //浏览器文本复制 -不会用
+			 var copyTxt=function(text, fn) { // 复制功能
+			   if (typeof document.execCommand !== 'function') {
+			     console.log('复制失败，请长按复制')
+			     return
+			   }
+			   var dom = document.createElement('textarea')
+			   dom.value = text
+			   dom.setAttribute('style', 'display: block;width: 1px;height: 1px;')
+			   document.body.appendChild(dom)
+			   dom.select()
+			   var result = document.execCommand('copy')
+			   document.body.removeChild(dom)
+			   if (result) {
+			     console.log('复制成功')
+			     typeof fn === 'function' && fn()
+			     return
+			   }
+			   if (typeof document.createRange !== 'function') {
+			     console.log('复制失败，请长按复制')
+			     return
+			   }
+			   var range = document.createRange()
+			   var div = document.createElement('div')
+			   div.innerHTML = text
+			   div.setAttribute('style', 'height: 1px;fontSize: 1px;overflow: hidden;')
+			   document.body.appendChild(div)
+			   range.selectNode(div)
+			   var selection = window.getSelection()
+			   console.log(selection)
+			   if (selection.rangeCount > 0) {
+			     selection.removeAllRanges()
+			   }
+			   selection.addRange(range)
+			   document.execCommand('copy')
+			   typeof fn === 'function' && fn()
+			   console.log('复制成功')
+			 };
+
 		</script>
 	</body>
 </html>

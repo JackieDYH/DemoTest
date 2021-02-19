@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>复制内容</title>
+	</head>
+	<body>
+		<!-- 使用一 -->
+		<!-- Target -->
+		<input id="foo" value="https://github.com/zenorocha/clipboard.js.git">
+		<!-- Trigger -->
+		<button class="btn" data-clipboard-target="#foo"> Copy to clipboard</button>
+
+
+		<!-- 使用二 -->
+		<div id="btn" data-clipboard-text="复制的内容二">
+			<span>Copy</span>
+		</div>
+
+
+		<!-- 使用三 -->
+		<button data-clipboard-text="1">Copy</button>
+		<button data-clipboard-text="2">Copy</button>
+		<button data-clipboard-text="3">Copy</button>
+
+
+		<script src="js/clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			// 使用一
+			//必须要初始化 第一种初始化    
+			var clipboard = new ClipboardJS('.btn');
+			clipboard.on('success', function(e) {
+				console.log(e);
+			});
+			clipboard.on('error', function(e) {
+				console.log(e);
+			});
+
+
+			// 使用二
+			var btn = document.getElementById('btn');
+			var clipboard = new ClipboardJS(btn);
+			clipboard.on('success', function(e) {
+				console.log(e);
+			});
+			clipboard.on('error', function(e) {
+				console.log(e);
+			});
+
+
+			// 使用三
+			var btns = document.querySelectorAll('button');
+			var clipboard = new ClipboardJS(btns);
+			clipboard.on('success', function(e) {
+				console.log(e);
+			});
+			clipboard.on('error', function(e) {
+				console.log(e);
+			});
+		</script>
+	</body>
+</html>

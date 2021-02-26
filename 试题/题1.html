@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 1 将数组随机填充到下面数组中,数量尽可能相同
+			var arr1 = [1,2,3,4,5,6,7,8,9];
+			var group = [[],[],[],[]];
+			
+			function split(arr) {
+				// 随机排序数组
+			    arr.sort(function(){
+			        return 0.5 - Math.random();
+			    })
+				let nu = Math.floor(arr.length / group.length);
+				let k = 0;
+				// console.log(nu)
+				for(let i=0; i<group.length; i++){
+					if(i==0){
+						arr.map((item,index)=>{
+							if(index<(nu+1)){
+								group[0].push(item)
+								k++;
+							}
+						})
+					}else{
+						for(let j=0; j<2; j++){
+							group[i].push(arr[k++])
+						}
+					}
+				}
+			}
+			split(arr1);
+			console.log(group);
+			
+			
+			
+			// 2 假设有一个集合 ['foo', 'bar', 'hello', 'world']，求这个集合里单词组合起来的所有不同的结果
+			let arr = ['foo', 'bar', 'hello', 'world'],
+			    str = '',
+			    newArr = [],
+			    results = [];
+				// 组合
+			    for (let i = 0; i < 99; i++) {
+			        newArr.push(arr.sort(() => {
+			            return Math.random() > 0.5 ? 1 : -1;
+			        }).join(''));
+			    }
+				// console.log(newArr)
+				// 去重
+			    unidyh = (args) => {
+			        for (let i = 0; i < args.length; i++) {
+			            if (results.indexOf(args[i]) < 0) {
+			                results.push(args[i]);
+			            }
+			        }
+			        return results;
+			    }
+			
+			    // 数组去重
+			    // newArr.unidyh();
+			    unidyh(newArr);
+			
+			    console.log('the results is:\n');
+			
+			    results.map(item => {
+			        console.log(item);
+			    });				
+				
+		</script>
+	</body>
+</html>

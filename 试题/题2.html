@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>代应豪</title>
+		<style type="text/css">
+			.container {}
+
+			.A {
+				width: 200px;
+				min-height: 200px;
+				background-color: red;
+
+				float: left;
+			}
+
+			.B {
+				/* width: 200px; */
+				min-height: 200px;
+				background-color: yellow;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 页面窗口有如下A,B两个元素构成， A、B中的内容是动态加载的，宽度不确定。
+		其中A元素的宽度根据内容显示完整，B元素填满剩下的区域 -->
+		<div class="container">
+			<div class="A">元素A</div>
+			<div class="B">元素B</div>
+		</div>
+
+		<script type="text/javascript">
+			// 1 实现一个replace函数，接收两个字符串，将第二个字符串中所有和第一个字符串相同的字符串套上span标签
+			// replace('a','abcadefga'); 返回值为 '<span>a</span>bc<span>a</span>defg<span>a</span>'
+
+			function replace(str1, str2) {
+				// 动态设置
+				let reg = new RegExp(str1, 'g'); ///a/g
+				return str2.replace(reg, `<span>${str1}</span>`);
+			}
+
+			console.log(replace('a', 'abcadefga'));
+
+			// 3 通过接口向前端返回了天猫的行业信息，将其转换为树状格式
+			// {
+			// 	'女装':{
+			// 		'连衣裙':{},
+			// 		'半身群':{},
+			// 		'A字群':{},
+			// 	},
+			// 	'数码':{
+			// 		'电脑配件':{
+			// 			'内存':{},
+			// 		},
+			// 	},
+			// }
+			let industry_list = [{
+					name: '女装'
+				},
+				{
+					parent_ind: '女装',
+					name: '连衣裙'
+				},
+				{
+					parent_ind: '女装',
+					name: '半身群'
+				},
+				{
+					parent_ind: '女装',
+					name: 'A字群'
+				},
+				{
+					name: '数码'
+				},
+				{
+					parent_ind: '数码',
+					name: '电脑配件'
+				},
+				{
+					parent_ind: '电脑配件',
+					name: '内存'
+				}
+			];
+
+
+			function convert_format(data) {
+				//  取第一级
+				const tempRootList = data.filter((val) => !val.hasOwnProperty('parent_ind'))
+				// 取子级
+				const tempChildList = data.filter((val) => val.hasOwnProperty('parent_ind'))
+				const finalMap = {}
+				// 初始化
+				for (let item of tempRootList) {
+					finalMap[item.name] = {}
+				}
+				// 递归父级查找与父级Key相等的子集
+				function findParent(parentMap, childMap) {
+					for (let item of Object.keys(parentMap)) {
+						if (item === childMap.parent_ind) {
+							let tempName = childMap.name
+							parentMap[item][tempName] = {}
+							return
+						}
+					}
+					for (let item of Object.values(parentMap)) {
+						findParent(item, childMap)
+					}
+
+				}
+				// 遍历子集插入父级
+				for (let item of tempChildList) {
+					findParent(finalMap, item)
+				}
+
+				return finalMap
+			}
+
+			console.log(convert_format(industry_list));
+
+
+			// 4 实现一个多列排序的方法
+			// 其中data代表原数据，sorts是个数组，其中包含了排序信息。
+
+			// 结果 先a降序,再按b升序
+			// [
+			// 	{a:2,b:'b'},
+			// 	{a:2,b:'c'},
+			// 	{a:1,b:'a'},
+			// ]
+
+			let sort_data = [{
+					a: 1,
+					b: 'a'
+				},
+				{
+					a: 2,
+					b: 'b'
+				},
+				{
+					a: 2,
+					b: 'c'
+				},
+			];
+			let sorts = [{
+					key: 'a',
+					order: 'desc'
+				},
+				{
+					key: 'b',
+					order: 'asc'
+				},
+			];
+
+			/**
+			 * 多列排序
+			 * 思路：
+			 * 本方法限定sorts第一个key对应的值为number，其他为string
+			 * a排好序后，b在a的基础上进行排序，即对data中a值相同的数据进行再排序；c在b的基础上排序……  以sorts中的先后顺序为准
+			 * a排好序后，获取a对应值相同的数据，并获取这些数据在data中的下标
+			 * 使用slice截取下标对应的数据，并按b排好序
+			 * splice替换slice排好序的数据
+			 **/
+			function multipleSort(data, sorts) {
+				let prevKey = '';
+				sorts.forEach((val, idx) => {
+					if (idx === 0) {
+						data.sort((x, y) => val.order === 'desc' ? y[val.key] - x[val.key] : x[val.key] - y[val.key]);
+					} else {
+						reorder(val, prevKey, data);
+					}
+					// 上次排序的key
+					prevKey = val.key;
+				})
+				return data;
+			};
+
+			/**
+			 * sort: 本次排序规则
+			 * prevKey: 上次排序key
+			 * data: 原始数据
+			 * */
+			function reorder(sort, prevKey, data) {
+				let flag = false; // 是否是相同的数据标志
+				let prevVal = ''; // 上次遍历key对应的val
+				let idxArr = [];
+				for (let i = 0; i < data.length; i++) {
+					// 以上次排序规则为基础， 如果本次值和上次相同则idxArr新增一个[],放上次相同值的index， 本次的值index不放但标记出来：flag=true
+					// 如果本次值和上次不同 ，在flag=true的条件下，放入上次的index， flag设为false
+					if (data[i][prevKey] === prevVal) {
+						if (!flag) idxArr.push([i - 1]);
+						flag = true;
+					} else {
+						if (flag) {
+							idxArr[idxArr.length - 1].push(i - 1);
+							flag = false;
+						}
+					}
+					prevVal = data[i][prevKey];
+				}
+
+				// 排序替换
+				idxArr.forEach((idxVal, idx) => {
+					const needOrderArr = data.slice(idxVal[0], idxVal[idxVal.length - 1] + 1).sort((x, y) => sort.order === 'desc' ?
+						y[sort.key].localeCompare(x[sort.key]) : x[sort.key].localeCompare(y[sort.key]));
+					data.splice(idxVal[0], idxVal.length, ...needOrderArr);
+
+				})
+
+			}
+
+			console.log(multipleSort(sort_data, sorts));
+		</script>
+	</body>
+</html>

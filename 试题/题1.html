@@ -7,69 +7,128 @@
 	<body>
 		<script type="text/javascript">
 			// 1 将数组随机填充到下面数组中,数量尽可能相同
-			var arr1 = [1,2,3,4,5,6,7,8,9];
-			var group = [[],[],[],[]];
-			
+			var arr1 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+			var group = [
+				[],
+				[],
+				[],
+				[],
+			];
+
+			function split2(arr) {
+				// 随机排序数组
+				arr.sort(function() {
+					return 0.5 - Math.random();
+				})
+				// 指针
+				let k = 0;
+				
+				// 计算每个数组里面的个数
+				let nu = Math.round(arr.length / group.length);
+				// let nu = Math.floor(arr.length / group.length);
+
+				// 若存在小数 +1
+				let nus = nu;
+				// 判断是不是小数
+				console.log((arr.length / group.length) % 1);
+				if ((arr.length / group.length) % 1 >=0.5) {
+					nus = Math.floor(arr.length / group.length);
+				}else{
+					nus = Math.ceil(arr.length / group.length);
+				}
+				
+				// if ((arr.length / group.length) % 1 !== 0) {
+				// 	nus = Math.ceil(arr.length / group.length);
+				// }
+				
+				// 数据处理
+				if (nus == nu) {
+					console.log('数组内数据:',nu);
+					for (let i = 0; i < group.length; i++) {
+						for (let j = 0; j < nu; j++) {
+							group[i].push(arr[k++]);
+						}
+					}
+				}else{
+					console.log('数组1内数据:',nus,'其他数组内数据:',nu);
+					for (let i = 0; i < group.length; i++) {
+						if(i == 0){
+							for (let j = 0; j < nus; j++) {
+								group[i].push(arr[k++]);
+							}
+						}else{
+							for (let j = 0; j < nu; j++) {
+								group[i].push(arr[k++]);
+							}
+						}
+					}
+				}
+
+			}
+
+			split2(arr1);
+
+			// 残缺版
 			function split(arr) {
 				// 随机排序数组
-			    arr.sort(function(){
-			        return 0.5 - Math.random();
-			    })
+				arr.sort(function() {
+					return 0.5 - Math.random();
+				})
 				let nu = Math.floor(arr.length / group.length);
 				let k = 0;
 				// console.log(nu)
-				for(let i=0; i<group.length; i++){
-					if(i==0){
-						arr.map((item,index)=>{
-							if(index<(nu+1)){
+				for (let i = 0; i < group.length; i++) {
+					if (i == 0) {
+						arr.map((item, index) => {
+							if (index < (nu + 1)) {
 								group[0].push(item)
 								k++;
 							}
 						})
-					}else{
-						for(let j=0; j<2; j++){
+					} else {
+						for (let j = 0; j < 2; j++) {
 							group[i].push(arr[k++])
 						}
 					}
 				}
 			}
-			split(arr1);
+			// split(arr1);
 			console.log(group);
-			
-			
-			
+
+
+
 			// 2 假设有一个集合 ['foo', 'bar', 'hello', 'world']，求这个集合里单词组合起来的所有不同的结果
 			let arr = ['foo', 'bar', 'hello', 'world'],
-			    str = '',
-			    newArr = [],
-			    results = [];
-				// 组合
-			    for (let i = 0; i < 99; i++) {
-			        newArr.push(arr.sort(() => {
-			            return Math.random() > 0.5 ? 1 : -1;
-			        }).join(''));
-			    }
-				// console.log(newArr)
-				// 去重
-			    unidyh = (args) => {
-			        for (let i = 0; i < args.length; i++) {
-			            if (results.indexOf(args[i]) < 0) {
-			                results.push(args[i]);
-			            }
-			        }
-			        return results;
-			    }
+				str = '',
+				newArr = [],
+				results = [];
+			// 组合
+			for (let i = 0; i < 99; i++) {
+				newArr.push(arr.sort(() => {
+					return Math.random() > 0.5 ? 1 : -1;
+				}).join(''));
+			}
+			// console.log(newArr)
+			// 去重
+			unidyh = (args) => {
+				for (let i = 0; i < args.length; i++) {
+					if (results.indexOf(args[i]) < 0) {
+						results.push(args[i]);
+					}
+				}
+				return results;
+			}
+
+			// 数组去重
+			// newArr.unidyh();
+			unidyh(newArr);
 			
-			    // 数组去重
-			    // newArr.unidyh();
-			    unidyh(newArr);
-			
-			    console.log('the results is:\n');
-			
-			    results.map(item => {
-			        console.log(item);
-			    });				
-				
+			// 输出
+			// console.log('the results is:\n');
+
+			// results.map(item => {
+			// 	console.log(item);
+			// });
 		</script>
 	</body>
 </html>

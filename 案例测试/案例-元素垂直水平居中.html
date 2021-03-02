@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>元素垂直水平居中</title>
+		<style type="text/css">
+			.sy{
+				width: 400px;
+				height: 300px;
+				border: 2px solid black;
+				background-color: #66AFE9;
+				text-align: center;
+				line-height: 300px;
+			}
+			.box{
+				/* 方式1 margin是负值 */
+				/* 把元素变成定位元素 */
+				position: absolute;
+				/* 元素距离上，左都为50% */
+				left: 50%;
+				top: 50%;
+				/* 让元素的左外边距，上外边距为元素宽高的1/2 注意margin是负距*/
+				margin-top: -150px;
+				margin-left: -200px;
+			}
+			
+			/* 四方为都为0 ，margin：auto */
+			.box1{
+				position: absolute;
+				left: 0;
+				top: 0;
+				bottom: 0;
+				right: 0;
+				margin: auto;
+			}
+			
+			/* 尺寸不固定 */
+			.box2{
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				/* 设置元素的相对于自身的偏移度为负50%(也就是元素自身尺寸的一半)*/
+				transform: translate(-50%, -50%);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="sy box2">
+			水平垂直居中盒
+		</div>
+	</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>清除浮动</title>
+		<style type="text/css">
+			.wrap {
+				background-color: gray;
+				border: solid 1px black;
+
+				/* 给浮动元素添加overflow 2 */
+				overflow: hidden;
+				*zoom: 1;
+			}
+
+			img:nth-child(1) {
+				float: left;
+			}
+
+			img:nth-child(2) {
+				float: right;
+			}
+
+			/* 清除浮动 添加空标签/元素 1*/
+			.clear {
+				clear: both;
+			}
+			
+			/* 推荐使用 */
+			.clearfix::after {
+				content: "";
+				height: 0;
+				clear: both;
+				display: block;
+				visibility: hidden;
+			}
+
+			.clearfix {
+				*zoom: 1;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap clearfix">
+			<img src="../images/1.jpg">
+			<img src="../images/2.jpg">
+			<!-- 添加一个空标签/元素清除浮动 1-->
+			<!-- <div class="clear"></div> -->
+		</div>
+	</body>
+</html>

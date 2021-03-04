@@ -1,0 +1,340 @@
+ 
+<!DOCTYPE html>
+<!-- https://blog.csdn.net/dkm123456/article/details/111991734 -->
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+		<style>
+			*{
+				margin:0;
+				padding:0;
+			}
+			.small{
+				top: 10px;
+			    position: absolute;
+			}
+			.small_img{
+				    display: block;
+				    width: 200px;
+				    margin-left: 10px;
+			}
+			.button{
+				margin-left: 30px;
+			    font-size: 18px;
+			    width: 60px;
+			    letter-spacing: 5px;
+			}
+			div.box{	
+				float:left;
+				width: 600px;
+				height: 600px;
+				position: absolute;
+				left: 50%;
+				top:10px;
+				margin-left: -300px
+			}
+			.active{
+				border:2px dashed palevioletred;
+				z-index:9;
+			}
+			.not_active{
+				z-index:1;
+			}
+			.input{
+				width:30px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="small">
+			<img class="small_img" src='../images/j/1.jpg' />
+			<br>
+			<div style='margin-left:10px;'>
+				难度系数：<input type='text' id='difficulty_col' value='3' class='input'>
+					    <input type='text' id='difficulty_row' value='3' class='input'>
+					    <span id='msg' style='color:red;'></span>
+			</div>
+			<br>
+			<input type='button' value='开始' id='start' class="button"/>
+			<input type='button' value='换换' id='next' class="button"/>
+		</div>
+		
+		<div class="box" id='box'></div>
+	</body>
+	<script>
+		function Jigsaw(col,row){
+			this.box=document.getElementById("box");
+			this.row=row;
+			this.col=col;
+			this.row=row||3;
+            this.col=col||3;
+            this.boxWidth=600;
+            this.boxHeight=600;
+            
+            this.itemWidth = this.boxWidth/this.col;
+            this.itemHeight= this.boxHeight/this.row;
+            
+            this.item=[];
+            this.orig_keys=[];
+            this.keys=[];
+            this.len=this.row*this.col;
+			this.init();
+		}
+		//初始化
+		Jigsaw.prototype.init=function(){
+			 var fragment=document.createDocumentFragment();
+			 var url = small_img.src;
+             for(var i=0;i<this.len;i++){
+                 var div=document.createElement('div');  
+                 div.style.cssText='cursor:move;background:url('+url+') no-repeat -'+(i%this.col)*this.itemWidth+'px -'+Math.floor((i)/this.col)*this.itemHeight+'px;float:left;height:'+this.itemHeight+'px;width:'+this.itemWidth+'px;';
+                 this.item.push(div);
+                 this.keys.push(i);
+                 this.orig_keys.push(i);
+                 fragment.appendChild(div);
+             }
+             this.box.innerHTML="";
+             this.box.appendChild(fragment);
+		}
+		
+		Jigsaw.prototype.start=function(){
+			//随机位置
+			 this.keys.sort(function(a,b){
+			 	return Math.random()>0.5?1:-1;
+			 })
+			this.box.innerHTML="";
+			var keys = this.keys;
+			var colNum=0;
+			var rowNum=0;
+			for(var i=0;i<keys.length;i++){
+				if(i>0){
+					if(i%this.col===0){
+						rowNum++;
+					}
+					if(i%this.col===0){
+						colNum=0;
+					}
+				}
+			
+				var item = this.item[keys[i]];
+					item.style.position='absolute';
+					item.style.left=colNum++*this.itemWidth+'px';
+					item.style.top=rowNum*this.itemHeight+'px';
+					item.pos=i;
+					item.key=keys[i];
+					
+					this.drag(item);
+					this.box.appendChild(item);
+			}
+		}
+		//寻找已经选择的目标
+		Jigsaw.prototype.findTarget=function(item){
+			//从列表中查找是否已经有选择的目标了 
+			for(var i=0;i<this.item.length;i++){
+				if(item!==this.item[i] && this.item[i].moveFlag){
+					return this.item[i];
+				}
+			}
+		}
+		//交换两个div位置
+		Jigsaw.prototype.exchange=function(from,target){
+			var from_left = from.style.left;
+			var from_top = from.style.top;
+			var from_pos = from.pos;
+			var from_key = from.key;
+			
+			var target_left = target.style.left;
+			var target_top = target.style.top;
+			var target_pos = target.pos;
+			var target_key = target.key;
+			
+			from.style.left=target_left;
+			from.style.top=target_top;
+			//from.style.border="";
+			//from.style.zIndex=1;
+			
+			from.className='not_active';
+			from.pos=target_pos;
+			
+			target.style.left=from_left;
+			target.style.top=from_top;
+			//target.style.border="";
+			//target.style.zIndex=1
+			target.className='not_active';
+			target.pos=from_pos;
+			target.moveFlag=false;
+			
+			//交换他们在this.keys中的位置
+			this.keys.splice(from_pos,1,target_key);
+			this.keys.splice(target_pos,1,from_key);
+			//如果相等表示已经找好了
+			if(this.diff(this.orig_keys,this.keys)){
+				console.log('完成了');
+				this.tips(5);
+			}
+		}
+		//完成后的倒计时提示
+		Jigsaw.prototype.tips=function(ts){
+			 var me=this;
+	         var suc=document.createElement('div');
+	         var t=document.createElement('p');
+	         var tn=ts||3;
+	         var timer=null;
+	         suc.style.cssText='position:absolute;z-index:3;top:45%;width:100%;text-align:center;font-size:60px;color:#F56200;font-family:arial,黑体;';
+	         suc.innerHTML='来抱回家';
+	         suc.appendChild(t);
+	         me.box.appendChild(suc);
+	         function updatetime(){
+	            t.innerHTML=tn--;
+	            if(tn<0){
+	                clearInterval(timer);
+	               	me.box.removeChild(suc);
+	                return;
+	            }
+	            timer=setTimeout(function(){
+	                updatetime();
+	            },1000)
+	         }
+	         updatetime();
+	    }
+	    //比较连个数组，如果一模一样了证明顺序对了		
+		Jigsaw.prototype.diff=function(a,b){
+			var me=this;
+			var isArrayA = Array.isArray(a);
+	        var isArrayB = Array.isArray(b);
+	        if (isArrayA && isArrayB) {//如果都是数组
+	        	if(a.length === b.length){//如果长度相等
+	        	    return a.every(function (e, i) {//用every和递归来比对a数组和b数组的每个元素，并返回
+		           	  return me.diff(e, b[i]);
+		            })
+	        	}
+        		//长度都不等直接返回false
+        		return false;
+			}else{
+        		return String(a) === String(b)
+			}
+		} 
+		//设置拖动
+		Jigsaw.prototype.drag=function(item){
+			var me=this;
+			item.onmousedown=function(e){
+				var e = e||window.event;
+				if(e.button===0){//左键
+					var target = me.findTarget();
+					if(target!=null){
+						//this.style.border="2px solid red";
+						//this.style.zIndex=9;
+						this.className='active';
+						me.exchange(this,target);
+					}else{
+						this.moveFlag=true;
+						this.className='active';
+					}
+				}else if(e.button===3){//右键
+					var target = me.findTarget();
+					if(target!=null){
+						target.className='not_active';
+						target.moveFlag=false;
+					}
+				}
+				e.preventDefault && e.preventDefault();
+			}
+			//右键取消
+			item.oncontextmenu = function(e) {
+				var e = e||window.event;
+				console.log('oncontextmenu')
+				var target = me.findTarget();
+				if(target!=null){
+					target.className='not_active';
+					target.moveFlag=false;
+				}
+				e.preventDefault && e.preventDefault();
+			}
+			
+			/*var move_div=null,flag=false;
+			item.onmousedown=function(e){
+				var e = e||window.event,relX,relY;
+					relX = e.clientX-item.offsetLeft;
+   	   	  	      	relY = e.clientY-item.offsetTop;
+					flag=true;
+				document.onmousemove=function(e){
+					if(!flag){return ;}
+   	   	  	      	  var ev=window.event||e;
+   	   	  	      	  var nx = e.clientX-relX;
+   	   	  	      	  var ny = e.clientY-relY;
+   	   	  	      	  console.log(nx);
+   	   	  	      	   console.log(ny);
+   	   	  	      	    console.log('---------------');
+   	   	  	      	  
+   	   	  	      	  item.style.zIndex=2;
+   	   	  	      	  item.style.left=nx+'px';
+   	   	  	      	  item.style.top=ny+'px';
+   	   	  	    }
+   	   	  	    document.onmouseup=function(e){
+   	   	  	      	  var ev=window.event||e;
+   	   	  	      	  
+   	   	  	      	  flag=false;	
+   	   	  	    }
+			}*/
+		}
+		
+		var msg = document.getElementById("msg");
+		var difficulty_col=document.getElementById("difficulty_col");
+			difficulty_col.onblur=function(){
+				var temp = parseInt(this.value);
+				if(isNaN(temp)){
+					temp=3;
+				}
+				this.value = temp;
+				if(this.value>10){
+					this.value = 10;
+					msg.innerText="太难了，不能超过10";
+				}else if(this.value<2){
+					this.value = 2;
+					msg.innerText="太容易了，不能小于2";
+				}else
+					msg.innerText="";
+			}
+		
+		var difficulty_row=document.getElementById("difficulty_row");
+			difficulty_row.onblur=function(){
+				var temp = parseInt(this.value);
+				if(isNaN(temp)){
+					temp=3;
+				}
+				this.value = temp;
+				if(this.value>10){
+					this.value = 10;
+					msg.innerText="太难了，不能超过10"
+				}else if(this.value<2){
+					this.value = 2;
+					msg.innerText="太容易了，不能小于2";
+				}else{
+					msg.innerText="";
+				}
+			}
+		
+		var small_img =document.getElementsByClassName("small_img")[0]; 
+		document.getElementById("next").onclick=function(){
+			var src = small_img.src;
+			var reg = /(\d+)\.jpg$/;
+			var arr = reg.exec(src);
+			var index=1;
+			if(arr.length>1){
+				index = ++arr[1];
+				if(index>=6){
+					index=1;
+				}
+			}
+			small_img.src='../images/j/'+index+'.jpg';
+			jigsaw = new Jigsaw(difficulty_col.value,difficulty_row.value);
+			//jigsaw.start();	
+		}
+		
+		var jigsaw = new Jigsaw(difficulty_col.value,difficulty_row.value);
+		document.getElementById("start").onclick=function(){
+			//开始
+			jigsaw = new Jigsaw(difficulty_col.value,difficulty_row.value);
+			jigsaw.start();		
+		}
+	</script>
+</html>

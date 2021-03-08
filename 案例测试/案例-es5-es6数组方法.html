@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// "use strict"
+			// =====================ES5数组方法
+			// 索引方法：indexOf()，lastIndexOf() 方法并不会修改原数组
+			// 返回整数索引值，如果没有匹配（严格匹配），返回-1
+			var data = [ 2, 5, 7, 3, 5];
+			// indexOf
+			console.log(data.indexOf(5, "x")); // 1 ("x"被忽略)
+			console.log(data.indexOf(5, "3")); // 4 (从3号位开始搜索)
+			
+			// lastIndexOf 从字符串的末尾开始查找，而不是从开头
+			console.log(data.lastIndexOf(5)); // 4
+			console.log(data.lastIndexOf(5, 3)); // 1 (从后往前，索引值小于3的开始搜索)
+			console.log(data.lastIndexOf(4)); // -1 (未找到)
+			
+			
+			// 迭代方法
+			// forEach()对数组进行遍历循环，对数组中的每一项运行给定的函数，这个方法没有返回值
+			data.forEach((value,index,array)=>{
+				console.log(value,index,array)
+			})
+			
+			// map()指“映射”，对数组中的每一项运行给定的函数，返回每次函数调用的结果组成的数组
+			var arrMap = data.map((item) =>{
+			  return item * item;
+			});
+			console.log(arrMap); 
+			
+			// filter()，“过滤”，对数组中的每一项运行给定函数，返回满足过滤条件组成的数组
+			var arrFilter = data.filter((value, index) =>{
+			  return value % 3 === 0;
+			}); 
+			console.log(arrFilter);
+			
+			// every()，判断数组中每一项都是否满足所给条件，当所有项都满足条件，才会返回true
+			var arrEvery = data.every(function(value, index) {
+			  return value % 2 === 0;
+			}); 
+			console.log(arrEvery);  // false
+			
+			// some()，判断数组中是否存在满足条件的项，只要有一项满足条件，就会返回true
+			var arrSome = data.some(function(value, index) {
+			  return value % 2 === 0;
+			}); 
+			console.log(arrSome);   // true
+			
+			// reduce() 方法接收一个函数作为累加器，数组中的每个值（从左到右）开始缩减，最终计算为一个值。 reduce() 对于空数组是不会执行回调函数的
+			var arrReduce =data.reduce(function (total, curr, index, array) {
+				// console.log(total,curr,index,array)
+			  return total * curr;
+			}, 10);
+			console.log(arrReduce);
+			
+			// reduceRight()和reduce()相比，用法类似，差异在于reduceRight是从数组的末尾开始实现的
+			var arrReduceRight = data.reduceRight(function (total, curr, index) {
+			  return total - curr;
+			},200);
+			console.log(arrReduceRight);
+			
+			// isArray 判断参数是否是”Array”返回true或false
+			console.log(Array.isArray(data));
+			
+			
+			// =====================ES6 数组方法
+			// 新特性： let,const,箭头函数,结构赋值,模板字符串,展开运算符
+			
+			// Array.from()用于将两类对象转为真正的数组：类似数组的对象（array-like object）和可遍历（iterable）的对象（包括 ES6 新增的数据结构 Set 和 Map）
+			
+			let arrFrom = {
+			    '0': 1,
+			    '1': 3,
+			    '2': 5,
+			    length: 3
+			};
+			let data2 = Array.from(arrFrom);
+			console.log(data2);
+			// Array.from还可以接受第二个参数，作用类似于数组的map方法，用来对每个元素进行处理，将处理后的值放入返回的数组
+			console.log(Array.from(arrFrom, x => x * x));
+			// 等同于
+			console.log(Array.from(arrFrom).map(x => x * x));
+			
+			// Array.of() 用于将一组值，转换为数组
+			console.log(Array.of(3, 11, 8));
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

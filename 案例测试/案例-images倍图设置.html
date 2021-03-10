@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.image-set-by-zxx {
+				width: 128px;
+				height: 96px;
+				/* 不支持的时候展示 */
+				background: url(../images/image-set-not.jpg);
+				/* 支持的时候兼容处理 */
+				background: -webkit-image-set(url(../images/128px1x.jpg) 1x, url(../images/256px2x.jpg) 2x, url(../images/512px3x.jpg) 3x);
+				background: image-set(url(../images/128px1x.jpg) 1x, url(../images/256px2x.jpg) 2x, url(../images/512px3x.jpg) 3x);
+				background-size: cover;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 方式一 -->
+		<div class="image-set-by-zxx"></div>
+		<!-- 方式二 -->
+		<img src="../images/image-set-not.jpg" srcset="../images/128px1x.jpg 1x,../images/256px2x.jpg 2x,../images/512px3x.jpg 3x"/>
+	</body>
+</html>

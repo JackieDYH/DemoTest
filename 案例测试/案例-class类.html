@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>class类</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			class Person {
+				/*
+					public 默认值 任意位置访问
+					private 私有方法 类类进行访问
+				*/
+				private _name: String;
+				private _age: Number;
+				construct(name: String, age: Number) {
+					this._name = name;
+					this._age = age;
+				}
+
+				get name() {
+					console.log('---get----')
+					return this._name;
+				}
+				set name(value: Number) {
+					this._name = value;
+				}
+			}
+			const per = new Person(name: 'dyh', age: 24);
+			per.name = '单引号';
+			console.log(per);
+		</script>
+	</body>
+</html>

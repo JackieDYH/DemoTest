@@ -5,6 +5,7 @@
 		<title></title>
 	</head>
 	<body>
+		<a href="https://jackiehao.blog.csdn.net/article/details/115086631">CSDN文章</a>
 		<script type="text/javascript">
 			//终端判断
 			function getQueryStringRegExp(name) {
@@ -12,11 +13,63 @@
 				if (reg.test(location.href)) return unescape(RegExp.$2.replace(/\+/g, " "));
 				return "";
 			};
-			console.log("浏览器:",window.navigator,"终端:",window.navigator.userAgent,"匹配判断:",/Android|webOS|iPhone|iPod|BlackBerry|opera mini|opera mobile/i.test(navigator.userAgent) && getQueryStringRegExp('path') != 'www',1)
-			if (/Android|webOS|iPhone|iPod|BlackBerry|opera mini|opera mobile/i.test(navigator.userAgent) && getQueryStringRegExp('path') != 'www') {
-				console.log("浏览器:",window.navigator,"终端:",window.navigator.userAgent,"匹配判断:",/Android|webOS|iPhone|iPod|BlackBerry|opera mini|opera mobile/i.test(navigator.userAgent) && getQueryStringRegExp('path') != 'www',2)
-				window.location = 'https://jackiehao.blog.csdn.net/';
+
+			if (/Android|webOS|iPhone|iPod|BlackBerry|opera mini|opera mobile/i.test(navigator.userAgent) &&
+				getQueryStringRegExp('path') != 'www') {
+				console.log("浏览器:", window.navigator, "终端:", window.navigator.userAgent, "匹配判断:",
+					/Android|webOS|iPhone|iPod|BlackBerry|opera mini|opera mobile/i.test(navigator.userAgent) && getQueryStringRegExp(
+						'path') != 'www', 2)
+				// window.location = 'https://jackiehao.blog.csdn.net/';
 			}
+
+// ========================================================================
+			//判断当前页面所在的环境是不是微信内置浏览器
+			function isWeiXin() {
+				var ua = window.navigator.userAgent.toLowerCase();
+				if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+					return true;
+				} else {
+					return false;
+				}
+			}
+			console.log("是否是微信内部浏览器:",isWeiXin());
+			
+			//判断苹果、安卓、pc
+			if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) { //判断iPhone|iPad|iPod|iOS
+				// window.location.href = "iPhone.html";
+				console.log('iPhone.html');
+			} else if (/(Android)/i.test(navigator.userAgent)) { //判断Android 
+				// window.location.href = "Android.html";
+				console.log('Android.html');
+			} else { //pc
+				// window.location.href = "pc.html";
+				console.log('pc.html');
+			};
+
+			//正则表达式判断浏览器类型
+			function userBrowser() {
+				var browserName = navigator.userAgent.toLowerCase();
+				if (/msie/i.test(browserName) && !/opera/.test(browserName)) {
+					console.log("IE");
+					return;
+				}else if(/firefox/i.test(browserName)) {
+					console.log("Firefox");
+					return;
+				}else if(/chrome/i.test(browserName) && /webkit/i.test(browserName) && /mozilla/i.test(browserName)) {
+					console.log("Chrome");
+					return;
+				}else if(/opera/i.test(browserName)) {
+					console.log("Opera");
+					return;
+				}else if(/webkit/i.test(browserName) && !(/chrome/i.test(browserName) && /webkit/i.test(browserName) && /mozilla/i.test(
+					browserName))) {
+					console.log("Safari");
+					return;
+				} else {
+					console.log("unKnow");
+				}
+			}
+			userBrowser();
 		</script>
 	</body>
 </html>

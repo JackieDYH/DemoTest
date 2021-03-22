@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//终端判断
+			function getQueryStringRegExp(name) {
+				var reg = new RegExp("(^|\\?|&)" + name + "=([^&]*)(\\s|&|$)", "i");
+				if (reg.test(location.href)) return unescape(RegExp.$2.replace(/\+/g, " "));
+				return "";
+			};
+			console.log("浏览器:",window.navigator,"终端:",window.navigator.userAgent,"匹配判断:",/Android|webOS|iPhone|iPod|BlackBerry|opera mini|opera mobile/i.test(navigator.userAgent) && getQueryStringRegExp('path') != 'www',1)
+			if (/Android|webOS|iPhone|iPod|BlackBerry|opera mini|opera mobile/i.test(navigator.userAgent) && getQueryStringRegExp('path') != 'www') {
+				console.log("浏览器:",window.navigator,"终端:",window.navigator.userAgent,"匹配判断:",/Android|webOS|iPhone|iPod|BlackBerry|opera mini|opera mobile/i.test(navigator.userAgent) && getQueryStringRegExp('path') != 'www',2)
+				window.location = 'https://jackiehao.blog.csdn.net/';
+			}
+		</script>
+	</body>
+</html>

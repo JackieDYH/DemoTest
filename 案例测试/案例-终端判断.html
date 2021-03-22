@@ -6,7 +6,12 @@
 	</head>
 	<body>
 		<a href="https://jackiehao.blog.csdn.net/article/details/115086631">CSDN文章</a>
+		<p>当前终端：<span id="dyh">null</span></p>
+		<p>是否微信内部打开：<span id="dyh1">null</span></p>
 		<script type="text/javascript">
+			var dyh = document.getElementById("dyh");
+			var dyh1 = document.getElementById("dyh1");
+			
 			//终端判断
 			function getQueryStringRegExp(name) {
 				var reg = new RegExp("(^|\\?|&)" + name + "=([^&]*)(\\s|&|$)", "i");
@@ -33,16 +38,24 @@
 				}
 			}
 			console.log("是否是微信内部浏览器:",isWeiXin());
+			if(isWeiXin()){
+				dyh1.innerText = "微信内部打开";
+			}else{
+				dyh1.innerText = "非微信内部打开";
+			}
 			
 			//判断苹果、安卓、pc
 			if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) { //判断iPhone|iPad|iPod|iOS
 				// window.location.href = "iPhone.html";
+				dyh.innerText = "iPhone.html";
 				console.log('iPhone.html');
 			} else if (/(Android)/i.test(navigator.userAgent)) { //判断Android 
 				// window.location.href = "Android.html";
+				dyh.innerText = "Android.html";
 				console.log('Android.html');
 			} else { //pc
 				// window.location.href = "pc.html";
+				dyh.innerText = "pc.html";
 				console.log('pc.html');
 			};
 

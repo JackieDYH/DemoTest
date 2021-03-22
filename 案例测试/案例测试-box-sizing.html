@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>box-sizing属性</title>
+		<style type="text/css">
+			/* 
+				box-sizing:
+					标准盒模型 content-box --谷歌等 
+						在宽度和高度之外绘制元素的内边距和边框
+					怪异盒模型 border-box  --ie
+						通过从已设定的宽度和高度分别减去边框和内边距才能得到内容的宽度和高度
+			 */
+			.auto {
+				width: 330px;
+				height: 200px;
+				margin: 20px auto;
+				border: 2px solid #444444;
+			}
+
+			.padding {
+				padding: 30px 40px;
+			}
+
+			.box1 {
+				background-color: #229F8E;
+				/* 开启标准盒模型 */
+				box-sizing: content-box;
+			}
+
+			.box2 {
+				background-color: #87CEEB;
+				/* 开启怪异盒模型 */
+				box-sizing: border-box;
+			}
+		</style>
+	</head>
+	<body>
+		<p style="color: red;">注:两个盒子均设置宽高330*200</p>
+		<div class="box1 auto padding">标准盒模型:<br />在宽度和高度之外绘制元素的内边距和边框</div>
+		<div class="box2 auto padding">怪异盒模型:<br />通过从已设定的宽度和高度分别减去边框和内边距才能得到内容的宽度和高度</div>
+	</body>
+</html>

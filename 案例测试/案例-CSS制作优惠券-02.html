@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>优惠券</title>
+		<style type="text/css">
+			.wrap {
+				display: flex;
+				flex-wrap: wrap;
+			}
+
+			.wh {
+				width: 200px;
+				height: 100px;
+				background-color: #E85027;
+				margin: 20px;
+			}
+
+			.box01 {
+				-webkit-mask: radial-gradient(circle at left center, transparent 20px, red 20px);
+			}
+
+			.box02 {
+				-webkit-mask: radial-gradient(circle at 0, #0000 20px, red 0);
+			}
+
+			.box03 {
+				-webkit-mask: radial-gradient(circle at 0, #0000 20px, red 0), radial-gradient(circle at right, #0000 20px, red 0);
+				-webkit-mask-size: 51%;
+				/*避免出现缝隙*/
+				-webkit-mask-position: 0, 100%;
+				/*一个居左一个居右*/
+				-webkit-mask-repeat: no-repeat;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="wh box01"></div>
+			<div class="wh box02"></div>
+			<div class="wh box03"></div>
+		</div>
+	</body>
+</html>

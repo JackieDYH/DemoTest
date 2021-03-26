@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			// 计算白屏时间
+			let time = new Date().getTime() - performance.timing.navigationStart;
+			console.log(time,"白屏时间");
+			window.onload = ()=>{
+				// 放在onload中计算首屏时间
+				let times = new Date().getTime() - performance.timing.navigationStart;
+				console.log(times,"首屏时间");
+			}
+		</script>
+	</head>
+	<body>
+		<p>白屏时间/首屏时间 加载时间</p>
+	</body>
+</html>

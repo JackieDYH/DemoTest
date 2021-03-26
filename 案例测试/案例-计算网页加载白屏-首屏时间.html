@@ -6,15 +6,19 @@
 		<script type="text/javascript">
 			// 计算白屏时间
 			let time = new Date().getTime() - performance.timing.navigationStart;
-			console.log(time,"白屏时间");
-			window.onload = ()=>{
+			console.log(time, "白屏时间");
+			window.onload = () => {
+				document.getElementById("bp").innerText = `${time} ms`;
 				// 放在onload中计算首屏时间
 				let times = new Date().getTime() - performance.timing.navigationStart;
-				console.log(times,"首屏时间");
+				console.log(times, "首屏时间");
+				document.getElementById("sp").innerText = `${times} ms`;
 			}
 		</script>
 	</head>
 	<body>
 		<p>白屏时间/首屏时间 加载时间</p>
+		<p>白屏时间：<span id="bp">null</span></p>
+		<p>首屏时间：<span id="sp">null</span></p>
 	</body>
 </html>

@@ -25,6 +25,7 @@
     "vue-pdf": "^4.2.0",
     "vue-router": "^3.2.0",
     "vxe-table": "^2.9.23",
+    "web3": "^1.2.6",
     "wxp-swiper": "^1.0.4",
     "xe-utils": "^2.7.13"
   },

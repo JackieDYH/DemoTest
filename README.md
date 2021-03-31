@@ -32,6 +32,9 @@ npm install vue-baidu-map --save
 ### 图片放大预览
 - npm install v-viewer --save
 
+### [web3.js](https://web3.tryblockchain.org/web3-js-in-action.html)
+- npm install web3
+
 --------------------------------------
 
 ## Project setup

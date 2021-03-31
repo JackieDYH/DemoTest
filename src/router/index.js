@@ -130,6 +130,13 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/imgyl.vue")
   },
+  {
+    path: "/web3js",
+    name: "web3js",
+    meta:{title:"web3js"},
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/web3js.vue")
+  },
 ];
 
 const router = new VueRouter({

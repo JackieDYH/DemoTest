@@ -35,6 +35,14 @@ npm install vue-baidu-map --save
 ### [web3.js](https://web3.tryblockchain.org/web3-js-in-action.html)
 - npm install web3
 
+### px转rem 前者方便设置忽略文件
+- npm i postcss-plugin-px2rem  --save -dev
+- npm install postcss-px2rem --save -dev
+
+
+### en转zh 语言转换
+- npm install vue-i18n
+
 --------------------------------------
 
 ## Project setup

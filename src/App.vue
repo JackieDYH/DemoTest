@@ -19,7 +19,7 @@
       <router-link to="/image">图片加载</router-link> |
       <router-link to="/antv">antv图表</router-link> |
       <router-link to="/imgyl">图片预览</router-link> |
-      <router-link to="/web3js">web3js</router-link> |
+      <router-link to="/entozh">entozh</router-link> |
     </div>
     <router-view />
   </div>

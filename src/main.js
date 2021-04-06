@@ -89,9 +89,15 @@ Viewer.setDefaults({
 import web3 from 'web3';
 Vue.prototype.web3js = web3;
 
+// 引入语言转换
+// import VueI18n from 'vue-i18n';
+// Vue.use(VueI18n);
+import { i18n } from './common/languages/i18n.js'
+
 Vue.config.productionTip = false;
 
 new Vue({
   router,
+  i18n,
   render: h => h(App)
 }).$mount("#app");

@@ -43,5 +43,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.sb{
+  font-size: 100px;
+}
 </style>

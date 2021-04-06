@@ -131,11 +131,11 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/imgyl.vue")
   },
   {
-    path: "/web3js",
-    name: "web3js",
-    meta:{title:"web3js"},
+    path: "/entozh",
+    name: "entozh",
+    meta:{title:"entozh"},
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/web3js.vue")
+      import(/* webpackChunkName: "about" */ "../views/entozh.vue")
   },
 ];
 

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>imToken DApp</title>
+</head>
+
+<body>
+    <div id="app">
+        <h5>imToken</h5>
+        <p>当前环境:<span class="env">null</span></p>
+        <button class="Web3Button">Web3js获取信息</button>
+        <h2>Account(账户): <span class="showAccount1"></span></h2>
+        <h2>Balance(ETH): <span class="showBalance1"></span></h2>
+        <p>内容:<span class="cont">null</span></p>
+    </div>
+    <script src="./js/web3.min.js"></script>
+    <script>
+        // 获取dom元素
+        const env = document.querySelector(".env");
+        const cont = document.querySelector(".cont");
+
+        const ethereumButton1 = document.querySelector('.Web3Button');
+        const showAccount1 = document.querySelector('.showAccount1');
+        const showBalance1 = document.querySelector('.showBalance1');
+
+
+        // Web3浏览器检测
+        if (typeof window.ethereum !== 'undefined') {
+            console.log('MetaMask is installed!');
+        }
+
+        // 实例化web3
+        window.web3 = new Web3(ethereum);
+        var web3 = window.web3;
+
+        // 可以通过 !!window.imToken 或者 window.ethereum.isImToken 来检测当前浏览器环境是否是 imToken DApp browser, true 表示当前是 imToken 环境
+        let envs = null;
+        !!window.imToken ? envs = '当前是 imToken 环境' : envs = '当前不是 imToken 环境';
+        console.log(envs);
+        env.innerHTML = envs;
+
+        // 获取账户信息
+        ethereumButton1.addEventListener('click', () => {
+            getAccount1();
+        });
+        async function getAccount1() {
+            if (!!window.imToken) {
+            // 授权获取账户
+            var accounts = await web3.eth.getAccounts();
+            // web3.eth.getAccounts().then((e)=>{console.log(e)})
+            // 取第一个账户
+            var myAccount = accounts[0];
+            console.log(myAccount, typeof myAccount, 1);
+            // 返回指定地址账户的余额
+            var balance = await web3.eth.getBalance(myAccount);
+            let eth =  web3.utils.fromWei(balance, 'ether');
+            console.log(balance,eth, typeof balance, 2)
+            showAccount1.innerHTML = myAccount;
+            showBalance1.innerHTML = `wei:${balance}, ether:${eth}`;
+            }else{
+                showAccount1.innerHTML = '非 imToken 环境';
+                showBalance1.innerHTML = '非 imToken 环境';
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,intial-scale=1,user-scalable=no">
+  <title>web3js</title>
+</head>
+
+<body>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+  <div id="app">
+    <button class="Web3Button">Web3js获取信息</button>
+    <h2>Account(账户): <span class="showAccount1"></span></h2>
+    <h2>Balance(ETH): <span class="showBalance1"></span></h2>
+    <hr>
+    <button class="metamaskButton">metamask获取信息</button>
+    <h2>Account(账户): <span class="showAccount2"></span></h2>
+    <h2>Balance(ETH): <span class="showBalance2"></span></h2>
+    <hr>
+    <p>进制转换</p>
+    <h2>一: <span class="dex"></span></h2>
+    <h2>二: <span class="hex"></span></h2>
+  </div>
+</body>
+
+<script src="./js/web3.min.js"></script>
+<!-- <script src="./app.js"></script> -->
+<script>
+  // Web3浏览器检测
+  if (typeof window.ethereum !== 'undefined') {
+    console.log('MetaMask is installed!');
+  }
+
+  const ethereumButton1 = document.querySelector('.Web3Button');
+  const showAccount1 = document.querySelector('.showAccount1');
+  const showBalance1 = document.querySelector('.showBalance1');
+
+  const ethereumButton2 = document.querySelector('.metamaskButton');
+  const showAccount2 = document.querySelector('.showAccount2');
+  const showBalance2 = document.querySelector('.showBalance2');
+
+  const dexnu = document.querySelector(".dex");
+  const hexnu = document.querySelector(".hex");
+
+  ethereumButton1.addEventListener('click', () => {
+    getAccount1();
+  });
+
+  ethereumButton2.onclick = () => {
+    getAccount2();
+  };
+
+  // 实例化
+  window.web3 = new Web3(ethereum);
+  var web3 = window.web3;
+
+  // 进制转换
+  // 十六转十
+  const hexn = '0x15';
+  const num = web3.utils.toDecimal(hexn);
+  dexnu.innerHTML = `十六进制 ${hexn} -> 十进制 ${num}`;
+
+  // 十转十六
+  const hexn1 = web3.utils.fromDecimal(num);
+  hexnu.innerHTML = `十进制 ${num} -> 十六进制 ${hexn1}`;
+
+
+  // web3 方法
+  async function getAccount1() {
+    // 请求用户授权 解决web3js无法直接唤起Meta Mask获取用户身份
+    const enable = await ethereum.enable();
+    console.log(enable, 11)
+    
+    // 授权获取账户
+    var accounts = await web3.eth.getAccounts();
+    // web3.eth.getAccounts().then((e)=>{console.log(e)})
+    // 取第一个账户
+    var myAccount = accounts[0];
+    console.log(myAccount, typeof myAccount, 1);
+    // 返回指定地址账户的余额
+    var balance = await web3.eth.getBalance(myAccount);
+    let eth = web3.utils.fromWei(balance, 'ether');
+    console.log(balance, typeof balance, 2)
+    // 十转十六
+    var value = web3.utils.fromDecimal('21');
+    console.log(value); // "0x15"
+    // 十六转十
+    var number = web3.utils.toDecimal('0x15');
+    console.log(number); // 21
+
+    showAccount1.innerHTML = myAccount;
+    showBalance1.innerHTML = `wei:${balance}, ether:${eth}`;
+  }
+
+  // metamask 方法
+  async function getAccount2() {
+    const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+    const myAccount = accounts[0];
+    console.log(myAccount, typeof myAccount);
+    // 返回指定地址账户的余额
+    const balance = await ethereum.request({ method: 'eth_getBalance', params: [myAccount, "latest"], "id": 1 });
+    console.log(balance); // 0
+    // 十六转十
+    let number;
+    try {
+      // 超出范围会报错，转换成字符串处理
+      number = web3.utils.toBN(balance).toString();
+      // number = web3.utils.toDecimal(balance);
+    } catch (err) {
+      number = err
+    }
+    let eth = web3.utils.fromWei(balance, 'ether');
+    console.log(number); // 0
+
+    console.log(balance, typeof balance);
+
+    showAccount2.innerHTML = myAccount;
+    showBalance2.innerHTML = `十六进制:${balance},十进制:${number}, ether:${eth}`;
+  }
+
+
+
+</script>
+
+</html>

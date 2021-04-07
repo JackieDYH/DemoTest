@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>class类</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 参考:https://blog.fundebug.com/2020/01/02/javascript-classes-complete-guide/
+			// public:该字段可以在任何地方访问
+			// private:字段只能在类的主体中访问
+			
+			// static 静态
+			// 所有在类中定义的方法，都会被实例继承。如果在一个方法前，加上static关键字，就表示该方法不会被实例继承，而是直接通过类来调用，这就称为“静态方法”
+			
+			// 使用静态方法时，有两个简单的规则需要记住：
+			// 	静态方法可以访问静态字段。
+			// 	静态方法不能访问实例字段。
+			
+			class Mydyh{
+				// 静态属性调用
+				static h = 1997;
+				// 实例属性
+				constructor(name,age){
+					this.name = name;
+					this.age = age;
+					console.log(Mydyh.h,'constructor');
+				}
+				
+				// 显示内容
+				set prop(value){
+					this.name = value;
+					console.log('set | 设置:',value,this.h);
+				}
+				
+				// 获取内容 公共静态方法
+				static get prop(){
+					return 'get | 获取:' + this.name + this.h;
+				}
+				
+				// 实例方法
+				log(){
+					return '父类返回的内容';
+					console.log(this.name,'使用了类方法打印');
+				}
+			}
+			
+			let inst = new Mydyh('dyh',24);
+			inst.prop = 'dyhhyd';
+			console.log(Mydyh.prop);
+			inst.log();
+			
+			
+			// 类继承
+			class Erdyh extends Mydyh{
+				//执行子类构造方法之前必须先执行父类构造方法
+				constructor(name,age,h){
+					super(name,age);//执行父类构造方法
+					this.h = h;
+				}
+				// 重写父类方法
+				log(){
+					// 如果希望在子方法中访问父方法，可以使用特殊的快捷方式super
+					const log = super.log();
+					console.log('子类中',this.h,log);
+				}
+				
+			}
+			
+			let inet = new Erdyh('子',26,1);
+			inet.prop = '子hhh';
+			inet.log();
+			
+		</script>
+	</body>
+</html>

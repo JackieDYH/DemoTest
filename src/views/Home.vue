@@ -41,6 +41,7 @@
     />
     <HelloWorld msg="Welcome to Your Vue.js App" />
     <h1 class="animate__animated animate__bounce">An animated element</h1>
+    <p class="animate__animated animate__bounce">当前运行环境:<strong>{{env}}编译环境</strong></p>
     <a-button type="primary" loading>Loading</a-button>
     <a-button type="primary">Primary</a-button>
     <a-button>Default</a-button>
@@ -59,8 +60,13 @@ export default {
   },
   data() {
     return {
-      current: ["mail"]
+      current: ["mail"],
+      env:'未设置运行环境',
     };
+  },
+  mounted(){
+    console.log(process.env.VUE_APP_NODE_ENV,'运行环境')
+    this.env = process.env.VUE_APP_NODE_ENV;
   }
 };
 </script>

@@ -5,6 +5,9 @@
 // })
 
 module.exports = {
+	//根据环境build打包到对于路径
+	outputDir : process.env.outputDir,
+	
     /*一 注意sass，scss，less的配置 px2rem*/
     // productionSourceMap: false, // 生产环境是否生成 sourceMap 文件
     // css: {

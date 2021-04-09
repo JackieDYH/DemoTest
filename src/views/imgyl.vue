@@ -22,6 +22,11 @@ export default {
                 require('../assets/image/img03.jpg'),
             ]
         }
+    },
+    methods:{
+      errorImg(e){
+        console.log(e,'errimg');
+      }
     }
 };
 </script>

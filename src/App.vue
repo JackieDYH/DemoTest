@@ -21,7 +21,16 @@
       <router-link to="/imgyl">图片预览</router-link> |
       <router-link to="/entozh">entozh</router-link> |
     </div>
-    <router-view />
+    <!-- 是否被缓存 缓存不活动的组件实例，而不是销毁它们-->
+    <!-- keep-alive用于保存组件的渲染状态 -->
+    <!-- 
+      <keep-alive :include="whiteList" :exclude="blackList" :max="amount"></keep-alive>
+        include定义缓存白名单，keep-alive会缓存命中的组件；exclude定义缓存黑名单，被命中的组件将不会被缓存；max定义缓存组件上限，超出上限使用LRU的策略置换缓存数据
+     -->
+    <keep-alive>
+      <router-view v-if="$route.meta.keepAlive"></router-view>
+    </keep-alive>
+    <router-view v-if="!$route.meta.keepAlive"></router-view>
   </div>
 </template>
 

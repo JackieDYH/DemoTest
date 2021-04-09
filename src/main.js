@@ -1,6 +1,9 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
+// 公共过滤器
+import * as filter from './filter/filter.js';
+import * as utils from './common/util.js';
 
 // element表格
 import ElementUI from 'element-ui';
@@ -101,9 +104,15 @@ Vue.use(Clipboard)
 // 引入vant 已开启按需引入 全量引入失效
 // import Vant from 'vant';
 import 'vant/lib/index.css';
-
 // Vue.use(Vant);
 
+// 过滤器filter的全局封装
+Object.keys(filter).forEach(key => {
+  Vue.filter(key, filter[key]);
+})
+
+// 公共方法
+Vue.prototype.$utils = utils;
 
 Vue.config.productionTip = false;
 

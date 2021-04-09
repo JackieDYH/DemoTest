@@ -33,6 +33,7 @@
     />
     <HelloWorld msg="Welcome to Your Vue.js App" />
     <h1 class="animate__animated animate__bounce">An animated element</h1>
+    <h2>{{ text | ellipsText(8)}}</h2>
     <p class="animate__animated animate__bounce">
       当前运行环境:<strong>{{ env }}编译环境</strong>
       <a-button type="dashed" @click="copy(env)">复制环境</a-button>
@@ -69,11 +70,13 @@ export default {
       current: ["mail"],
       env: "未设置运行环境",
       code: "20200829-20210324-20210329",
+      text: '全局过滤器的使用等等等'
     };
   },
   mounted() {
     console.log(process.env.VUE_APP_NODE_ENV, "运行环境");
     this.env = process.env.VUE_APP_NODE_ENV;
+    console.log('公共utils方法-是否在微信内打开',this.$utils.deviceMethod.isWeiXin());
   },
   methods: {
     // 复制到剪贴板

@@ -94,6 +94,17 @@ Vue.prototype.web3js = web3;
 // Vue.use(VueI18n);
 import { i18n } from './common/languages/i18n.js'
 
+// 引入剪贴板
+import Clipboard from 'v-clipboard'
+Vue.use(Clipboard)
+
+// 引入vant 已开启按需引入 全量引入失效
+// import Vant from 'vant';
+import 'vant/lib/index.css';
+
+// Vue.use(Vant);
+
+
 Vue.config.productionTip = false;
 
 new Vue({

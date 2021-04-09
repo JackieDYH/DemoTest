@@ -39,9 +39,15 @@ npm install vue-baidu-map --save
 - npm i postcss-plugin-px2rem  --save -dev
 - npm install postcss-px2rem --save -dev
 
-
 ### en转zh 语言转换
 - npm install vue-i18n
+
+### 剪贴板
+- npm install v-clipboard --save
+
+### vant库
+- npm i vant -S
+
 
 ## 环境设置
 ```

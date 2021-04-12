@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>pointer-events</title>
+		<style type="text/css">
+			div.ex1 {
+				pointer-events: none;
+				
+				cursor: default;
+				opacity: 0.6;
+			}
+
+			div.ex2 {
+				pointer-events: auto;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>pointer-events 属性</h1>
+
+		<p>请把鼠标指针移至下面的链接，查看是否对指针事件做出反应：</p>
+
+		<h2>pointer-events: none：</h2>
+		<div class="ex1">访问 <a href="https://jackiehao.blog.csdn.net/">教程</a></div>
+
+		<h2>pointer-events: auto（默认）</h2>
+		<div class="ex2">访问 <a href="https://jackiedyh.github.io/">博客</a></div>
+	</body>
+</html>

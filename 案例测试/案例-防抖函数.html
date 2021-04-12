@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>防抖函数 - debounce</title>
+	</head>
+	<body>
+		<button id="btn">非立即执行版 按钮</button>
+		<button id="btn2">非立即执行版 按钮</button>
+		<button id="btn3">合成版 按钮</button>
+		<script type="text/javascript">
+			const btn = document.getElementById("btn");
+			const btn2 = document.getElementById("btn2");
+			const btn3 = document.getElementById("btn3");
+			function Money(){
+				console.log("点击了按钮",this);
+			}
+			// 延时函数
+			// 非立即执行版
+			// 触发事件后函数不会立即执行，而是在 n 秒后执行，如果在 n 秒内又触发了事件，则会重新计算函数执行时间
+			function debounce(fun,delay){
+				let timer;
+				return function (){
+					let context = this; // 注意 this 指向
+					let args = arguments; // arguments中存着e
+					// 清除定时器
+					if (timer) clearTimeout(timer);
+					
+					timer = setTimeout(()=>{
+						// 绑定this
+						// fun.call(context,args);
+						fun.apply(this, args);
+					},delay);
+				}
+			}
+			
+			// 立即执行版
+			// 触发事件后函数会立即执行，然后 n 秒内不触发事件才能继续执行函数的效果
+			function debounces(fun, wait) {
+			    let timer;
+			    return function() {
+			      let context = this; // 这边的 this 指向谁?
+			      let args = arguments; // arguments中存着e
+			 
+			      if (timer) clearTimeout(timer);
+			 
+			      let callNow = !timer;
+			 
+			      timer = setTimeout(() => {
+			        timer = null;
+			      }, wait)
+			 
+			      if (callNow) fun.apply(context, args);
+			    }
+			}
+			
+			// 合成版
+			/**
+			   * @desc 函数防抖
+			   * @param fun 目标函数
+			   * @param wait 延迟执行毫秒数
+			   * @param immediate true - 立即执行， false - 延迟执行
+			   */
+			function debouncehc(fun, wait, immediate) {
+			    let timer;
+			    return function() {
+			      let context = this,
+			          args = arguments;
+			           
+			      if (timer) clearTimeout(timer);
+			      if (immediate) {
+			        let callNow = !timer;
+			        timer = setTimeout(() => {
+			          timer = null;
+			        }, wait);
+			        if (callNow) fun.apply(context, args);
+			      } else {
+			        timer  = setTimeout(() => {
+			          fun.apply(context, args);
+			        }, wait)
+			      }
+			    }
+			}
+			
+			btn.addEventListener("click",debounce(Money,1000));
+			btn2.addEventListener("click",debounces(Money,1000));
+			btn3.addEventListener("click",debouncehc(Money,1000,false));
+			
+			
+			
+		</script>
+	</body>
+</html>

@@ -10,12 +10,25 @@ export default {
 		}
 	},
 	mounted() {
-		Notify({type:'success',message:'vue-混入mixin使用-分发 Vue 组件中的可复用功能'});	
+		Notify({type:'success',message:'vue-混入mixin使用-分发 Vue 组件中的可复用功能'});
+		// 滚动获取新内容
+		window.addEventListener("scroll", this.scrollEvent, false);
 	},
 	destroyed() {
-		
+		window.removeEventListener("scroll", this.scrollEvent, false);
 	},
 	methods: {
+		scrollEvent() {
+			if (
+				document.documentElement.scrollTop +
+				document.documentElement.clientHeight >=
+				document.body.scrollHeight
+			) {
+				this.onBottom();
+			}
+		},
+		onBottom() { },
+
 		copyAddress() {
 			Toast.success(`复制成功`);
 		},

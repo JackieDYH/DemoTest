@@ -99,6 +99,16 @@ export default {
     //   console.log(e, "copyAddressError");
     //   Notify({ type: 'warning', message: '复制失败' });
     // },
+
+    loadMoreData() {
+      //加载更多
+      console.log('加载更多...');
+    },
+		// 滚动获取新内容
+    onBottom() {
+      console.log('滚动了加载新内容....');
+      this.loadMoreData();
+    },
   },
 };
 </script>

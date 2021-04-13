@@ -10,6 +10,7 @@
 - 轮播图组件
 ```
 npm install vue-awesome-swiper@3 --save-dev
+npm i swiper@3 --save-dev
 
 https://www.swiper.com.cn/
 https://github.surmon.me/vue-awesome-swiper/

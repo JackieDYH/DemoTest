@@ -16,13 +16,59 @@
     <br />
     <Slider :sliders="sliders" />
     <br />
+    <div class="swiper-box-body">
+        <div class="top-next-box">
+          <img
+            class="left swiper-button-prev-a"
+            src="../assets/image/left-1.png"
+            alt=""
+          />
+          <img
+            class="right swiper-button-next-a"
+            src="../assets/image/right-1.png"
+            alt=""
+          />
+        </div>
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            <div
+              class="swiper-slide"
+              v-for="(item, index) in bannerList"
+              :key="index"
+            >
+              <a
+                class="item"
+                :href="item.link"
+                :target="item.target"
+              >
+                <img
+                  :src="item.image"
+                  alt=""
+                  :srcset="item.image"
+                />
+                <div class="title">
+                  <div class="t1 ellipsis-1">{{ item.title }}</div>
+                  <div class="t2 ellipsis-1">{{ item.des }}</div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <!-- 如果需要导航按钮 -->
+          <!-- <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div> -->
+        </div>
+      </div>
   </div>
 </template>
 
 <script>
 // 引入插件
+// 第一个轮播图
+import swipers from "swiper";
+// 第二个轮播图
 import { swiper, swiperSlide } from "vue-awesome-swiper";
 import "swiper/dist/css/swiper.css";
+
 export default {
   components: {
     swiper,
@@ -141,11 +187,31 @@ export default {
     // 然后你就可以使用当前上下文内的swiper对象去做你想做的事了
     console.log("this is current swiper instance object", this.swiper);
     // this.swiper.slideTo(3, 1000, false);
+    this.swipercont();
   },
+  methods:{
+    swipercont(){
+       console.log("1") // 改变了的值
+       this.$nextTick(() => {
+            // dom元素更新后执行，因此这里能正确打印更改之后的值
+            console.log("dom元素更新后执行") // 改变了的值
+            var swiper = new swipers(".swiper-container", {
+              // observer: true,
+              slidesPerView: 3,
+              spaceBetween: 0,
+              // freeMode: true,
+              nextButton: ".swiper-button-next-a", //前进按钮
+              prevButton: ".swiper-button-prev-a", //后退按钮
+              loop: false,
+            });
+        })
+       console.log("2") // 改变了的值
+    }
+  }
 };
 </script>
 
-<style scoped >
+<style lang="less" scoped >
 .recommendPage .swiper-container {
   position: relative;
   width: 100%;
@@ -159,5 +225,155 @@ export default {
   color: #000;
   font-size: 16px;
   text-align: center;
+}
+
+// ========轮播图=======
+.swiper-box-body {
+  position: relative;
+  width: 1800px;
+  height: 400px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  margin: 0 auto;
+  .van-swipe-item {
+    text-align: center;
+    height: 60px;
+  }
+  .top-next-box {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 50px;
+    img.left,
+    img.right {
+      position: absolute;
+      z-index: 3;
+      width: 200px;
+      height: 200px;
+      top: 50%;
+      margin-top: 80px;
+      cursor: pointer;
+    }
+    img.left {
+      left: -138px;
+    }
+    img.right {
+      right: -138px;
+    }
+  }
+  .swiper-box {
+    width: 1800px;
+    height: 400px;
+    display: inline-block;
+    position: relative;
+    .item {
+      position: relative;
+      width: 600px;
+      height: 400px;
+      min-width: 600px;
+      min-height: 400px;
+      margin: 0 3px;
+      display: inline-block;
+      box-sizing: border-box;
+      img {
+        width: 100%;
+        height: 100%;
+        background: #383838;
+      }
+      .title {
+        height: 160px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background: rgba(0,0,0, 0.6);
+        .t1 {
+          font-size: 9px;
+          font-family: Microsoft YaHei;
+          font-weight: bold;
+          line-height: 12px;
+          color: #ffffff;
+          opacity: 1;
+          max-width: 300px;
+        }
+        .t2 {
+          height: 7px;
+          font-size: 5px;
+          font-family: Microsoft YaHei;
+          font-weight: 400;
+          line-height: 7px;
+          color: #fbda8e;
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .swiper-container {
+    height: 400px;
+  }
+  .swiper-slide {
+    display: inline-block;
+    margin-right: 4px;
+    height: 400px;
+    cursor: pointer;
+    width: 577px !important;
+    .item {
+      position: relative;
+      width: 577px;
+      height: 400px;
+      min-width: 577px;
+      min-height: 400px;
+      margin: 0 6px;
+      display: inline-block;
+      box-sizing: border-box;
+      img {
+        width: 100%;
+        height: 100%;
+        background: #383838;
+      }
+      .title {
+        height: 40px;
+        display: flex;
+        box-sizing: border-box;
+        padding: 0 4px;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background: rgba(0,0,0, 0.6);
+        .t1 {
+          font-size: 5px;
+          font-family: Microsoft YaHei;
+          font-weight: bold;
+          line-height: 12px;
+          color: #ffffff;
+          opacity: 1;
+          max-width: 577px;
+        }
+        .t2 {
+          height: 7px;
+          font-size: 5px;
+          font-family: Microsoft YaHei;
+          font-weight: 400;
+          line-height: 7px;
+          color: #fbda8e;
+          opacity: 1;
+        }
+      }
+    }
+  }
+  .swiper-container .swiper-slide .active {
+    color: #666;
+    background-color: #fff8eb;
+    box-shadow: 0 3px 13px 0 rgba(94, 94, 94, 0.5);
+  }
 }
 </style>

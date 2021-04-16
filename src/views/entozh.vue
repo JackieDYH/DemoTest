@@ -16,8 +16,8 @@ export default {
       console.log("获取",t);
       localStorage.setItem("language", t);
       // 刷新当前页面
-      location.reload();
-      this.$router.go(0);
+      window.location.reload();
+      // this.$router.go(0);
     },
   },
 };

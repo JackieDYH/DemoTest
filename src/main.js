@@ -1,6 +1,7 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
+
 // 公共过滤器
 import * as filter from './filter/filter.js';
 import * as utils from './common/util.js';
@@ -10,7 +11,6 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
 Vue.use(ElementUI);
-
 
 // 引入百度地图
 import BaiduMap from 'vue-baidu-map'

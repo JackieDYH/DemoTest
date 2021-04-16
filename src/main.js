@@ -103,8 +103,10 @@ Vue.use(Clipboard)
 
 // 引入vant 已开启按需引入 全量引入失效
 // import Vant from 'vant';
+import { Swipe, SwipeItem, Icon, Tab, Tabs, Collapse, CollapseItem, Circle, Popover, Popup, PullRefresh, Sticky, List, RadioGroup, Radio, Dialog, Pagination } from "vant";
 import 'vant/lib/index.css';
 // Vue.use(Vant);
+Vue.use(Swipe).use(SwipeItem).use(Icon).use(Tab).use(Tabs).use(Collapse).use(CollapseItem).use(Circle).use(Popover).use(Popup).use(PullRefresh).use(Sticky).use(List).use(RadioGroup).use(Radio).use(Dialog).use(Pagination);
 
 // 过滤器filter的全局封装
 Object.keys(filter).forEach(key => {

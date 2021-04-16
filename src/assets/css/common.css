@@ -1,0 +1,33 @@
+/* van-popup 组件样式调整 */
+.tipsbox {
+    padding: 10px;
+    white-space: pre;
+}
+
+.van-popup .van-popover__arrow{
+    border-width:2px;
+}
+
+/* 单行文本溢出截取 */
+.ellipsis-1 {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    white-space: normal !important;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+/* 2行文本溢出截取 */
+.ellipsis-2 {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    /*! autoprefixer: off */
+    -webkit-box-orient: vertical;
+    /* autoprefixer: on */
+}

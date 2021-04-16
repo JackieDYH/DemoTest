@@ -56,3 +56,8 @@
   }
 }
 </style>
+// 公共样式文件
+<style>
+@import url("./assets/css/common.css");
+@import url("./assets/css/flex.css");
+</style>

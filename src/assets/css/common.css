@@ -1,3 +1,13 @@
+html {
+    font-size: 2vw;
+}
+
+body {
+    font-family: 'PingFang-SC-Medium';
+    font-size: 18px;
+    color: #ffffff;
+}
+
 /* van-popup 组件样式调整 */
 .tipsbox {
     padding: 10px;

@@ -76,19 +76,28 @@
 		借助一个html标签object,来嵌入一个swf媒体播放文件，并利用该文件来播放你预设的文件
 		https://file.njshushuo.com/flvplayer.swf
 		-->
-		<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0"
-		 width="640" height="480" id="VideoPlayer" align="middle">
+		<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
+			codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="640"
+			height="480" id="VideoPlayer" align="middle">
 			<param name="allowScriptAccess" value="*" />
 			<param name="allowFullScreen" value="true" />
-			<param name="movie" value="./flvplayer.swf?video=https://file.njshushuo.com/8d2164883f65d1f78180b3fcc159d282&autoplay=true" />
+			<param name="movie"
+				value="./flvplayer.swf?video=https://file.njshushuo.com/8d2164883f65d1f78180b3fcc159d282&autoplay=true" />
 			<param name="quality" value="high" />
 			<param name="bgcolor" value="#ffffff" />
-			<embed src="./flvplayer.swf" flashvars="vcastr_file=https://file.njshushuo.com/8d2164883f65d1f78180b3fcc159d282"
-			 quality="high" bgcolor="#000000" width="500" height="380" name="VideoPlayer" align="middle" allowScriptAccess="*"
-			 allowfullscreen="true" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+			<embed src="./flvplayer.swf"
+				flashvars="vcastr_file=https://file.njshushuo.com/8d2164883f65d1f78180b3fcc159d282" quality="high"
+				bgcolor="#000000" width="500" height="380" name="VideoPlayer" align="middle" allowScriptAccess="*"
+				allowfullscreen="true" type="application/x-shockwave-flash"
+				pluginspage="http://www.macromedia.com/go/getflashplayer" />
 		</object>
 
+		<script src="./node_modules/vconsole/dist/vconsole.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
+			// 初始化 移动端调试器vconsole
+			var vConsole = new VConsole();
+			console.log('Hello world vconsole');
+
 			// 获取扩展名
 			let filename = 'js.html';
 			let index = filename.lastIndexOf('.');
@@ -611,6 +620,7 @@
 			// 下划线转驼峰
 			// foo('person_first name');//实现函数foo,输入'person_ first name'，返回'personFirstName'
 			let testStr = 'name_firstname_secondname'
+
 			function toUp(str) {
 				let newStr = ''
 				let arr = str.split('_') //先用字符串分割成数组
@@ -625,13 +635,13 @@
 			}
 			toUp(testStr)
 			console.log("原先的:", testStr, "新来的:", toUp(testStr))
-			
+
 			// 下划线转驼峰2
 			function toHump(name) {
-			    return name.replace(/\_(\w)/g, function(all, letter){
-					console.log('匹配到的值：',all,'下划线后面的值：',letter)
-			        return letter.toUpperCase();
-			    });
+				return name.replace(/\_(\w)/g, function(all, letter) {
+					console.log('匹配到的值：', all, '下划线后面的值：', letter)
+					return letter.toUpperCase();
+				});
 			}
 			let ak = 'name_firstname_ij';
 			console.log(toHump(ak));
@@ -643,6 +653,7 @@
 			function countIndex(arr, value) {
 				return arr.reduce((a, v) => v.split('-')[0] === value ? a + 1 : a, 1)
 			}
+
 			function foo2(arr) {
 				console.log(arr)
 				arr.map((item) => {
@@ -652,7 +663,6 @@
 			}
 			foo2(arrd)
 			console.log(newArray)
-			
 		</script>
 	</body>
 </html>

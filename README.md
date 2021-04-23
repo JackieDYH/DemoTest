@@ -49,6 +49,9 @@ npm install vue-baidu-map --save
 ### vant库
 - npm i vant -S
 
+### 手机端调试器
+- npm i vconsole
+
 
 ## 环境设置
 ```

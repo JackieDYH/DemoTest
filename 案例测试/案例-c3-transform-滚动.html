@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>CSS3无限滚动</title>
+		<style type="text/css">
+			@-webkit-keyframes rowup {
+				0% {
+					-webkit-transform: translate3d(0, 0, 0);
+					transform: translate3d(0, 0, 0);
+				}
+
+				100% {
+					-webkit-transform: translate3d(0, -312px, 0);
+					transform: translate3d(0, -312px, 0);
+				}
+			}
+
+			@keyframes rowup {
+				0% {
+					-webkit-transform: translate3d(0, 0, 0);
+					transform: translate3d(0, 0, 0);
+				}
+
+				100% {
+					-webkit-transform: translate3d(0, -312px, 0);
+					transform: translate3d(0, -312px, 0);
+				}
+			}
+
+			.list {
+				width: 400px;
+				border: 1px solid #999;
+				margin-top: 20px;
+				position: relative;
+				height: 200px;
+				overflow: hidden;
+			}
+
+			.list .rowup {
+				-webkit-animation: 10s rowup linear infinite normal;
+				animation: 10s rowup linear infinite normal;
+				position: relative;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>用CSS3实现无限循环的无缝滚动</h1>
+		<p>返回文章： <a href="https://jackiehao.blog.csdn.net/">用CSS3实现无限循环的无缝滚动</a></p>
+
+		<p>使用js随机生成数据 | <a href="javascript:window.location.reload()">刷新页面观察不同数据</a></p>
+		<div class="list">
+			<div class="cc">
+
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		// 设置keyframes属性
+		function addKeyFrames(y) {
+			var style = document.createElement('style');
+			style.type = 'text/css';
+			var keyFrames = '\
+    @-webkit-keyframes rowup {\
+        0% {\
+            -webkit-transform: translate3d(0, 0, 0);\
+            transform: translate3d(0, 0, 0);\
+        }\
+        100% {\
+            -webkit-transform: translate3d(0, A_DYNAMIC_VALUE, 0);\
+            transform: translate3d(0, A_DYNAMIC_VALUE, 0);\
+        }\
+    }\
+    @keyframes rowup {\
+        0% {\
+            -webkit-transform: translate3d(0, 0, 0);\
+            transform: translate3d(0, 0, 0);\
+        }\
+        100% {\
+            -webkit-transform: translate3d(0, A_DYNAMIC_VALUE, 0);\
+            transform: translate3d(0, A_DYNAMIC_VALUE, 0);\
+        }\
+    }';
+			style.innerHTML = keyFrames.replace(/A_DYNAMIC_VALUE/g, y);
+			document.getElementsByTagName('head')[0].appendChild(style);
+		}
+
+
+		function init() {
+			var data = '塞下秋来风景异，衡阳雁去无留意。四面边声连角起，千嶂里，长烟落日孤城闭。浊酒一杯家万里，燕然未勒归无计。羌管悠悠霜满地，人不寐，将军白发征夫泪。', //样例数据
+				data_len = data.length,
+				len = parseInt(Math.random() * 6) + 6, // 数据的长度
+				html = '<div class="ss">';
+
+			for (var i = 0; i < len; i++) {
+				var start = parseInt(Math.random() * (data_len - 20)),
+					s = parseInt(Math.random() * data_len);
+				html += '<div class="item"v>' + i + '- ' + data.substr(start, s) + '</div>';
+			}
+			html += '</div>';
+			document.querySelector('.list .cc').innerHTML = html + html; // 复制一份数据
+			var height = document.querySelector('.list .ss').offsetHeight; // 一份数据的高度
+			addKeyFrames('-' + height + 'px'); // 设置keyframes
+			document.querySelector('.list .cc').className += ' rowup'; // 添加 rowup
+		}
+		init();
+	</script>
+</html>

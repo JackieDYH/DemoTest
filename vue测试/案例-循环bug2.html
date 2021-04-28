@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<title>demo</title>
+	</head>
+	<body>
+		<div id="main">
+			<p>但是运行会有警告，并且显示是不对的，因为渲染组件的时候，去改变了data里面的数据，data里面的数据变化又会调用render函数，从新渲染组件，这样就造成了 死循环。</p>
+			<p>解决办法：</p>
+			<p>
+				1， computed属性，将来源不同的数据合并到一个数组<br>
+				2， 将num这个索引变量放全局变量里面
+			</p>
+			<table>
+				<thead>
+				</thead>
+				<tbody>
+					<tr v-for="(item, index) in arr1">
+						<td>{{getIndex()}}</td>
+					</tr>
+					<tr v-for="(item, index) in arr2">
+						<td>{{getIndex()}}</td>
+					</tr>
+
+				</tbody>
+			</table>
+
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script>
+			new Vue({
+				el: '#main',
+				data: {
+					arr1: [1, 2],
+					arr2: [3, 4, 5],
+					num: 0
+				},
+				methods: {
+					getIndex: function() {
+						console.log(this.num,'gitIndex');
+						return ++this.num;
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

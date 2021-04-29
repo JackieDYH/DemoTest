@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<title>demo</title>
+	</head>
+	<body>
+		<div id="main">
+			<p style="color: red;">[Vue warn]: You may have an infinite update loop in a component render function</p>
+			<p>数据渲染过程中改变了data中的数据-------每当任何状态发生变化时，都会触发渲染方法</p>
+			<div v-for="item in model" v-bind:class="test(item.result)">
+				{{item.id}}--{{accept}}--{{not_accept}}
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script>
+			new Vue({
+				el: '#main',
+				data: {
+					model: [{
+							id: 1,
+							result: 'accept'
+						},
+						{
+							id: 2,
+							result: 'Not accept'
+						},
+						{
+							id: 3,
+							result: 'Not'
+						}
+					],
+					accept: false,
+					not_accept: false,
+				},
+				methods: {
+					// 问题代码
+					// 不要直接修改data中的数据
+					test(result) {
+						if (result == 'accept') {
+							this.accept = true;
+							this.not_accept = false;
+							console.log(result,'1');
+						} else if (result == 'Not accept') {
+							this.accept = false;
+							this.not_accept = true;
+							console.log(result,'2');
+						} else {
+							console.log(result,'3');
+						}
+
+						return {
+							success: this.accept,
+							danger: this.not_accept,
+						};
+					},
+					
+					// 解决问题
+					test2(result) {
+						let accept;
+						if (result == 'accept') {
+							accept = true;
+						} else if (result == 'Not accept') {
+							accept = false;
+						} else {
+							console.log(result);
+						}
+
+						return {
+							success: accept,
+							danger: !accept,
+						};
+					},
+				}
+			})
+		</script>
+	</body>
+</html>

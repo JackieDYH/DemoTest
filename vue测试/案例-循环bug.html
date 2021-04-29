@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<title>vue</title>
 		<style type="text/css">
-			.red{
+			.red {
 				color: red;
 			}
 		</style>
@@ -18,7 +18,7 @@
 					<!-- :class="item.select_num > item.total_num ? 'red' : '' " -->
 					{{item.title}}--
 					<span :class="showStyleColor(item.select_num, item.total_num,index)">使用量:{{item.select_num}}</span>
-					 / 总量:{{item.total_num}} - {{getShow(index)}}
+					/ 总量:{{item.total_num}} - {{getShow(index)}}
 					<button type="button" @click="add(item,index)" :class="item.show ? 'red' : ''">使用</button>
 				</div>
 			</div>
@@ -34,7 +34,7 @@
 			const app = new Vue({
 				el: '#app',
 				data: {
-					show:0,
+					show: 0,
 					num: [0, 0, 0, 0],
 					obj: [{
 							title: '实例',
@@ -69,15 +69,15 @@
 
 				},
 				methods: {
-					getShow(index){
+					getShow(index) {
 						// this.show = !this.show;
 						return index;
 					},
-					showStyleColor(num1, num2,index) {
+					showStyleColor(num1, num2, index) {
 						num1 = isNaN(num1) ? 0 : Number(num1);
 						num2 = isNaN(num2) ? 0 : Number(num2);
 						this.obj[index].total_num = index;
-						console.log(index,9)
+						console.log(index, 9)
 						if (num1 > num2) {
 							this.obj[index].show = true;
 							return "red";
@@ -85,14 +85,14 @@
 							return "";
 						}
 					},
-					add(item,index){
+					add(item, index) {
 						this.num[index]++;
 						this.show = !this.show;
-						console.log(this.num,this.obj,this.show,99);
+						console.log(this.num, this.obj, this.show, 99);
 						this.update(this.num);
 					},
 					// 数量增加方法
-					update(nums){
+					update(nums) {
 						this.obj.forEach((item, index) => {
 							item.select_num = nums[index];
 						});

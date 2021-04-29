@@ -14,15 +14,12 @@
 			</p>
 			<table>
 				<thead>
+					<th>测试</th>
 				</thead>
 				<tbody>
 					<tr v-for="(item, index) in arr1">
-						<td>{{getIndex()}}</td>
+						<td>{{index}}--{{getIndex()}}--{{num}}</td>
 					</tr>
-					<tr v-for="(item, index) in arr2">
-						<td>{{getIndex()}}</td>
-					</tr>
-
 				</tbody>
 			</table>
 
@@ -32,13 +29,13 @@
 			new Vue({
 				el: '#main',
 				data: {
-					arr1: [1, 2],
-					arr2: [3, 4, 5],
+					arr1: [1, 2, 3, 4, 5, 6],
 					num: 0
 				},
 				methods: {
+					// 这里修改了data中num值会从新出发更新
 					getIndex: function() {
-						console.log(this.num,'gitIndex');
+						console.log(this.num, 'gitIndex');
 						return ++this.num;
 					}
 				}

@@ -8,7 +8,8 @@
 			div.ex1 {
 				pointer-events: none;
 				
-				cursor: default;
+				/* cursor: default; */
+				cursor:not-allowed;
 				opacity: 0.6;
 			}
 
@@ -21,6 +22,10 @@
 		<h1>pointer-events 属性</h1>
 
 		<p>请把鼠标指针移至下面的链接，查看是否对指针事件做出反应：</p>
+		<code>
+			cursor:not-allowed;//MDN解释：不能执行<br>
+			cursor:no-drop;// MDN解释：当前位置不能扔下   Windows或Mac OS X中 "no-drop 与not-allowed相同".
+		</code>
 
 		<h2>pointer-events: none：</h2>
 		<div class="ex1">访问 <a href="https://jackiehao.blog.csdn.net/">教程</a></div>

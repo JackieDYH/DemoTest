@@ -21,9 +21,14 @@
 		</style>
 	</head>
 	<body>
+		<p>右击查看源码-图片设置了大小，有些效果不明显</p>
 		<!-- 方式一 -->
 		<div class="image-set-by-zxx"></div>
 		<!-- 方式二 -->
-		<img src="../images/image-set-not.jpg" srcset="../images/128px1x.jpg 1x,../images/256px2x.jpg 2x,../images/512px3x.jpg 3x"/>
+		<img src="../images/image-set-not.jpg" srcset="../images/512px3x.jpg 3x,../images/256px2x.jpg 2x,../images/128px1x.jpg 1x"/>
+		<!-- 方式三 -->
+		<!-- 浏览器视口为 700px 时图片宽度为 700px，其他情况为 1200px -->
+		<img src="../images/image-set-not.jpg" srcset="../images/512px3x.jpg 1200w,../images/256px2x.jpg 600w,../images/128px1x.jpg 300w" sizes="(min-width: 700px) 300w, 1200w">
+		<img src="../images/image-set-not.jpg" srcset="../images/512px3x.jpg 1200w,../images/256px2x.jpg 600w,../images/128px1x.jpg 300w" sizes="(min-width: 700px) 600px, 100vw">
 	</body>
 </html>

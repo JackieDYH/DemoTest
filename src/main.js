@@ -123,3 +123,7 @@ new Vue({
   i18n,
   render: h => h(App)
 }).$mount("#app");
+
+window.onload = function () {
+  console.log(process.env, '当前环境');
+}

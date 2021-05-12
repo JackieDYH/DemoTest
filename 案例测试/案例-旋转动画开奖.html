@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>cs旋转动画</title>
+		<style type="text/css">
+			.my-block-view {
+				position: relative;
+				padding-top: 168px;
+				padding-bottom: 210px;
+				background: #ffffff;
+
+			}
+
+			.bgbox {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				position: relative;
+				height: 528px;
+			}
+
+			.bg1 {
+				position: absolute;
+				width: 528px;
+				height: 528px;
+				background: url("../images/huan/huan1.png");
+				background-size: cover;
+				animation: changeright 6s linear infinite;
+				-webkit-animation: changeright 6s linear infinite;
+			}
+
+			.bg2 {
+				position: absolute;
+				width: 457px;
+				height: 457px;
+				background: url("../images/huan/huan2.png");
+				background-size: cover;
+				animation: changeright 6s linear infinite;
+				-webkit-animation: changeright 6s linear infinite;
+			}
+
+			.bg3 {
+				position: absolute;
+				width: 393px;
+				height: 393px;
+				background: url("../images/huan/huan3.png");
+				background-size: cover;
+				animation: changeleft 6s linear infinite;
+				-webkit-animation: changeleft 6s linear infinite;
+				z-index: 1;
+			}
+
+			.bg4 {
+				position: absolute;
+				width: 393px;
+				height: 393px;
+				background: url("../images/huan/huan4.png");
+				background-size: cover;
+				animation: changeleft 6s linear infinite;
+				-webkit-animation: changeleft 6s linear infinite;
+			}
+
+			.hezi {
+				position: absolute;
+				width: 116px;
+				height: 156px;
+				background: url("../images/huan/jianghe.png");
+				background-size: cover;
+			}
+
+			.zhengzaikaijiang {
+				position: absolute;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 342px;
+				height: 82px;
+				bottom: 100px;
+				left: 50%;
+				margin-left: -171px;
+			}
+
+			span {
+				font-size: 62px;
+				color: #ffcf00;
+				text-shadow: 0px 3px 0px #006db7;
+				-webkit-text-stroke: 3 #006db7;
+				margin-left: 10px;
+			}
+
+			img {
+				position: relative;
+				width: 82px;
+				height: 82px;
+			}
+			/*自定义动画类----顺时针旋转（使用这个动画的时候才设置动画执行时间）*/
+			@-webkit-keyframes changeright {
+			  0% {
+			    -webkit-transform: rotate(0deg);
+			  }
+			  50% {
+			    -webkit-transform: rotate(180deg);
+			  }
+			  80% {
+			    -webkit-transform: rotate(360deg);
+			  }
+			  81% {
+			    transform: scale(1);
+			  }
+			  100% {
+			    transform: scale(0);
+			  }
+			}
+			/*自定义动画类----逆时针旋转（使用这个动画的时候才设置动画执行时间）*/
+			@-webkit-keyframes changeleft {
+			  0% {
+			    -webkit-transform: rotate(0deg);
+			  }
+			
+			  50% {
+			    -webkit-transform: rotate(-180deg);
+			  }
+			
+			  80% {
+			    -webkit-transform: rotate(-360deg);
+			  }
+			  81% {
+			    transform: scale(1);
+			  }
+			  100% {
+			    transform: scale(0);
+			  }
+			}
+		</style>
+	</head>
+	<body>
+		<div class="my-block-view">
+			<div class="bgbox">
+				<div class="bg1"></div>
+				<div class="bg2"></div>
+				<div class="bg3"></div>
+				<div class="bg4"></div>
+				<div class="hezi"></div>
+			</div>
+			<div class="zhengzaikaijiang">
+				<img src="../images/huan/loading2.png" alt="" />
+				<span>开奖中</span>
+			</div>
+		</div>
+	</body>
+</html>

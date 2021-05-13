@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>css实现效果案例</title>
+		<style type="text/css">
+			.wrap {
+				width: 80%;
+				margin: 0 auto;
+			}
+
+			.rect {
+				padding: 25% 50%;
+				background-color: #3eaf7c;
+			}
+
+			/* - */
+			.parent {
+				counter-reset: number;
+			}
+
+			.child:before {
+				counter-increment: number;
+				content: counter(number);
+			}
+
+			.counter {
+				counter-reset: counter;
+			}
+
+			.counter:before {
+				counter-increment: counter;
+				content: counter(counter);
+			}
+
+			h3 {
+				counter-reset: first 2 second 4;
+			}
+
+			h3:before {
+				content: counter(first) counter(second);
+			}
+
+			.page-list {
+				counter-reset: counter;
+			}
+
+			.page-list p:before {
+				padding: 2px 8px;
+				border: 1px solid #ccc;
+				counter-increment: counter;
+				/* content: counter(counter); */
+				content: counter(counter, upper-roman);
+			}
+
+			.list {
+				counter-reset: section;
+				list-style-type: none;
+			}
+
+			.list li:before {
+				counter-increment: section;
+				content: counters(section, "-") ".";
+			}
+
+			/* - */
+			.img-item {
+				width: 400px;
+			}
+
+			.img-item:hover {
+				content: url("https://img-blog.csdnimg.cn/20201202110157927.png");
+			}
+
+			/* - */
+			.box {
+				padding: 20px;
+				width: 150px;
+				max-height: 0;
+				border: 1px solid #ccc;
+				border-radius: 3px;
+				overflow: hidden;
+				transition: max-height 1s;
+				cursor: pointer;
+			}
+
+			.box:hover {
+				max-height: 450px;
+			}
+
+			/* - */
+			ul {
+				width: 300px;
+				border: 1px solid red;
+			}
+
+			ul>li+li {
+				border-top: 1px solid red;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<p>自适应等比矩形</p>
+			<p>padding 是前端开发最常用的属性之一，很多时候我们都只是用它来做为元素的内边距使用。很少有人关心更多的特性。
+				其实它有个特性可能大家都不知道，就是当它的值为「百分比」时，它的计算规则：不管是水平方向上还是垂直方向上的值都是相对元素的「宽度」来计算出来的。
+				所以利用这一点，我们可以实现一个等比例自适应的矩形。</p>
+			<div class="rect"></div>
+			<hr>
+			<p>counter（计数器）</p>
+			<div class="parent">
+				<div class="child"></div>
+				<div class="child"></div>
+				<div class="child"></div>
+			</div>
+			<p>注意: 一个容器里只能有一个「计数器值」。所以下面这种是不会出现递增的。</p>
+			<div class="counter"></div>
+			<div class="counter"></div>
+			<div class="counter"></div>
+			<p>本质上 CSS 计数器是由 CSS 维护的变量，这些变量可能根据 CSS 规则增加以跟踪使用次数。
+				计数器的值通过使用 counter-reset 和 counter-increment 操作，然后通过 counter() 或 counters()函数来显示在页面上。
+				光说不练假把式，来看看如何使用它。
+				首先，使用前必须要通过 counter-reset 重置一个初始值。它默认是 0。你也可以指定初始值。
+				counter-reset: record; 重置计数器为 0
+				counter-reset: record 2; 重置计数器为 2
+			</p>
+			<h3></h3>
+			<div class="page-list">
+				<p>你瞧，我这该死的，无处安放的魅力</p>
+				<p>你瞧，我这该死的，无处安放的魅力</p>
+				<p>你瞧，我这该死的，无处安放的魅力</p>
+			</div>
+			<p>
+				counter(name, list-style-type) 函数可以接受两个参数
+				list-style-type 的值可以为：disc | circle | square | decimal | decimal-leading-zero | lower-roman |
+				upper-roman | lower-greek | lower-latin | upper-latin | armenian | georgian | none | inherit
+			</p>
+			<p>
+				除了 counter() 之外还有一个 counters()，那它是做什么的呢？
+				counters() 对嵌套的计数器非常有用，它可以在不同级别的嵌套计数器之间插入字符串。
+			</p>
+			<ol class="list">
+				<li>item</li>
+				<li>item
+					<ol class="list">
+						<li>item</li>
+						<li>item</li>
+						<li>item
+							<ol class="list">
+								<li>item</li>
+								<li>item</li>
+							</ol>
+						</li>
+						<li>item</li>
+					</ol>
+				</li>
+				<li>item</li>
+			</ol>
+			<hr>
+			<p>动态切换图片</p>
+			<img class="img-item" src="https://img-blog.csdnimg.cn/2021031616343485.gif">
+			<hr>
+			<p>任意高度上下滑动动画</p>
+			<p>利用 max-height 的特性，设置一个永远比内容大的高度，这时元素的高度就是内容的高度，这样在配合使用 transition 属性就可以实现过渡效果。
+				这里使用的技巧就是，设置一个高度永远比内容要高。
+				不过这里有需要注意的地方是：不能把高度设置的太高，否则会出现「延迟现象」。应该找一个绝对安全且较小的值。</p>
+			<div class="box">
+				鼠标悬浮进行滑动鼠标悬浮进行滑动鼠标悬浮进行滑动鼠标悬浮进行滑动鼠标悬浮进行滑动鼠标悬浮进行滑动鼠标悬浮进行滑动鼠标悬浮进行滑动鼠标悬浮进行滑动鼠标悬浮进行滑动鼠标悬浮进行滑动鼠标悬浮进行
+			</div>
+			<hr>
+			<p>相邻兄弟选择器的巧妙利用实现边框效果</p>
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+
+
+
+
+		</div>
+	</body>
+</html>

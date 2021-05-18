@@ -5,6 +5,8 @@ import router from "./router";
 // 公共过滤器
 import * as filter from './filter/filter.js';
 import * as utils from './common/util.js';
+import getRequest from './request/api';
+import axios from 'axios';
 
 // element表格
 import ElementUI from 'element-ui';
@@ -115,6 +117,8 @@ Object.keys(filter).forEach(key => {
 
 // 公共方法
 Vue.prototype.$utils = utils;
+Vue.prototype.$axios = getRequest;
+Vue.prototype.$http = axios;
 
 Vue.config.productionTip = false;
 

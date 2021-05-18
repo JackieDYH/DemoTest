@@ -103,8 +103,13 @@ export default {
       "公共utils方法-是否在微信内打开",
       this.$utils.deviceMethod.isWeiXin()
     );
+    this.get();
   },
   methods: {
+     get() {
+      let k = this.$axios.getList_API();
+      console.log(k,999666);
+    },
     // 复制到剪贴板
     copy(e) {
       console.log(e);

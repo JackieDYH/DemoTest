@@ -13,6 +13,7 @@ api.postList_API = p => http.post('/comments', p);
  * @param {*} p
  */
 api.getList_API = p => http.get('/comments', p);
+api.getList2_API = p => http.get('/artist/top/song', p);
 
 // 全部导出
 export default api;

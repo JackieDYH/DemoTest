@@ -52,6 +52,9 @@ npm install vue-baidu-map --save
 ### 手机端调试器
 - npm i vconsole
 
+### cookie插件
+- npm install js-cookie --save
+
 
 ## 环境设置
 ```

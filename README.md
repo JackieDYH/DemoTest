@@ -55,6 +55,11 @@ npm install vue-baidu-map --save
 ### cookie插件
 - npm install js-cookie --save
 
+### 压缩插件 减少包的大小
+- npm install compression-webpack-plugin --save-dev
+
+### 去除打印日志log
+- npm install terser-webpack-plugin -D
 
 ## 环境设置
 ```

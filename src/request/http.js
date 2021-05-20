@@ -13,9 +13,7 @@ const http ={
             method: 'get',
             url:url
         }
-        // config.params = params || {};
         if(params) config.params = params
-        console.log(config,'config');
         return request(config)
     },
     post(url,params){

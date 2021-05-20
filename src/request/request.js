@@ -3,6 +3,7 @@ import axios from 'axios'; // 引入axios
 import Qs from 'qs'; // 引入qs模块，用来序列化post类型的数据key=value 形式
 import Cookies from 'js-cookie'; //cookie插件
 import { $t } from "@/common/languages/i18n.js"; // 多语言
+import router from '../router'; //引入路由
 import { Message } from 'element-ui'; // 消息提醒
 
 // 环境的切换
@@ -25,21 +26,47 @@ const service = axios.create({
     // 超时时间 单位是ms，这里设置了3s的超时时间
     timeout: 3 * 1000
 })
+// 请求头 X-GW-NONCE中需要的参数
+// function uuid() {
+//     function S4() {
+//         return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+//     }
+//     return (
+//         S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4()
+//     );
+// }
 
 // 2.请求拦截器
 service.interceptors.request.use(config => {
     //发请求前做的一些处理，数据转化，配置请求头，设置token,设置loading等，根据需求去添加
-    // config.data = JSON.stringify(config.data); //数据转化json格式
-    config.data = Qs.stringify(config.data); //使用Qs转换key=value格式 Qs.stringify(params)
+    // config.data = JSON.stringify(config.data); //数据转化json字符串 {"key":"value","key2":"value"}
+    config.data = Qs.stringify(config.data); //使用Qs转换键值对 key=value&key2=value2 格式 Qs.stringify(params)
     config.headers = {
-        'Content-Type': 'application/x-www-form-urlencoded' //配置请求头
+        'Content-Type': 'application/x-www-form-urlencoded', //配置请求头
+        'X-GW-TIME': new Date().getTime(), // 请求时间
+        // 'X-GW-NONCE': uuid(),
+        // 'Authorization': window.sessionStorage.getItem("cookie"), // Cookies.get('cookie')
     }
+    
+    // 不同请求设置不同头
+    // config.headers = Object.assign(config.headers,config.headers); // 可以根据需要设置不同的请求头内容 可以在http.js中自己设置
+
+    // if(config.method == 'get'){
+    //     config.headers = {'Content-Type': 'application/json'}
+    // } else if(config.method == 'post'){
+    //     config.headers = {'Content-Type': 'application/x-www-form-urlencoded'}
+    // } else {
+    //     config.headers = {'Content-Type': 'application/x-www-form-urlencoded'}
+    // }
+
     //注意使用token的时候需要引入cookie方法或者用本地localStorage等方法，推荐js-cookie
+    // Cookies.set('token','我是cookie');
     // const token = Cookies.get('token') || "";//这里取token之前，你肯定需要先拿到token,存一下
     // if (token) {
     //     config.params = { 'token': token } //如果要求携带在参数中
     //     config.headers.token = token; //如果要求携带在请求头中
     // }
+    console.log('config:',config);
     return config;
 }, error => {
     Promise.reject(error);

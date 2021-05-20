@@ -108,8 +108,9 @@ export default {
   methods: {
      async get() {
       //  let k = await this.$axios.postList_API({id:'222'});
-      // let k = await this.$axios.getList_API();
-      let k = await this.$axios.getList2_API({id:'6452'});
+      // let k =  this.$axios.getList_API().then(res=>{console.log(res);});
+      let k =  await this.$axios.getList_API();
+      // let k = await this.$axios.getList2_API({id:'6452',dyh:'0520'});
       console.log(k,999666);
     },
     // 复制到剪贴板

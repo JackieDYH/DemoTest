@@ -4,7 +4,7 @@
  * @Author: Jackie
  * @Date: 2021-05-24 21:47:41
  * @LastEditors: Jackie
- * @LastEditTime: 2021-05-24 22:24:31
+ * @LastEditTime: 2021-05-24 22:46:11
 -->
 <template>
   <div class="hv">
@@ -25,6 +25,10 @@
         <li v-for="(item,index) of imgList" :key="index" @mouseover="changeIndex(index)" @mouseout="changeIndexBack(index)">
             <img :src="item.tp" alt="" v-show="!item.show"/>
             <img :src="item.tp1" alt="" v-show="item.show"/>
+            <div class="tips" v-show="item.show">
+              <!-- <router-link :to="item.url">你好厉害</router-link> -->
+              <a :href="item.url" target="_blank">你好厉害</a>
+            </div>
         </li>
     </ul>
   </div>
@@ -38,16 +42,19 @@ export default {
           {
               tp:require('../assets/image/icon/ic1.png'),
               tp1:require('../assets/image/icon/ic1-1.png'),
+              url:'https://www.baidu.com/',
               show:false,
           },
           {
               tp:require('../assets/image/icon/ic2.png'),
               tp1:require('../assets/image/icon/ic2-1.png'),
+              url:'https://www.baidu.com/',
               show:false,
           },
           {
               tp:require('../assets/image/icon/ic3.png'),
-              tp1:require('../assets/image/icon/ic3-1.png'),
+              tp1:require('../assets/image/icon/ic3-1.png'), 
+              url:'https://www.baidu.com/',
               show:false,
           }
       ],
@@ -70,7 +77,10 @@ export default {
 <style lang="less" scoped>
 .ullist2{
     display: flex;
-    
+    .tips{
+      padding: 20px 10px;
+      background-color: aqua;
+    }
 }
 .ullist {
     display: flex;

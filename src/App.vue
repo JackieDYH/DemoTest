@@ -1,3 +1,11 @@
+<!--
+ * @version: 
+ * @Description: file content
+ * @Author: Jackie
+ * @Date: 2021-05-24 21:35:00
+ * @LastEditors: Jackie
+ * @LastEditTime: 2021-05-24 21:47:09
+-->
 <template>
   <div id="app">
     <div id="nav">
@@ -38,6 +46,7 @@ export default {
         {path:'/antv',name:'antv图表'},
         {path:'/imgyl',name:'图片预览'},
         {path:'/entozh',name:'entozh'},
+        {path:'/hover',name:'图片hover'},
       ]
     }
   },

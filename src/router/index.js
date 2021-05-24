@@ -148,6 +148,13 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/entozh.vue")
   },
+  {
+    path: "/hover",
+    name: "hover",
+    meta: { title: "hover", keepAlive: false,},
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/hover.vue")
+  },
 ];
 
 const router = new VueRouter({

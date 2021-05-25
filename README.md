@@ -27,6 +27,9 @@ npm install vue-baidu-map --save
 ### 图片懒加载
 - npm install vue-lazyload --save-dev
 
+### 大数计算 bignum 和 bignumber
+- npm i bignumber.js
+
 ### antv/g2
 -  npm i @antv/g2 --save
 

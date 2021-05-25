@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>bignumber</title>
+	</head>
+	<body>
+		<script src="../js/bignumber.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			let x = new BigNumber(123.4567);
+			let y = x / (10**18);
+			console.log(x.toString(),x.toFixed(),y.toString());
+			// 加法
+			console.log("加法",new BigNumber("4").plus(6).toString());
+			// 减法
+			console.log("减法",new BigNumber("8").minus(2).toString());
+			// 乘法
+			console.log("乘法",new BigNumber("8").times(10**3).toString());
+			console.log("乘法",new BigNumber("8").multipliedBy(10**3).toString());
+			// 除法
+			console.log("除法",new BigNumber("8").div(2).toString());
+			console.log("除法",new BigNumber("8").dividedBy(2).toString());
+		</script>
+	</body>
+</html>

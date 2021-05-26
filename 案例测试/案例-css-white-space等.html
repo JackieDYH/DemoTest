@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.wrap{
+				width: 33%;
+				margin: 0 auto;
+			}
+			.box {
+				border: 1px solid grey;
+				width: 140px;
+				float: left;
+				margin-right: 50px;
+			}
+			span {
+				display: inline-block;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<p>下面的选项会改变右边框框的样式，左边框框的样式不会变</p>
+			</br></br>
+			<div>
+				<div class="box">
+					Hi&nbsp;&nbsp;,
+					This is a incomprehensibilities long word.
+					</br>
+					你好&nbsp;&nbsp;，
+					这 是一个不可思议的长单词
+				</div>
+				<div id="example" class="box">
+					Hi&nbsp;&nbsp;,
+					This is a incomprehensibilities long word.
+					</br>
+					你好&nbsp;&nbsp;，
+					这 是一个不可思议的长单词
+				</div>
+				<div style="clear: both"></div>
+			</div>
+			</br>
+			<div>
+				white-space:
+				<select id="s1">
+					<option value="normal">normal</option>
+					<option value="nowrap">nowrap</option>
+					<option value="pre">pre</option>
+					<option value="pre-wrap">pre-wrap</option>
+					<option value="pre-line">pre-line</option>
+				</select>
+			</div>
+			<div>
+				word-break:
+				<select id="s2">
+					<option value="normal">normal</option>
+					<option value="break-all">break-all</option>
+					<option value="keep-all">keep-all</option>
+					<option value="break-word">break-word</option>
+				</select>
+			</div>
+			<div>
+				word-wrap:
+				<select id="s3">
+					<option value="normal">normal</option>
+					<option value="break-word">break-word</option>
+				</select>
+			</div>
+		</div>
+		<script type="text/javascript">
+			document.getElementById('s1').addEventListener('change', function(e) {
+				document.getElementById('example').style.whiteSpace = e.target.value;
+			});
+			document.getElementById('s2').addEventListener('change', function(e) {
+				document.getElementById('example').style.wordBreak = e.target.value;
+			});
+			document.getElementById('s3').addEventListener('change', function(e) {
+				document.getElementById('example').style.wordWrap = e.target.value;
+			});
+		</script>
+	</body>
+</html>

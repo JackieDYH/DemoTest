@@ -62,23 +62,24 @@ module.exports = {
         //生产环境取消 console.log
         if (process.env.NODE_ENV === 'production') {
             // 直接修改webpack的配置
-            // config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true;
-
+            config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true;
+            
+            // 使用报错
             // 返回一个将会被合并的对象
-            return {
-                optimization: {
-                    minimizer: [
-                        new TerserPlugin({
-                            sourceMap: false,
-                            terserOptions: {
-                                compress: {
-                                    drop_console: true
-                                }
-                            }
-                        })
-                    ]
-                }
-            }
+            // return {
+            //     optimization: {
+            //         minimizer: [
+            //             new TerserPlugin({
+            //                 sourceMap: false,
+            //                 terserOptions: {
+            //                     compress: {
+            //                         drop_console: true
+            //                     }
+            //                 }
+            //             })
+            //         ]
+            //     }
+            // }
         }
     },
     chainWebpack: (config) => {

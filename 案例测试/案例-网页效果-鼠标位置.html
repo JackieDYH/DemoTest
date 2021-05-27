@@ -1,36 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>鼠标位置获取-01</title>
-    <style>
-      .box {
-        width: 500px;
-        height: 500px;
-        background-color: #eee;
-        margin-left: 50px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="box"></div>
-    <script>
-      // 目标：
-      // 在盒子中点击，想要获得鼠标距离盒子左右的距离
-      // 实现：
-      // 1. 获得鼠标在页面中的坐标，e.pageX, e.pageY
-      // 2. 获得盒子到页面中的距离, box.offsetLeft, box.offsetTop
-      // 3. 两者相减就能够获得鼠标在盒子中的坐标
-      const box = document.querySelector(".box");
-      box.addEventListener("mousemove", function (e) {
-        // console.log(e.pageX, e.pageY);
-        // console.log(box.offsetLeft, box.offsetTop);
-        const x = e.pageX - this.offsetLeft;
-        const y = e.pageY - this.offsetTop;
-        box.textContent = `x: ${x}, y: ${y}`;
-      });
-    </script>
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>鼠标位置获取-01</title>
+		<style>
+			.box {
+				width: 500px;
+				height: 500px;
+				background-color: #55aaff;
+				margin-left: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<p>获取鼠标在盒子内坐标</p>
+		<div class="box"></div>
+		<script>
+			// 在盒子中点击，想要获得鼠标距离盒子左右的距离
+			// 实现：
+			// 1. 获得鼠标在页面中的坐标，e.pageX, e.pageY
+			// 2. 获得盒子到页面中的距离, box.offsetLeft, box.offsetTop
+			// 3. 两者相减就能够获得鼠标在盒子中的坐标
+			// 下面看实现过程吧！
+			const box = document.querySelector(".box");
+			box.addEventListener("mousemove", function(e) {
+				// console.log(e.pageX, e.pageY);
+				// console.log(box.offsetLeft, box.offsetTop);
+				const x = e.pageX - this.offsetLeft;
+				const y = e.pageY - this.offsetTop;
+				box.textContent = `x: ${x}, y: ${y}`;
+			});
+		</script>
+	</body>
 </html>

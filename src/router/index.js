@@ -155,6 +155,13 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/hover.vue")
   },
+  {
+    path: "/move",
+    name: "move",
+    meta: { title: "move", keepAlive: false,},
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/move.vue")
+  },
 ];
 
 const router = new VueRouter({

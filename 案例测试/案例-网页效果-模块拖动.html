@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>模块拖动</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .login,
+      .modal {
+        display: none;
+      }
+      .login {
+        width: 512px;
+        height: 280px;
+        position: fixed;
+        border: #ebebeb solid 1px;
+        left: 50%;
+        top: 50%;
+        background-color: #fff;
+        box-shadow: 0 0 20px #ddd;
+        z-index: 999;
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+      .modal {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.3);
+        z-index: 998;
+      }
+      .login-content {
+        margin: 100px auto;
+        text-align: center;
+      }
+      .login-content h3:hover,
+      .closeBtn:hover {
+        cursor: pointer;
+      }
+      .closeBtn {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+      .login h4 {
+        margin-top: 10px;
+      }
+      .login h4:hover {
+        cursor: move;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-content">
+      <h3 id="openLogin">点击弹出登录框</h3>
+    </div>
+    <div class="login">
+      <div class="closeBtn" id="closeBtn">关闭</div>
+      <h4 class="loginHeader">登录会员</h4>
+    </div>
+    <div class="modal"></div>
+    <script>
+      // 获取元素
+      const login = document.querySelector(".login");
+      const modal = document.querySelector(".modal");
+      const closeBtn = document.querySelector("#closeBtn");
+      const openLogin = document.querySelector("#openLogin");
+      // 点击显示元素
+      openLogin.addEventListener("click", () => {
+        modal.style.display = "block";
+        login.style.display = "block";
+      });
+      closeBtn.addEventListener("click", () => {
+        modal.style.display = "none";
+        login.style.display = "none";
+      });
+      // 实现拖拽移动功能
+      // 1. 鼠标按下获得鼠标在盒子内的坐标
+      const loginHeader = document.querySelector(".loginHeader");
+      loginHeader.addEventListener("mousedown", function (e) {
+        const x = e.pageX - login.offsetLeft;
+        const y = e.pageY - login.offsetTop;
+        const move = function (e) {
+          login.style.left = `${e.pageX - x}px`;
+          login.style.top = `${e.pageY - y}px`;
+        };
+        // 2. 移动鼠标
+        document.addEventListener("mousemove", move);
+        document.addEventListener("mouseup", function () {
+          document.removeEventListener("mousemove", move);
+        });
+      });
+    </script>
+  </body>
+</html>

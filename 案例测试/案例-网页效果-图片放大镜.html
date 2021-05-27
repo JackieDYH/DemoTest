@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>放大镜</title>
+    <style>
+      .magnifying-glass {
+        position: absolute;
+        left: 100px;
+        margin: 50px auto;
+        min-height: 300px;
+        border: 1px solid #ccc;
+      }
+      .modal {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 300px;
+        height: 300px;
+        background-color: #fede4f;
+        opacity: 0.5;
+      }
+      .modal:hover {
+        cursor: move;
+      }
+      .enlarge-preview-wrapper {
+        display: block;
+        position: absolute;
+        left: 460px;
+        top: 0;
+        width: 500px;
+        height: 500px;
+        overflow: hidden;
+        border: 1px solid #ccc;
+      }
+      .enlarge-preview {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 150%;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="magnifying-glass">
+      <img
+        src="http://img10.360buyimg.com/n1/s450x450_jfs/t1/174266/32/5661/92244/607eb66fEcb90c325/8778d62b01b2c21b.jpg"
+        class="preview-img"
+      />
+      <div class="modal"></div>
+      <div class="enlarge-preview-wrapper">
+        <img
+          class="enlarge-preview"
+          src="http://img10.360buyimg.com/n1/s450x450_jfs/t1/174266/32/5661/92244/607eb66fEcb90c325/8778d62b01b2c21b.jpg"
+          alt=""
+          srcset=""
+        />
+      </div>
+    </div>
+
+    <script>
+      const previewImg = document.querySelector(".preview-img");
+      const modal = document.querySelector(".modal");
+      const enlargeImgWrapper = document.querySelector(
+        ".enlarge-preview-wrapper"
+      );
+      // 案例分析
+      // 1. 模块分割
+      //      a. 鼠标经过小盒子图片，黄色的遮罩层和大图片盒子要被显示
+      previewImg.addEventListener("mouseover", function (e) {
+        modal.style.display = "block";
+        enlargeImgWrapper.style.display = "block";
+      });
+      previewImg.addEventListener("mouseout", function (e) {
+        modal.style.display = "none";
+        enlargeImgWrapper.style.display = "none";
+      });
+      //      b. 黄色的遮罩层更随鼠标移动
+      //          - 把鼠标坐标给遮挡层不合适，因为遮挡层坐标以父元素为准
+      //          - 首先获得鼠标在盒子内的坐标
+      //          - 获得的值作为遮挡层的 left 和 top
+      previewImg.addEventListener("mousemove", function (e) {
+        // 1. 先计算鼠标在盒子内的坐标
+        const x = e.pageX - this.parentNode.offsetLeft;
+        const y = e.pageY - this.parentNode.offsetTop;
+        const maxX = this.offsetWidth - modal.offsetWidth;
+        const maxY = this.offsetHeight - modal.offsetHeight;
+        // 2. 计算最大最小空间
+        let modalX = x - modal.offsetWidth / 2;
+        modalX = modalX < 0 ? 0 : modalX > maxX ? maxX : modalX;
+        let modalY = y - modal.offsetHeight / 2;
+        modalY = modalY < 0 ? 0 : modalY > maxY ? maxY : modalY;
+
+        modal.style.left = modalX + "px";
+        modal.style.top = modalY + "px";
+        //      c. 大图片跟随黄色遮罩层移动
+        // 大图片的移动距离 = 遮挡层移动距离 * 大图片最大移动距离 /遮挡层最大移动距离
+        const enlargedImg = document.querySelector(".enlarge-preview");
+        const modalMax =
+          enlargedImg.offsetWidth - enlargeImgWrapper.offsetWidth;
+        const enlargedX = (modalX * modalMax) / maxX;
+        const enlargedY = (modalY * modalMax) / maxX;
+        enlargedImg.style.left = -enlargedX + "px";
+        enlargedImg.style.top = -enlargedY + "px";
+      });
+    </script>
+  </body>
+</html>

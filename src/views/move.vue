@@ -4,7 +4,7 @@
  * @Author: Jackie
  * @Date: 2021-05-27 22:14:58
  * @LastEditors: Jackie
- * @LastEditTime: 2021-05-27 22:24:02
+ * @LastEditTime: 2021-05-28 11:48:28
 -->
 <template>
   <div>
@@ -39,35 +39,35 @@ export default {
       lists: [
         {
           title: "标题1",
-          imgUrl: "https://z3.ax1x.com/2021/05/18/gfwKHg.jpg",
+          imgUrl: "https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3228549874,2173006364&fm=26&gp=0.jpg",
           subheading: "副标题1",
           faddish: "爆款",
           price: "￥12.00",
         },
         {
           title: "标题2",
-          imgUrl: "https://z3.ax1x.com/2021/05/18/gfwKHg.jpg",
+          imgUrl: "https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3228549874,2173006364&fm=26&gp=0.jpg",
           subheading: "副标题2",
           faddish: "爆款",
           price: "￥58.00",
         },
         {
           title: "标题3",
-          imgUrl: "https://z3.ax1x.com/2021/05/18/gfwKHg.jpg",
+          imgUrl: "https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3228549874,2173006364&fm=26&gp=0.jpg",
           subheading: "副标题3",
           faddish: "爆款",
           price: "￥99.99",
         },
         {
           title: "标题4",
-          imgUrl: "https://z3.ax1x.com/2021/05/18/gfwKHg.jpg",
+          imgUrl: "https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3228549874,2173006364&fm=26&gp=0.jpg",
           subheading: "副标题4",
           faddish: "爆款",
           price: "￥88.32",
         },
         {
           title: "标题5",
-          imgUrl: "https://z3.ax1x.com/2021/05/18/gfwKHg.jpg",
+          imgUrl: "https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3228549874,2173006364&fm=26&gp=0.jpg",
           subheading: "副标题5",
           faddish: "爆款",
           price: "￥9999.99",
@@ -164,22 +164,20 @@ ul {
 /* =1显示 */
 .li_vessel[data-type="1"] {
   /* -64px 设置的越大可以左滑的距离越远，最好与下面删除按钮的宽度以及定位的距离设置一样的值*/
-  transform: translate3d(-64px, 0, 0);
+  transform: translate3d(-164px, 0, 0);
 }
 /* 删除按钮 */
 .li_vessel .removeBtn {
-  width: 64px;
-  height: 103px;
+  width: 664px;
+  height: 403px;
   background: #ff4949;
-  font-size: 16px;
+  font-size: 66px;
   color: #fff;
   text-align: center;
-  line-height: 22px;
+  line-height: 403px;
   position: absolute;
   top: 0px;
   right: -64px;
-  line-height: 103px;
-  text-align: center;
   border-radius: 2px;
 }
 /* 左边的图片样式 */
@@ -190,8 +188,8 @@ ul {
 }
 
 .contant .image {
-  width: 80px;
-  height: 80px;
+  width: 1300px;
+  height: 1300px;
   border-radius: 4px;
   float: left;
 }
@@ -205,20 +203,20 @@ ul {
 }
 .rightBox div:nth-child(2) {
   margin-top: 4px;
-  font-size: 14px;
+  font-size: 64px;
 }
 .rightBox div:nth-child(3) {
-  width: 24px;
+  width: 124px;
   background: rgb(219, 91, 113);
   color: white;
-  font-size: 12px;
+  font-size: 62px;
   text-align: center;
   padding: 2px 4px 2px 4px;
   margin-left: auto;
 }
 .rightBox div:last-child {
   color: red;
-  font-size: 14px;
+  font-size: 64px;
   font-weight: bold;
 }
 </style>

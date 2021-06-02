@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>元素垂直水平居中 8种方法</title>
+		<style type="text/css">
+			body {
+				background-color: #6ed0ff;
+			}
+
+			.father {
+				background-color: #be33ec;
+				border-radius: 20px;
+				box-shadow: 0 0 15px rgb(0, 0, 0);
+				margin: 100px auto;
+				width: 300px;
+				height: 300px;
+			}
+
+			.son {
+				background-color: #fcff00;
+				border-radius: 20px;
+				box-shadow: 0 0 10px rgb(0, 0, 0);
+				width: 100px;
+				height: 100px;
+			}
+
+			/* 1 grid*/
+			.father {
+				display: grid;
+			}
+
+			.son {
+				align-self: center;
+				justify-self: center;
+			}
+
+			/* 2 absolute + -margin*/
+			.father {
+				position: relative;
+			}
+
+			.son {
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				margin-left: -50px;
+				margin-top: -50px;
+			}
+
+			/* 3 absolute + transform */
+			.father {
+				position: relative;
+			}
+
+			.son {
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+			}
+
+			/* 4 absolute + margin: auto */
+			.father {
+				position: relative;
+			}
+
+			.son {
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				margin: auto;
+			}
+
+			/* 5 flex */
+			.father {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			/* 6 margin+transfrom */
+			.father {
+				overflow: hidden;
+			}
+
+			.son {
+				margin: 50% auto;
+				transform: translateY(-50%);
+			}
+
+			/* 7 table-cell */
+			.father {
+				display: table-cell;
+				text-align: center;
+				vertical-align: middle;
+			}
+
+			.son {
+				display: inline-block;
+			}
+
+			/* 8 inline-block + vertical-align */
+			.father {
+				text-align: center;
+				line-height: 300px;
+			}
+
+			.son {
+				display: inline-block;
+				vertical-align: middle;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="father">
+			<div class="son"></div>
+		</div>
+	</body>
+</html>

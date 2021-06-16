@@ -4,12 +4,13 @@
  * @Author: Jackie
  * @Date: 2021-06-15 10:49:54
  * @LastEditors: Jackie
- * @LastEditTime: 2021-06-16 15:22:54
+ * @LastEditTime: 2021-06-16 18:20:40
  */
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import './utils/rem';
 import * as filter from './filter/filter.js'; // 过滤器
 import * as utils from './common/util.js'; // 公共方法
 import getRequest from './utils/request/api';

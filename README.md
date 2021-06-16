@@ -1,6 +1,7 @@
 # 包列表
 - npm install postcss-plugin-px2rem  --save -px转rem 方便设置忽略文件
 - npm install postcss-px2rem --save  -px转rem 不方便设置忽略文件
+- npm install postcss-pxtorem -D -px转rem
 - npm install lodash --save -防抖
 - npm install vue-scroller -D -上拉刷新 有加载动画 不用 使用自己写的
 - npm install vue-infinite-scroll --save -上拉刷新 不用

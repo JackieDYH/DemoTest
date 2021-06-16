@@ -4,7 +4,7 @@
  * @Author: Jackie
  * @Date: 2021-06-15 14:37:17
  * @LastEditors: Jackie
- * @LastEditTime: 2021-06-15 15:32:01
+ * @LastEditTime: 2021-06-16 18:44:37
  */
 const path = require('path');
 function resolve(dir) {

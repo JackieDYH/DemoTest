@@ -4,7 +4,7 @@
  * @Author: Jackie
  * @Date: 2021-06-15 10:49:54
  * @LastEditors: Jackie
- * @LastEditTime: 2021-06-15 15:39:25
+ * @LastEditTime: 2021-06-16 18:46:14
 -->
 <template>
   <div id="app">
@@ -49,4 +49,8 @@
 <style>
 @import url("./assets/css/common.css");
 @import url("./assets/css/flex.css");
+/* body{
+  width: 750px;
+  height: 1136px;
+} */
 </style>

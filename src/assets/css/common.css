@@ -1,0 +1,196 @@
+@font-face {
+    font-family: texticons;
+    font-weight: normal;
+    font-style: normal;
+    src: url("https://at.alicdn.com/t/font_702773_g9f89om4v3j.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: DigifaceWide;
+    src: url("./fonts/digifacewide.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: MF BanHei Noncommercial;
+    src: url("./fonts/MFBanHei.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: MFShangHei;
+    src: url("./fonts/MFShangHei_Noncommercial-Regular.otf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+html {
+    font-size: 10vw;
+    background-color: #ffffff;
+}
+
+body {
+    font-family: Microsoft YaHei;
+    font-size: 18px;
+    color: #ffffff;
+    position: relative;
+    /* min-height: 420px; */
+}
+
+
+/* 去除默认样式 */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: initial;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+    outline: none;
+}
+
+em,
+i {
+    font-style: normal;
+}
+
+input,
+textarea {
+    border: none;
+    outline: none;
+    resize: none;
+    font-family: "Microsoft YaHei";
+}
+
+input::-webkit-input-placeholder,
+img {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+.clearfix:after {
+    display: table;
+    content: "";
+    clear: both;
+}
+
+.global-wrap {
+    position: relative;
+}
+
+.content-wrapper {
+    width: 1200px;
+    min-width: 1200px;
+    margin: 0 auto;
+}
+
+.ect {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+
+/* 单行文本溢出截取 */
+
+.ellipsis-1 {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    white-space: normal !important;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+
+/* 2行文本溢出截取 */
+
+.ellipsis-2 {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    /*! autoprefixer: off */
+    -webkit-box-orient: vertical;
+    /* autoprefixer: on */
+}
+
+.text-center {
+    text-align: center;
+}
+
+.button {
+    background-color: #006DB7;
+}
+
+.yello {
+    color: #ffc047;
+}
+
+.defcolor {
+    color: #2D2D2D;
+}
+
+.def-back-color {
+    background: #FFCF00;
+    box-shadow: 0.5px 1px 2px rgba(0, 0, 0, 0.16);
+}
+
+.def {
+    color: #2d2d2d;
+}
+
+.def {
+    color: #2d2d2d;
+}
+
+.normal {
+    color: #2d2d2d;
+    font-weight: normal!important;
+}
+
+.blue {
+    color: #006DB7;
+}
+
+.grey {
+    color: #6d6d6d;
+}
+
+.grey2 {
+    color: #8e99a9;
+}
+
+.white {
+    color: #ffffff;
+}
+
+.green {
+    color: #12ba99;
+}
+
+.button-1 {
+    width: 63px;
+    height: 16px;
+    line-height: 16px;
+    text-align: center;
+    font-size: 7px;
+    font-family: Microsoft YaHei;
+    font-weight: 400;
+    color: #ffffff;
+    border: 0.5px solid #006DB7;
+    background: #006DB7;
+}

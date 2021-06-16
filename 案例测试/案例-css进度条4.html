@@ -8,20 +8,21 @@
 			* {
 				box-sizing: border-box
 			}
-			
+
 			.container {
 				width: 100%;
 				background-color: #ddd;
 				border-radius: 10px;
 				overflow: hidden;
 			}
-			
+
 			.skills {
 				text-align: right;
 				padding-right: 20px;
 				line-height: 40px;
 				color: white;
 			}
+
 			.html {
 				width: 90%;
 				background-color: #4CAF50;
@@ -32,5 +33,29 @@
 		<div class="container">
 			<div class="skills html">90%</div>
 		</div>
+		<div class="text">
+			<span>输入占比:</span>
+			<input type="number" id="prog" οnkeypress="EnterPress(event)" οnkeydοwn="EnterPress(event)" />
+		</div>
 	</body>
+	<script type="text/javascript">
+		let html = document.querySelector('.html');
+		let prog = document.querySelector('#prog');
+		
+		document.onkeydown = function EnterPress(e) { //传入 event 
+			var e = e || window.event;
+			if (e.keyCode == 13) {
+				// document.getElementById("prog").focus();
+				// 获取输入的值
+				let ski = prog.value;
+				if(ski == 0 || ski == ''){
+					html.style.width = "0%";
+					html.innerHTML = "0%";
+				}else{
+					html.style.width = `${ski}%`;
+					html.innerHTML = `${ski}%`;
+				}
+			}
+		}
+	</script>
 </html>

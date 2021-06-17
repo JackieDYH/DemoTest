@@ -27,13 +27,13 @@
 }
 
 html {
-    font-size: 10vw;
+    /* font-size: 10vw; */
     background-color: #ffffff;
 }
 
 body {
     font-family: Microsoft YaHei;
-    font-size: 18px;
+    /* font-size: 18px; */
     color: #ffffff;
     position: relative;
     /* min-height: 420px; */

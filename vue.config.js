@@ -4,7 +4,7 @@
  * @Author: Jackie
  * @Date: 2021-06-15 14:37:17
  * @LastEditors: Jackie
- * @LastEditTime: 2021-06-16 18:44:37
+ * @LastEditTime: 2021-06-17 10:36:43
  */
 const path = require('path');
 function resolve(dir) {
@@ -40,7 +40,7 @@ module.exports = {
                     require('postcss-plugin-px2rem')({
                         rootValue: 100, //换算基数， 默认100  ，这样的话把根标签的字体规定为1rem为50px,这样就可以从设计稿上量出多少个px直接在代码中写多上px了。
                         // unitPrecision: 5, //允许REM单位增长到的十进制数字。
-                        //propWhiteList: [],  //默认值是一个空数组，这意味着禁用白名单并启用所有属性。
+                        // propWhiteList: [],  //默认值是一个空数组，这意味着禁用白名单并启用所有属性。
                         // propBlackList: [], //黑名单
                         exclude: /(node_module)/,  //默认false，可以（reg）利用正则表达式排除某些文件夹的方法，例如/(node_module)/ 。如果想把前端UI框架内的px也转换成rem，请把此属性设为默认值
                         // selectorBlackList: [], //要忽略并保留为px的选择器

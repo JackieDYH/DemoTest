@@ -4,7 +4,7 @@
  * @Author: Jackie
  * @Date: 2021-06-15 10:49:54
  * @LastEditors: Jackie
- * @LastEditTime: 2021-06-16 18:46:14
+ * @LastEditTime: 2021-06-17 11:08:34
 -->
 <template>
   <div id="app">
@@ -38,11 +38,16 @@
 
   a {
     font-weight: bold;
+    font-size: 10px;
     color: #2c3e50;
 
     &.router-link-exact-active {
       color: #42b983;
     }
+  }
+  [data-dpr="2"] a{
+    font-size: 40px;
+    color: red;
   }
 }
 </style>

@@ -20,6 +20,11 @@
 			// 除法
 			console.log("除法",new BigNumber("8").div(2).toString());
 			console.log("除法",new BigNumber("8").dividedBy(2).toString());
+			console.log('-----------');
+			console.log("千分位-小数位",new BigNumber("10000000000000").dividedBy(2).toFormat(4));
+			let ber = new BigNumber('1e18');
+			console.log("千分位-小数位-",new BigNumber(ber).integerValue().toFormat(4));
+			console.log("小数位",new BigNumber("10000000000000").dividedBy(2).toFixed(2));
 		</script>
 	</body>
 </html>

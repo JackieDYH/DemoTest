@@ -25,6 +25,45 @@
 			let ber = new BigNumber('1e18');
 			console.log("千分位-小数位-",new BigNumber(ber).integerValue().toFormat(4));
 			console.log("小数位",new BigNumber("10000000000000").dividedBy(2).toFixed(2));
+			console.log('--------------------------------');
+			let n=1233456;
+			toQfw(n);
+			// function toQfw(){
+			//   var str_n=n.toString();
+			//   var result="";
+			//   while(str_n.length>3){
+			//     result=","+str_n.slice(-3)+result;
+			//     str_n=str_n.slice(0,str_n.length-3)
+			//   }
+			//   if(str_n){
+			//     alert(str_n+result)
+			//   }
+			// };
+			
+			// 千分位 正则
+			function toQfw(){
+			  var str_n=n.toString();
+			  var result="";
+			  var re=/\d{3}$/;
+			  while(re.test(str_n)){
+			    result=RegExp.lastMatch+result;
+			    if(str_n!=RegExp.lastMatch){
+			      result=","+result;
+			      str_n=RegExp.leftContext; //匹配成功，返回匹配内容左侧的字符信息
+			    }
+			    else{
+			      num="";
+			    }
+			  }
+			  if(str_n){
+			    alert(str_n+result);
+			  }
+			}
+			// 千分位 正则
+			var str="123598752";
+			var re=/(?=(?!(\b))(\d{3})+$)/g;
+			str=str.replace(re,",");
+			alert(str);
 		</script>
 	</body>
 </html>

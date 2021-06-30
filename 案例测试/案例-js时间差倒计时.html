@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>时间戳倒计时</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			let time = "1982564741";
+			// 倒计时事件
+			function getcountDown(value, format) {
+				let nowTime = (new Date().getTime()) / 1000; // 当前时间 秒
+				value = Number(value);
+				if (value == 0 || value == "" || !value || value <= nowTime) {
+					return "-";
+				}
+				if (isNaN(value)) {
+					return "";
+				}
+
+				value--;
+				let timediff = Math.round(value - nowTime); //获取时间差
+				let day = parseInt(timediff / 60 / 60 / 24);
+				let hr = parseInt(timediff / 60 / 60 % 24);
+				let min = parseInt(timediff / 60 % 60);
+				let sec = parseInt(timediff % 60);
+
+				day = day > 9 ? day : '0' + day;
+				hr = hr > 9 ? hr : '0' + hr;
+				min = min > 9 ? min : '0' + min;
+				sec = sec > 9 ? sec : '0' + sec;
+				// 返回值
+				if (format == "dayHH:MM:SS") {
+					return `${day}day ${hr}:${min}:${sec}`;
+				}
+			}
+			setInterval(()=>{
+				console.log(getcountDown(time,'dayHH:MM:SS'));
+			},1000);
+		</script>
+	</body>
+</html>

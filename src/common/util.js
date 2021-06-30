@@ -1,16 +1,7 @@
-/*
- * @Descripttion: 
- * @version: 
- * @Author: huangshaopeng
- * @Date: 2020-12-12 12:17:59
- * @LastEditors: Please set LastEditors
- * 工具函数  alice →→→→→→→ Alice 
- * @param {*value} value 
- */
-import web3js from 'web3'
+// 工具函数
+// import web3js from 'web3';
 let capitalize = value => {
     if (!value) return ''
-
 }
 /**
  * 格式化时间年月日
@@ -173,12 +164,12 @@ countDown.prototype.start = function (set_seconds) {
 }
 let countDownTime = new countDown();
 
-let ArrayBufferToHex = (ArrayBuffer) => {
-    // let result1 = Array.prototype.map.call(new Uint8Array(ArrayBuffer), x => ('00' + x.toString(16)).slice(-2)).join('');
-    let result = web3js.utils.bytesToHex(new Uint8Array(ArrayBuffer))
-    console.log(result, '====bufferToHex')
-    return result;
-}
+// let ArrayBufferToHex = (ArrayBuffer) => {
+//     // let result1 = Array.prototype.map.call(new Uint8Array(ArrayBuffer), x => ('00' + x.toString(16)).slice(-2)).join('');
+//     let result = web3js.utils.bytesToHex(new Uint8Array(ArrayBuffer))
+//     console.log(result, '====bufferToHex')
+//     return result;
+// }
 const deepCopy = (obj, parent = null) => {
     // 创建一个新对象
     let result = {};
@@ -226,4 +217,64 @@ const formatDecimal = (num, decimal) => {
         return parseFloat(num).toFixed(decimal)
     }
 }
-export { formatDecimal, capitalize, timeHadelDay, timeHadelSeconds, escape2Html, urlEncode, deviceMethod, countDownTime, ArrayBufferToHex, deepCopy }
+
+// 参数截取
+const getUrlParams = () => {
+    // location的search属性获取到 ?a=1&b=2  字符串
+    let searchStr = '?channel_id=305'
+    let qs = searchStr ? searchStr.substring(1) : ''
+    // 要是没有url参数，temp为空数组
+    let temp = qs.length ? qs.split('&') : []
+    let len = temp.length
+    let paraObj = {}
+    let item
+    for (let i = 0; i < len; i++) {
+        item = temp[i].split('=')
+        // 对两项进行解码再保存在对象中
+        paraObj[decodeURIComponent(item[0])] = decodeURIComponent(item[1])
+    }
+    return paraObj
+}
+
+// 倒计时事件 秒
+const getcountDown = (value, format) => {
+    let nowTime = (new Date().getTime()) / 1000; // 当前时间 秒
+    value = Number(value);
+    if (value == 0 || value == "" || !value || value <= nowTime) {
+        return "-";
+    }
+    if (isNaN(value)) {
+        return "";
+    }
+
+    value--;
+    let timediff = Math.round(value - nowTime); //获取时间差
+    let day = parseInt(timediff / 60 / 60 / 24);
+    let hr = parseInt(timediff / 60 / 60 % 24);
+    let min = parseInt(timediff / 60 % 60);
+    let sec = parseInt(timediff % 60);
+
+    day = day > 9 ? day : '0' + day;
+    hr = hr > 9 ? hr : '0' + hr;
+    min = min > 9 ? min : '0' + min;
+    sec = sec > 9 ? sec : '0' + sec;
+    // 返回值
+    if (format == "dayHH:MM:SS") {
+        return `${day}day ${hr}:${min}:${sec}`;
+    }
+}
+
+export {
+    getUrlParams,
+    formatDecimal,
+    capitalize,
+    timeHadelDay,
+    timeHadelSeconds,
+    escape2Html,
+    urlEncode,
+    deviceMethod,
+    countDownTime,
+    getcountDown,
+    // ArrayBufferToHex, 
+    deepCopy
+}

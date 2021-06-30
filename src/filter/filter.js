@@ -1,6 +1,12 @@
-/**
- * created by niujiahao on 2018/5/13
+/*
+ * @version: 
+ * @Description: file content
+ * @Author: Jackie
+ * @Date: 2021-06-28 10:18:27
+ * @LastEditors: Jackie
+ * @LastEditTime: 2021-06-30 15:28:00
  */
+// 全局过滤器
 /**
  * 首字母变大写，公共过滤器  alice →→→→→→→ Alice
  * @param {*value} value

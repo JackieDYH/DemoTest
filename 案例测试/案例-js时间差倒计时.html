@@ -31,13 +31,18 @@
 				min = min > 9 ? min : '0' + min;
 				sec = sec > 9 ? sec : '0' + sec;
 				// 返回值
-				if (format == "dayHH:MM:SS") {
-					return `${day}day ${hr}:${min}:${sec}`;
+				switch (format) {
+					case "dayHH:MM:SS":
+						return `${day}day ${hr}:${min}:${sec}`;
+						break;
+					default:
+						return {day, hr, min, sec};
+						break;
 				}
 			}
-			setInterval(()=>{
-				console.log(getcountDown(time,'dayHH:MM:SS'));
-			},1000);
+			setInterval(() => {
+				console.log(getcountDown(time, 'dayHH:MM:SS'));
+			}, 1000);
 		</script>
 	</body>
 </html>

@@ -64,6 +64,9 @@ npm install vue-baidu-map --save
 ### 去除打印日志log
 - npm install terser-webpack-plugin -D
 
+### 适配低版本浏览器不支持es6语法
+- npm install babel-polyfill --save-dev
+
 ## 环境设置
 ```
 NODE_ENV  src中使用VUE_APP_NODE_ENV

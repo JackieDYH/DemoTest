@@ -7,6 +7,7 @@ import * as filter from './filter/filter.js';
 import * as utils from './common/util.js';
 import getRequest from './request/api';
 import axios from 'axios';
+import 'babel-polyfill';
 
 // element表格
 import ElementUI from 'element-ui';

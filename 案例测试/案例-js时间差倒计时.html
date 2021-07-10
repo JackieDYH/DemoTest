@@ -9,8 +9,8 @@
 		<script type="text/javascript">
 			let time = "1982564741";
 			// 倒计时事件
-			function getcountDown(value, format) {
-				let nowTime = (new Date().getTime()) / 1000; // 当前时间 秒
+			function getcountDown(value,nowTime, format) {
+				// let nowTime = (new Date().getTime()) / 1000; // 当前时间 秒
 				value = Number(value);
 				if (value == 0 || value == "" || !value || value <= nowTime) {
 					return "-";
@@ -31,13 +31,20 @@
 				min = min > 9 ? min : '0' + min;
 				sec = sec > 9 ? sec : '0' + sec;
 				// 返回值
-				if (format == "dayHH:MM:SS") {
-					return `${day}day ${hr}:${min}:${sec}`;
+				switch (format) {
+					case "dayHH:MM:SS":
+						return `${day}day ${hr}:${min}:${sec}`;
+						break;
+					default:
+						return {day, hr, min, sec};
+						break;
 				}
 			}
-			setInterval(()=>{
-				console.log(getcountDown(time,'dayHH:MM:SS'));
-			},1000);
+			setInterval(() => {
+				let nowTime = (new Date().getTime()) / 1000; // 当前时间 秒
+				console.log(getcountDown(time,nowTime, 'dayHH:MM:SS'));
+				console.log(getcountDown(time,nowTime));
+			}, 1000);
 		</script>
 	</body>
 </html>

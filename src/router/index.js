@@ -162,6 +162,20 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/move.vue")
   },
+  {
+    path: "/FlipClock",
+    name: "FlipClock",
+    meta: { title: "FlipClock", keepAlive: false,},
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/FlipClock.vue")
+  },
+  {
+    path: "/countdown",
+    name: "countdown",
+    meta: { title: "countdown", keepAlive: false,},
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/countdown.vue")
+  },
 ];
 
 const router = new VueRouter({

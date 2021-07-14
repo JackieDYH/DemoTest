@@ -4,7 +4,7 @@
  * @Author: Jackie
  * @Date: 2021-05-24 21:35:00
  * @LastEditors: Jackie
- * @LastEditTime: 2021-05-27 22:14:26
+ * @LastEditTime: 2021-07-14 14:27:51
 -->
 <template>
   <div id="app">
@@ -48,6 +48,8 @@ export default {
         {path:'/entozh',name:'entozh'},
         {path:'/hover',name:'图片hover'},
         {path:'/move',name:'滑动删除'},
+        {path:'/FlipClock',name:'时间翻牌器'},
+        {path:'/countdown',name:'倒计时'},
       ]
     }
   },

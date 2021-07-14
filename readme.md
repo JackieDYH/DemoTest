@@ -8,3 +8,4 @@
 *  [图片转-base64-上传示例](https://jackiedyh.github.io/DemoTest/%E6%A1%88%E4%BE%8B%E6%B5%8B%E8%AF%95/%E6%A1%88%E4%BE%8B-%E5%9B%BE%E7%89%87%E8%BD%AC-base64-%E4%B8%8A%E4%BC%A0%E7%A4%BA%E4%BE%8B.html)
 *  [哆啦A梦](https://jackiedyh.github.io/DemoTest/%E6%A1%88%E4%BE%8B%E6%B5%8B%E8%AF%95/%E6%A1%88%E4%BE%8B-css-%E5%93%86%E5%95%A6A%E6%A2%A6.html)
 *  [元素垂直水平居中8种方法](https://jackiedyh.github.io/DemoTest/%E6%A1%88%E4%BE%8B%E6%B5%8B%E8%AF%95/%E6%A1%88%E4%BE%8B-css%E5%9E%82%E7%9B%B4%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD8%E7%A7%8D%E6%96%B9%E5%BC%8F.html)
+*  [翻牌时钟效果](https://jackiedyh.github.io/DemoTest/flipClock/javascript/flipper.html)

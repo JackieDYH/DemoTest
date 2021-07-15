@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>transition-呼吸灯-过渡</title>
+		<style type="text/css">
+			div {
+				width: 100px;
+				height: 100px;
+				background: red;
+				transition: width 2s;
+				-webkit-transition: width 2s;
+				transition: all 2s ease-out 0s;
+				-webkit-transition: all 2s ease-out 0s;
+				transition: all 2s ease 0s;
+				-webkit-transition: all 2s ease 0s;
+				transition: width 2s ease 0s, height 1s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+				transition: margin-top 0.2s ease 0s, margin-left 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0s, width 2s ease 0s, height 1s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+
+				animation: myfirst 2700ms ease-in-out infinite alternate;
+			}
+
+			div:hover {
+				width: 300px;
+				height: 200px;
+				margin-top: 20px;
+				margin-left: 30px;
+				background: #006DB7;
+				animation: glow 800ms ease-out infinite alternate;
+			}
+
+			@keyframes glow {
+				0% {
+					border-color: #393;
+					box-shadow: 0 0 5px rgba(0, 255, 0, .2), inset 0 0 5px rgba(0, 255, 0, .1), 0 1px 0 #393;
+				}
+
+				100% {
+					border-color: #6f6;
+					box-shadow: 0 0 20px rgba(0, 255, 0, .6), inset 0 0 10px rgba(0, 255, 0, .4), 0 1px 0 #6f6;
+				}
+			}
+
+			@-webkit-keyframes breathe {
+				0% {
+					opacity: .2;
+					box-shadow: 0 1px 2px rgba(255, 255, 255, 0.1);
+				}
+
+				100% {
+					opacity: 1;
+					border: 1px solid rgba(59, 235, 235, 1);
+					box-shadow: 0 1px 30px rgba(59, 255, 255, 1);
+				}
+
+
+			}
+
+			@keyframes myfirst {
+				0% {
+					background: red;
+				}
+
+				25% {
+					background: yellow;
+				}
+
+				50% {
+					background: blue;
+				}
+
+				100% {
+					background: green;
+				}
+			}
+			/* =========================== */
+			
+			.breath_light {
+			    width: 400px;                                    /* 宽度 */
+			    height: 30px;                                    /* 高度 */
+			    opacity: 0.1;                                   /* 不透明度 */
+			    overflow: hidden;                               /* 溢出隐藏 */
+			    background: #99dd33;                            /* 背景色 */
+			    margin: 10% auto;                               /* 外边距 */
+				/* 圆角兼容 */
+				-webkit-border-radius: 2px;       /*Webkit:谷歌支持：圆角*/
+				-moz-border-radius: 2px;          /*Mozilla:火狐支持：圆角*/
+				-ms-border-radius: 2px;           /*Microsoft:IE9支持：圆角*/
+				-o-border-radius: 2px;            /*Opera支持：圆角*/
+				border-radius: 2px;               /*圆角*/
+			  
+			    /* IE10、Firefox and Opera，IE9以及更早的版本不支持 */
+			    animation-name: breath;                         /* 动画名称 */
+			    animation-duration: 3s;                         /* 动画时长3秒 */
+			    animation-timing-function: ease-in-out;         /* 动画速度曲线：以低速开始和结束 */
+			    animation-iteration-count: infinite;            /* 播放次数：无限 */
+			 
+			    /* Safari and Chrome */
+			    -webkit-animation-name: breath;                 /* 动画名称 */
+			    -webkit-animation-duration: 3s;                 /* 动画时长3秒 */
+			    -webkit-animation-timing-function: ease-in-out; /* 动画速度曲线：以低速开始和结束 */
+			    -webkit-animation-iteration-count: infinite;    /* 播放次数：无限 */
+			}
+			 
+			@keyframes breath {
+			    from { opacity: 0.1; }                          /* 动画开始时的不透明度 */
+			    50%  { opacity:   1; }                          /* 动画50% 时的不透明度 */
+			    to   { opacity: 0.1; }                          /* 动画结束时的不透明度 */    
+			}
+			 
+			@-webkit-keyframes breath {
+			    from { opacity: 0.1; }                          /* 动画开始时的不透明度 */
+			    50%  { opacity:   1; }                          /* 动画50% 时的不透明度 */
+			    to   { opacity: 0.1; }                          /* 动画结束时的不透明度 */
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+		<div class="breath_light" title="呼吸线"></div>
+	</body>
+</html>

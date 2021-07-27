@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>按钮样式</title>
+		<style type="text/css">
+			.box {
+				width: 100px;
+				margin: 0 auto;
+				margin-bottom: 20px;
+			}
+
+			.box .button {
+				width: 100px;
+				height: 40px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+
+				/* border: 1px solid #18324C; */
+				padding: 2px;
+				background: linear-gradient(to left, #fff, #fff) no-repeat left top,
+							linear-gradient(to left, #fff, #fff) no-repeat right top,
+							linear-gradient(to left, #fff, #fff) no-repeat left bottom,
+							linear-gradient(to left, #fff, #fff) no-repeat right bottom,
+							#9EE7FF;
+				background-size: 8px 8px, 8px 8px, 8px 8px, 8px 8px;
+			}
+			.box1{
+				position: relative;
+				width: 100px;
+				height: 100px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background-color: #006DB7;
+				margin: 0 auto;
+				margin-bottom: 20px;
+			}
+			.box1 span{
+				display: block;
+				width: 8px;
+				height: 8px;
+				background-color: #fff;
+			}
+			.box1 span:nth-child(1){
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			.box1 span:nth-child(2){
+				position: absolute;
+				top: 0;
+				right: 0;
+			}
+			.box1 span:nth-child(3){
+				position: absolute;
+				bottom: 0;
+				left: 0;
+			}
+			.box1 span:nth-child(4){
+				position: absolute;
+				bottom: 0;
+				right: 0;
+			}
+			/* -------------------------- */
+			.box2{
+				position: relative;
+				width: 100px;
+				height: 100px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background-color: #fff;
+				border: 1px solid #006DB7;
+				margin: 0 auto;
+				margin-bottom: 20px;
+			}
+			.box2 span{
+				display: block;
+				width: 8px;
+				height: 8px;
+				background-color: #fff;
+			}
+			.box2 span:nth-child(1){
+				position: absolute;
+				top: -1px;
+				left: -1px;
+				z-index: 2;
+				border-right: 1px solid #006DB7;
+				border-bottom: 1px solid #006DB7;
+			}
+			.box2 span:nth-child(2){
+				position: absolute;
+				top: -1px;
+				right: -1px;
+				z-index: 2;
+				border-left: 1px solid #006DB7;
+				border-bottom: 1px solid #006DB7;
+			}
+			.box2 span:nth-child(3){
+				position: absolute;
+				bottom: -1px;
+				left: -1px;
+				z-index: 2;
+				border-top: 1px solid #006DB7;
+				border-right: 1px solid #006DB7;
+			}
+			.box2 span:nth-child(4){
+				position: absolute;
+				bottom: -1px;
+				right: -1px;
+				z-index: 2;
+				border-top: 1px solid #006DB7;
+				border-left: 1px solid #006DB7;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="button">
+				按钮
+			</div>
+		</div>
+		<div class="box1">
+			哈哈
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+		<div class="box2">
+			哈哈
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+	</body>
+</html>

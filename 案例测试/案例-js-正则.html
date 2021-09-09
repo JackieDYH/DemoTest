@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>正则</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			function thousandth(s, type = 0) {
+			  // if (!s) return '0';
+			  // return (s+'').replace(/(\d{1,3})(?=(\d{3})+(?:$|\.))/g,'$1,');
+			  if (/[^0-9\.]/.test(s)) return "0";
+			  if (s == null || s == "") return "0";
+			  s = s.toString().replace(/^(\d*)$/, "$1.");
+			  console.log(s,'-----1111')
+			  s = (s + "00").replace(/(\d*\.\d\d\d\d)\d*/, "$1");
+			  console.log(s,'-----2222')
+			  s = s.replace(".", ",");
+			  console.log(s,'-----3333')
+			  var re = /(\d)(\d{3},)/;
+			  console.log(re,'-----444')
+			  while (re.test(s)) s = s.replace(re, "$1,$2");
+			  s = s.replace(/,(\d\d\d\d)$/, ".$1");
+			  console.log(re,'-----555')
+			  if (type == 0) {
+			    // 不带小数位(默认是有小数位)
+			    var a = s.split(".");
+			    if (a[1] == "00") {
+			      s = a[0];
+			    }
+			  }
+			  return s;
+			}
+			
+			let a = '123456789.123456789';
+			
+			console.log(thousandth(a));
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

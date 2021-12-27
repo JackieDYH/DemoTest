@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>等级显示</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			function LevelGetImages(level) {
+			  let res = []
+			  const marks = [
+			    { mod: 20, image: 'level_king-皇冠' },
+			    { mod: 15, image: 'level_queen-太阳' },
+			    { mod: 10, image: 'level_moon-月亮' },
+			    { mod: 5, image: 'level_star-星星' },
+			  ]
+			  for (let i = 0; i < marks.length; i++) {
+			    const value = ~~(level / marks[i].mod)
+			    const rest = level % marks[i].mod
+				console.log(value,rest,'===i===',i)
+			    for (let j = 0; j < value; j++) {
+			      res.push(marks[i].image)
+				  console.log(value,res,'===j===',j)
+			    }
+			    level = rest
+				console.log(level,rest,'===level===',level)
+			  }
+			  res.map(item=>{
+				  console.log(item)
+			  })
+			  // return ()
+			}
+			
+			LevelGetImages(25)
+			
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

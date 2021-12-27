@@ -33,6 +33,14 @@
 			
 			LevelGetImages(25)
 			
+			// 等级进度条		
+			const Experience = () => {
+			    let level = Math.ceil(user?.level / 10)
+			    return level * 500
+			}
+			
+			// width: fitSize(327 * (user?.experience / Experience()))
+			
 			
 			
 			

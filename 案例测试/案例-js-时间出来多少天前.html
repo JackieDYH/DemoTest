@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>时间多少天前</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/**
+			 * 多久前
+			 * @param {number} time
+			 * @param {string} option
+			 * @returns {string}
+			 */
+			const formatTime = (time, option) => {
+				if (('' + time).length === 10) {
+					time = parseInt(time) * 1000
+				} else {
+					time = +time
+				}
+				const d = new Date(time)
+				const now = Date.now()
+
+				const diff = (now - d) / 1000
+
+				if (diff < 30) {
+					return '刚刚'
+				} else if (diff < 3600) {
+					// less 1 hour
+					return Math.ceil(diff / 60) + '分钟前'
+				} else if (diff < 3600 * 24) {
+					return Math.ceil(diff / 3600) + '小时前'
+				} else if (diff < 3600 * 24 * 2) {
+					return '1天前'
+				}
+				if (option) {
+					return parseTime(time, option)
+				} else {
+					return (
+						d.getYear() + '年' +
+						d.getMonth() +
+						1 +
+						'月' +
+						d.getDate() +
+						'日' +
+						d.getHours() +
+						'时' +
+						d.getMinutes() +
+						'分'
+					)
+				}
+			}
+
+
+			// console.log(formatTime('1638069321'))
+
+
+			/**
+			 * 传入一个时间戳，判断距离当前多久，返回几分钟、几小时、几天、几个月；当大于1年，直接输出时间格式
+			 * 参数 diffValue  时间戳
+			 * 
+			 */
+
+			function getDate(diffValue) {
+				var minute = 60;
+				var hour = minute * 60;
+				var day = hour * 24;
+				var month = day * 30;
+
+				var monthC = diffValue / month;
+				var weekC = diffValue / (7 * day);
+				var dayC = diffValue / day;
+				var hourC = diffValue / hour;
+				var minC = diffValue / minute;
+				console.log(monthC, weekC, dayC, hourC,minC)
+				var res = '';
+				var nowTime = (new Date()).getTime(); // 获取当前时间戳
+				console.log(nowTime, 1111)
+				if (monthC >= 12) {
+					oldTime = nowTime - diffValue; // 获取记录的时间戳
+					var date = new Date(oldTime);
+					res = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+					console.log(oldTime, 222)
+				} else if (monthC >= 1) {
+					res = parseInt(monthC) + "个月前";
+					console.log(333)
+				} else if (weekC >= 1) {
+					res = parseInt(weekC) + "周前"
+					console.log(444)
+				} else if (dayC >= 1) {
+					res = parseInt(dayC) + "天前"
+				} else if (hourC >= 1) {
+					res = parseInt(hourC) + "个小时前"
+				} else if (minC >= 1) {
+					res = parseInt(minC) + "分钟前"
+				} else {
+					res = "刚刚"
+				}
+				return res;
+
+			}
+
+			console.log('getDate',getDate(1640661896430))
+
+			// 时间多久
+			/**
+			 * 根据指定的t，获取t距离现在过去了多少天
+			 * @param t     指定的时间
+			 * @return {any} elapsed 过去的时间
+			 */
+			function getElapsedTime(t) {
+				let now = Date.now();
+				let elapsed = now - t
+				let result = ''
+				let second = 1000;
+				let minute = 60 * second;
+				let hours = 60 * minute;
+				let day = 24 * hours;
+				let months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+				let nowYear = new Date(now).getFullYear()
+				let nowMonth = new Date(now).getMonth()
+				//判断是不是闰年
+				if (nowYear % 4 === 0 && nowYear % 100 !== 0 || nowYear % 400 === 0) months[1] = 29;
+				let month = Math.abs(new Date(t).getMonth() - nowMonth)
+				let year = nowYear - new Date(t).getFullYear()
+
+				if (year !== 0 && month >= 12) result = year + '年'
+				else if (month !== 0 && Math.round(elapsed / day) >= months[nowMonth]) return month + '个月'
+				else if (parse(day) !== 0) result = parse(day) + '天'
+				else if (parse(hours) !== 0) result = parse(hours) + '小时'
+				else if (parse(minute) !== 0) result = parse(minute) + '分钟'
+				else if (parse(second) !== 0) result = parse(second) + '秒'
+				else if (parse(1) !== 0) result = parse(1) + '毫秒'
+				else result = '0毫秒'
+
+				function parse(time) {
+					return Math.round(elapsed / time)
+				}
+				return result;
+			}
+
+			console.log(getElapsedTime(1640660485944))
+
+			// ============================================
+
+			function getDistanceDay(time) {
+				let stime = new Date().getTime();
+				let usedTime = stime - time; //两个时间戳相差的毫秒数
+
+				let one_minute = 60 * 1000;
+				let one_hour = 60 * 60 * 1000;
+				let one_day = 24 * 60 * 60 * 1000;
+				let timeTxt = '';
+				if (usedTime >= one_day) {
+					//相差几天
+					let disparityDay = parseInt(usedTime / one_day);
+
+					timeTxt = disparityDay + '天前';
+					if (disparityDay > getMonthDay()) timeTxt = getDisparityMonth(disparityDay) + '个月前';
+
+					if (disparityDay > getYearDay()) timeTxt = parseInt(disparityDay / getYearDay()) + '年前';
+
+				} else {
+					if (usedTime >= one_hour) {
+						timeTxt = parseInt(usedTime / one_hour) + '小时前';
+					} else if (usedTime >= one_minute) {
+						timeTxt = parseInt(usedTime / one_minute) + '分钟前';
+					} else {
+						timeTxt = '刚刚';
+					}
+				}
+				return timeTxt;
+			}
+
+			// 获取相差几个月 传天数
+			function getDisparityMonth(disparityDay) {
+				let disparityMonth = 0;
+				let countFc = () => {
+					if (disparityDay > getMonthDay(disparityMonth)) {
+						disparityDay -= getMonthDay(disparityMonth)
+						disparityMonth += 1;
+						countFc(disparityMonth)
+					} else {
+						return disparityMonth;
+					}
+				}
+				countFc(disparityMonth)
+				return disparityMonth;
+			}
+
+			// 获取当前月
+			function getNowMonth() {
+				return new Date().getMonth() + 1;
+			}
+
+			// 获取当前月有多少天 可以计算前面几个月有多少天 upNum 是前面几个月
+			function getMonthDay(upNum) {
+				let day = 0;
+				let month = getNowMonth();
+				if (upNum) {
+					let date = new Date();
+					date.setMonth(date.getMonth() - upNum);
+					month = date.getMonth() + 1;
+				}
+				if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) {
+					day = 31
+				} else if (month == 2) {
+					if (getYearDay() == 366) day = 29
+					if (getYearDay() == 365) day = 28
+				} else {
+					day = 30
+				}
+				return day;
+			}
+
+			// 获取当前年有多少天
+			function getYearDay() {
+				let day = 365
+				let year = new Date().getFullYear();
+				if (year % 4 == 0) day = 366;
+				return day
+			}
+
+
+			let time = (new Date().getTime()) - (1000 * 60 * 60 * 24 * 20)
+			let timeTxt = getDistanceDay(time)
+			console.log('timeTxt', timeTxt)
+			// ============================================
+
+
+			// 多久了2
+			var dateDiff = function(hisTime, nowTime) {
+				if (!arguments.length) return '';
+				var arg = arguments,
+					now = arg[1] ? arg[1] : new Date().getTime(),
+					diffValue = now - arg[0].getTime(),
+					result = {
+						isToday: false
+					},
+					minute = 1000 * 60,
+					hour = minute * 60,
+					day = hour * 24,
+					halfamonth = day * 15,
+					month = day * 30,
+					year = month * 12,
+
+					_year = diffValue / year,
+					_month = diffValue / month,
+					_week = diffValue / (7 * day),
+					_day = diffValue / day,
+					_hour = diffValue / hour,
+					_min = diffValue / minute;
+
+				if (new Date().toDateString() == hisTime.toDateString()) {
+					result.isToday = true;
+				}
+				if (_year >= 1) result.text = parseInt(_year) + "年前";
+				else if (_month >= 1) result.text = parseInt(_month) + "个月前";
+				else if (_week >= 1) result.text = parseInt(_week) + "周前";
+				else if (_day >= 1) result.text = parseInt(_day) + "天前";
+				else if (_hour >= 1) result.text = parseInt(_hour) + "个小时前";
+				else if (_min >= 1) result.text = parseInt(_min) + "分钟前";
+				else result.text = "刚刚";
+				return result;
+			}
+
+			// console.log(dateDiff('1638069321'))
+
+			function fromNow(dateStr) {
+				const between = Date.now() / 1000 - Number(new Date(dateStr.replace(/-/g, '/')).getTime()) / 1000;
+				if (between < 3600) {
+					return (~~(between / 60) + '分钟前');
+				} else if (between < 86400) {
+					return (~~(between / 3600) + '小时前');
+				} else {
+					return (~~(between / 86400) + '天前');
+				}
+			}
+
+			// console.log(fromNow('1638069921'))
+
+
+
+			function isToday(dateStr) {
+				return (new Date().toDateString() == (new Date(dateStr.replace(/-/g, '/')).toDateString()));
+			}
+		</script>
+	</body>
+</html>

@@ -6,6 +6,77 @@
 	</head>
 	<body>
 		<script type="text/javascript">
+			/**
+			 * 格式化时间
+			 */
+			let timeHadelSeconds = (format, value) => {
+				var value1 = value.length >= 10 ? value * 1000 : value;
+				var d = new Date(value1);
+				var year = d.getFullYear() < 10 ? '0' + d.getFullYear() : '' + d.getFullYear();
+				var month = Number(d.getMonth()) + 1 < 10 ? '0' + Number(d.getMonth() + 1) : '' + Number(Number(d
+				.getMonth()) + 1);
+				var day = d.getDate() < 10 ? '0' + d.getDate() : '' + d.getDate();
+				var hour = d.getHours() < 10 ? '0' + d.getHours() : '' + d.getHours();
+				var minutes = d.getMinutes() < 10 ? '0' + d.getMinutes() : '' + d.getMinutes();
+				var seconds = d.getSeconds() < 10 ? '0' + d.getSeconds() : '' + d.getSeconds();
+				if (format == "YYYY-MM-DD") {
+					return year + '-' + month + '-' + day;
+				} else if (format == "YYYY-MM-DD HH:MM:SS") {
+					return year + '.' + month + '.' + day + '  ' + hour + ':' + minutes + ':' + seconds;
+				} else if (format == "HH:MM:SS") {
+					return hour + ':' + minutes + ':' + seconds;
+				} else if (format == "HH:MM") {
+					return hour + ':' + minutes;
+				}
+			}
+			
+			// console.log(timeHadelSeconds("YYYY-MM-DD HH:MM:SS",'1640664000'))
+			
+			// 多久前 时间戳版
+			function publishTimeDesc(postTime) {
+				postTime = String(postTime).length >= 10 ? postTime * 1000 : postTime
+				// 拿到当前时间戳和发布时的时间戳，然后得出时间戳差
+				var curTime = new Date().getTime();
+				var timeDiff = curTime - postTime;
+				
+				// 单位换算
+				var min = 60 * 1000;
+				var hour = min * 60;
+				var day = hour * 24;
+				var week = day * 7;
+
+				// 计算发布时间距离当前时间的周、天、时、分
+				var exceedWeek = Math.floor(timeDiff / week);
+				var exceedDay = Math.floor(timeDiff / day);
+				var exceedHour = Math.floor(timeDiff / hour);
+				var exceedMin = Math.floor(timeDiff / min);
+
+				// 最后判断时间差到底是属于哪个区间，然后return
+				if (exceedWeek > 0) {
+					return timeHadelSeconds("YYYY-MM-DD HH:MM:SS", String(postTime));
+				} else {
+					if (exceedDay < 7 && exceedDay > 0) {
+						return exceedDay + '天前';
+					} else {
+						if (exceedHour < 24 && exceedHour > 0) {
+							return exceedHour + '小时前';
+						} else {
+							if (exceedMin < 10) {
+								return '刚刚'
+							} else {
+								return exceedMin + '分种前';
+							}
+						}
+					}
+				}
+			}
+			// 1640664000  2021-12-28 12:00:00
+			// 1639800000  2021-12-18 12:00:00
+			// 1640404800  2021-12-25 12:00:00
+			console.log(publishTimeDesc('1640685770'))
+
+
+			console.log('============================================')
 			// 多久前
 			function handlePublishTimeDesc(post_modified) {
 				// 拿到当前时间戳和发布时的时间戳，然后得出时间戳差

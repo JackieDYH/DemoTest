@@ -6,6 +6,49 @@
 	</head>
 	<body>
 		<script type="text/javascript">
+			// 多久前
+			function handlePublishTimeDesc(post_modified) {
+				// 拿到当前时间戳和发布时的时间戳，然后得出时间戳差
+				var curTime = new Date();
+				var postTime = new Date(post_modified);
+				var timeDiff = curTime.getTime() - postTime.getTime();
+
+				// 单位换算
+				var min = 60 * 1000;
+				var hour = min * 60;
+				var day = hour * 24;
+				var week = day * 7;
+
+				// 计算发布时间距离当前时间的周、天、时、分
+				var exceedWeek = Math.floor(timeDiff / week);
+				var exceedDay = Math.floor(timeDiff / day);
+				var exceedHour = Math.floor(timeDiff / hour);
+				var exceedMin = Math.floor(timeDiff / min);
+
+				// 最后判断时间差到底是属于哪个区间，然后return
+				if (exceedWeek > 0) {
+					return post_modified;
+				} else {
+					if (exceedDay < 7 && exceedDay > 0) {
+						return exceedDay + '天前';
+					} else {
+						if (exceedHour < 24 && exceedHour > 0) {
+							return exceedHour + '小时前';
+						} else {
+							if (exceedMin < 10) {
+								return '刚刚'
+							} else {
+								return exceedMin + '分种前';
+							}
+						}
+					}
+				}
+			}
+
+			var post_modified = "2021-12-28 12:57:04";
+			console.log(handlePublishTimeDesc(post_modified));
+
+
 			/**
 			 * 多久前
 			 * @param {number} time
@@ -72,7 +115,7 @@
 				var dayC = diffValue / day;
 				var hourC = diffValue / hour;
 				var minC = diffValue / minute;
-				console.log(monthC, weekC, dayC, hourC,minC)
+				console.log(monthC, weekC, dayC, hourC, minC)
 				var res = '';
 				var nowTime = (new Date()).getTime(); // 获取当前时间戳
 				console.log(nowTime, 1111)
@@ -100,7 +143,7 @@
 
 			}
 
-			console.log('getDate',getDate(1640661896430))
+			console.log('getDate', getDate(1640661896430))
 
 			// 时间多久
 			/**
